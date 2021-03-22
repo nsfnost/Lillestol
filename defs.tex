@@ -1,0 +1,21 @@
+%\pagestyle{myheadings}
+\pagestyle{headings}
+\newcounter{eksecount}[chapter]
+\newenvironment{ligning}[1]{\\ \\ $ \mbox{#1 \ \ \ \ }}{$ \\ \\}
+%\newenvironment{beqn}[1]{\\ \\ \mbox{#1} \[}{\]}
+%\newenvironment{ceqn}[1]{\begin{trivlist} \item[#1] \centering $ }
+\newenvironment{eksempel}[1]{\stepcounter{eksecount}
+           {\noindent \bf Eksempel \theeksecount \ : {#1}}\\ }{\\}
+\newcounter{deficount}[chapter]
+\newenvironment{definisjon}{{\noindent \bf Definisjon \ : }}{\\}
+\newcounter{oppgcount}[chapter]
+\newcounter{telle}[chapter]
+\newenvironment{oppg}{\stepcounter{oppgcount}
+                      {\noindent \bf Oppgave \theoppgcount : }}{\\}
+\newcommand{\bino}[2]{{{#1}\choose{#2}}}
+\renewcommand{\bar}{\overline}
+\hyphenation{sann-syn-lig-hets-for-deling sann-syn-lig-hets-for-delingen}
+\hyphenation{sann-syn-lig-heten}
+\hyphenation{til-fel-dig til-fel-dig-het}
+\newcommand\epsfxsize{30}
+
