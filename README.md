@@ -7,7 +7,7 @@ Endringsforslag, i form av korreksjoner eller tillegg til boken, kan sendes
 inn som en *pull request* i github
 
 ## Kommentarer
-* Referanser til Oppgaver og Eksempler er hardkodet, men for oppgaver er kapittelnummer automatisert. Det skal derfor være mulig å legge til eller fjerne hele kapitler. Men, dersom man fjerner deler av et kapittel kan det bli problemet.
+* Referanser til Oppgaver og Eksempler er hardkodet, men for oppgaver er kapittelnummer automatisert. Det skal derfor være mulig å legge til eller fjerne hele kapitler. Men, dersom man fjerner deler av et kapittel kan det bli problemer.
 * Følgende strukturer har fullt automatisert nummerering: figurer, tabeller, kapitler og delkapitler.
 
 ## Ting som bør gjøres (på sikt)
