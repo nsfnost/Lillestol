@@ -1,0 +1,838 @@
+\chapter{Utvalgsundersøkelser}
+\label{kap:utvalgsundersokelser} % Opprinnelig kapittelnr: 14
+
+\section{Innledning}
+
+En utvalgsundersøkelse er karakterisert ved følgende:  Vi har en 
+populasjon bestående av $N$ elementer (objekter eller individer), og vi
+ønsker informasjon om disse elementene.  Dersom $N$ er stor vil det ofte 
+være uhensikts\-messig å observere alle elementene i populasjonen,
+det kan f.eks. være for dyrt, tidkrevende eller praktisk umulig.  Isteden
+trekkes et utvalg på et mindre antall elementer $n$, og konklusjoner
+om populasjonen som helhet trekkes på grunnlag av dette utvalget.
+
+Den enkleste problemstilling av denne typen har vi når de $N$ elementene
+i populasjonen kan beskrives med verdier, henholdsvis $v_1, v_2, \ldots,
+v_N$, og vi ønsker å trekke slutninger om gjennomsnittet $\bar{v}$
+på grunnlag av et utvalg av elementer fra populasjonen.  For det tilfellet
+at utvalget er trukket tilfeldig vil lotterimodellen beskrevet i Kapittel 8.2
+kunne brukes til å vurdere usikkerheten vedrørende de konklusjoner som
+trekkes.
+
+I praksis vil en ofte ikke kunne realisere et tilfeldig utvalg.  Dette kan ha
+forskjellige årsaker, den mest vanlige er at det vil bli for kostbart og
+tidkrevende å gjennomføre.  Statistikere har da foreslått en rekke
+alternative framgangsmåter som kan komme til anvendelse under ulike 
+omstendigheter.  Felles for disse er at de bygger på modeller som er
+generaliseringer i ulike retninger av lotterimodellen.  En framgangsmåte
+for å trekke et utvalg kalles av fagfolkene ofte for en {\em utvalgsplan}
+eller {\em design}.  En design karakteriseres som god i relasjon til det 
+foreliggende problem, dersom den lar seg praktisk gjennomføre innenfor
+rammen av våre ressurser, og samtidig leder til tillitvekkende
+konklusjoner.
+
+Vi vil nedenfor se på noen aktuelle utvalgsplaner og analysemetoder.  Vi
+vil bl.a. vise hvordan tilleggsinformasjon om populasjonen kan utnyttes til
+å oppnå mer pålitelige konklusjoner.
+
+I forbindelse med utvalgsundersøkelser er det også aktuelt å 
+trekke slutninger om proporsjoner, f.eks. brøkdelen av velgere som 
+favoriserer et bestemt politisk parti.  Dette kan ses på som et
+spesialtilfelle av teorien i dette kapitlet, hvor hvert element i 
+populasjonen  har $v$-verdi som enten er 0 eller 1, eksempelvis 0 dersom 
+velgeren ikke favoriserer partiet og 1 dersom velgeren favoriserer partiet.
+Da er $\bar{v}$ brøkdelen av tilhengere i populasjonen.  Imidlertid vil
+estimering av proporsjoner også romme en del aspekter som ikke er dekket
+av teorien nedenfor.
+
+
+\section{Stratifisering}
+La oss først forfølge en tankegang som kalles {\em stratifisering}:
+
+Anta at vi skal estimere gjennomsnittet $\bar{v}$ av de $N$ ukjente verdiene
+$v_1, v_2, \ldots, v_N$ i populasjonen.  Istedenfor å velge ut $n$
+elementer tilfeldig fra hele populasjonen tenker vi oss at denne er delt opp
+i et visst antall delpopulasjoner, kalt {\em strata}, med henholdsvis $N_1,
+N_2, \ldots, N_k$ elementer i hver, slik at $N_1 + N_2 + \cdots + N_k = N$,
+og at vi trekker et tilfeldig utvalg på henholdsvis $n_1, n_2, \ldots,
+n_k$ elementer fra hvert stratum slik at $n_1 + n_2 + \cdots + N_k = n$.  En
+viktig grunn for å foreta stratifisering har vi dersom det er visse typer
+elementer i populasjonen som vi ønsker skal være representert i 
+utvalget, en annen grunn følger av teorien nedenfor.
+
+Vi merker oss at vi kan skrive
+
+\[ \bar{v}=\frac{N_1}{N}{\bar{v}}_1+\frac{N_2}{N}{\bar{v}}_2+ \cdots
+                          +  \frac{N_k}{N}{\bar{v}}_k \]
+\noindent der ${\bar v}_i$ er gjennomsnittet av $v$-verdiene for elementene
+i stratum nr. $i$.  En rimelig estimator for ${\bar v}_i$ vil være
+gjennomsnittet ${\bar Y}_i$ av $v$-verdiene fra de utvalgte elementene fra
+stratum nr. $i$, dvs.
+
+\[  {\bar{Y}}_i=\frac{1}{n_i}=\sum_{j=1}^{n_i}Y_{ij}     \]
+
+\noindent der $Y_{ij}$ betegner $j$'te observasjon fra stratum nr. $i$.
+Som estimator for gjennomsnittet av $v$-verdiene i hele populasjonen
+$\bar{v}$ er det rimelig å bruke
+
+\[ \tilde{Y}=\frac{N_1}{N}{\bar{Y}}_1+\frac{N_2}{N}{\bar{Y}}_2+ \cdots
+                            \frac{N_k}{N}{\bar{Y}}_k .\]
+
+\noindent Innen hvert stratum velges et tilfeldig utvalg, og vi kan her bruke 
+resultatene som er utviklet for lotterimodellen, nemlig
+\[ E{\bar{Y}}_i={\bar{v}}_i      \]
+\[ var{\bar{Y}}_i=\frac{N_i-n_i}{N_i-1}\cdot \frac{{\sigma}_i^2}{n_i}
+                                     \approx \frac{{\sigma}_i^2}{n_i} \]
+\noindent der tilnæmelsen er god når $n_i$ er liten i forhold til
+$N_i$.  Her er ${\sigma}_i^2$ variansen svarende til en enkelt observasjon fra
+stratum nr. $i$.  Av dette følger at
+
+\[   E\tilde{Y} = \bar{v} \mbox{\ \ dvs. estimatoren er forventningsrett.} \]
+
+\noindent Vi antar at trekningene for de ulike strata skjer uavhengig av
+hverandre. Herav følger at
+
+\[ var\tilde{Y} \approx \frac{N_1^2}{N^2} \cdot \frac{{\sigma}_1^2}{n_1}+
+         \frac{N_2^2}{N^2} \cdot \frac{{\sigma}_2^2}{n_1}+ \cdots
+         \frac{N_k^2}{N^2} \cdot \frac{{\sigma}_k^2}{n_k}   \]
+
+\noindent Det er ofte rimelig å trekke ut et antall fra hvert stratum
+proporsjonalt med antall elementer totalt i stratumet, dvs. velge
+\footnote{Vi må i praksis velge $n_1, n_2, \ldots, n_k$ som de
+nærmeste positive heltall med sum $n$.}
+
+\[ n_1=n \cdot \frac{N_1}{N},\;\;\; n_2=n \cdot \frac{N_2}{N}, \ldots ,\;\;\;
+                               n_k=n \cdot \frac{N_k}{N}        \]
+
+\noindent Dette kalles {\em proporsjonal utvelging}.  I denne situasjon
+forenkles varians\-formelen til
+
+\[ var\tilde{Y} \approx \frac{1}{n}(\frac{N_1}{N} \cdot {{\sigma}_1^2}+
+                           \frac{N_2}{N} \cdot {{\sigma}_2^2}+\cdots +
+                                      \frac{N_k}{N} \cdot {{\sigma}_k^2}) \]
+
+\noindent La oss sammenligne estimatoren $\tilde{Y}$ i tilfellet proporsjonal
+utvelging med estimatoren $\bar{Y}$ basert på vanlig tilfeldig utvalg
+på $n$ elementer fra hele po\-pu\-la\-sjonen.  Vi husker at $\bar{Y}$ også var
+forventningsrett og med varians
+
+\[   var\bar{Y} \approx \frac{{\sigma}^2}{n}        \]
+
+\noindent For det tilfellet at gjennomsnittet og variansen er den samme for
+hvert stratum, ${\sigma}_1^2 = {\sigma}_2^2 = \cdots = {\sigma}_k^2 =
+{\sigma}^2$, vil høyresiden i de to siste varians\-formlene være like.
+I alle andre tilfeller vil høyresiden for $var\tilde{Y}$ være mindre
+enn høyresiden for $var\bar{Y}$. Mer konkret viser det seg at
+
+\[ var\bar{Y} \approx var\tilde{Y}+\frac{N_1}{N}{({\bar{v}}_1-\bar{v})}^2     
+                       +\frac{N_2}{N}{({\bar{v}}_2-\bar{v})}^2 + \cdots    
+               +\frac{N_k}{N}{({\bar{v}}_k-\bar{v})}^2     \]
+\noindent som viser at reduksjonen i varians blir større ettersom
+${\bar v}_1, {\bar v}_2, \ldots, {\bar v}_k$ avviker mer og mer fra det totale
+gjennomsnittet $\bar{v}$.
+
+Det er interessant å legge merke til at ved proporsjonal utvelging er
+estimatoren $\tilde{Y}$ også lik gjennomsnittet av de observerte verdier, 
+og det som gir variansreduksjonen er altså at utvalgsplanen er en annen.
+
+I praksis kan resultatene ovenfor utnyttes slik:  På forhånd deles
+po\-pu\-la\-sjonen i strata slik at elementer innen hvert stratum er mest
+mulig homogene, eller ekvivalent, at gjennomsnittene av $v$-verdiene fra
+stratum til stratum er avvikende. Siden vi ikke kjenner eksakte $v$-verdier
+til elementene i populasjonen må dette gjøres etter beste skjønn, 
+f.eks. ut fra visse kjennetegn som er knyttet til disse elementene. Reduksjonen
+av varian\-sen ved bruk av $\tilde{Y}$ som estimator istedenfor $\bar{Y}$ vil
+avhenge av i hvilken grad vi lykkes å utføre denne stratifiseringen
+i henhold til disse ønsker, men poenget er at vi har intet å tape ved
+å forsøke en stratifisert utvelging.  Noen eksempler:
+
+\begin{itemize}
+\item  Ved en undersøkelse av forbruksvaner hos en gruppe av befolkningen,
+       kan vi stratifisere m.h.t. kjønn, bosted og/eller inntektsnivå.
+\item  Ved undersøkelse av gjennomsnittsverdi av kjøp i et varehus, kan
+       vi stratifisere m.h.t. hvilken avdeling de enkelte kjøp fant sted.
+\item  Ved undersøkelse av det gjennomsnittlige antall kuer hos 
+       gårdbrukere over hele landet, kan vi stratifisere etter fylke, 
+       gårdens størrelse, om brukeren har biinntekt eller ikke.
+\item  I revisjon kan en stratifisere etter bokført verdi.
+\end{itemize} 
+
+\noindent I disse situasjonene har vi en viss tro på at $v$-verdiene innen
+hvert stratum er mer homogene enn i populasjonen som helhet.  La oss regne
+på et konkret enkelt eksempel, i en realistisk anvendelse vil selvsagt
+populasjonen være mye større.\\
+
+\begin{eksempel}{Røking}
+På en arbeidsplass er det 10 røkere, 6 menn og 4 kvinner.  Vi ønsker
+å anslå gjennomsnittlig antall sigaretter som er røkt pr. røker
+en bestemt dag på grunnlag av et utvalg av $n = 5$ røkere.  Anta at vi
+deler populasjonen i to strata etter kjønn, idet vi av erfaring vet at
+kvinnene røker gjennomgående noe mindre enn mennene.  Anta at 
+populasjonen består av følgende tall som er ukjente for oss.
+\begin{center}
+\begin{tabular}{lcccccc}
+Stratum 1: &   8   &   10   &   5   &   7   &   4   &   9 \\
+Stratum 2: &   4   &    2   &   4   &   6   &       &
+\end{tabular}
+\end{center}
+\noindent Ved proporsjonal utvelging trekkes tilfeldig 3 menn og 2 kvinner.
+En tabell over tilfeldige tall lar oss observere person nr. 1, 3 og 6 fra
+stratum nr. 1, og person nr. 1 og 4 fra stratum nr. 2.  Vi får 
+\begin{eqnarray*}
+ \bar{Y}_1&=&(8+5+9)/3=7.3 \\
+ \bar{Y}_2&=&(4+6)/2=5.0
+\end{eqnarray*}
+\noindent slik at
+
+\[ \tilde{Y}=\frac{6}{10}\bar{Y}_1+\frac{4}{10}\bar{Y}_2=
+             \frac{6}{10}7.3+\frac{4}{10}5.0=6.4 \]
+ 
+\noindent Anta at vi isteden velger de $n = 5$ tilfeldig fra hele populasjonen.
+En tabell over tilfeldige tall lar oss da observere person 2, 3, 4 og 6 blant
+mennene og person nr. 2 blant kvinnene, slik at vi får
+
+\[ \bar{Y}=(10+5+7+9+2)/5=6.6            \]
+
+\noindent På grunn av teorien ovenfor vil vi foretrekke å bruke den
+første framgangsmåten.  Vi ser for øvrig at gjennomsnittet i
+populasjonen virkelig er 5.9, noe som vi selvfølgelig ikke vet ut fra det
+utvalg som er foretatt.\\
+\end{eksempel}
+
+Når en skal vurdere usikkerheten ved et beregnet estimat, ønsker vi
+å bruke standardavviket til estimatoren.  Igjen må dette estimeres.
+Vi kan estimere variansen innen hvert stratum på vanlig måte, dvs.
+vi beregner
+
+\[  S_i^2=\frac{1}{n_i}\sum_{j=1}^{n_i}{(Y_{ij}-\bar{Y}_i)}^2      \]
+
+\noindent hvor $Y_{ij}$ er den $j$'te observasjon fra stratum nr. 1.  Med utgangspunkt
+i formelen for var $\tilde{Y}$ ovenfor kan vi få en estimator for denne
+variansen ved å erstatte ${\sigma}_i^2$  med $S_i^2$.  Vi får da
+estimatoren
+
+\[  S^2 =\frac{N_1^2}{N^2} \cdot \frac{S_1^2}{n_1}+
+         \frac{N_2^2}{N^2} \cdot \frac{S_2^2}{n_1}+ \cdots
+         \frac{N_k^2}{N^2} \cdot \frac{S_k^2}{n_k}   \]
+
+\noindent som i tilfellet med proporsjonal utvelging reduseres til
+
+\[ S^2 = \frac{1}{n}(\frac{N_1}{N} \cdot {S_1^2}+
+                           \frac{N_2}{N} \cdot {S_2^2}+\cdots +
+                                      \frac{N_k}{N} \cdot {S_k^2}) \]
+
+\noindent Som estimator for standardavviket brukes da $S$.
+
+Man kan spørre om det er mulig å finne en estimator som reduserer
+variansen ytterligere i forhold til proporsjonal utvelging.  Det viser seg
+at $var\tilde{Y}$ er minst mulig når utvalgsstørrelsen $n_i$ velges,
+ikke proporsjonal med $N_i$, men proporsjonal med $N_i{\sigma}_i$.  Dette 
+kalles {\em optimal utvelging}.  Slik utvelging krever imidlertid kunnskap
+om ${\sigma}_i$, noe som sjelden er tilgjengelig.  Dersom vi vet at 
+variabiliteten innen et bestemt stratum er stor i forhold til andre strata,
+kan det være lønnsomt å øke utvalgsstørrelsen fra dette
+i forhold til vanlig proporsjonal utvelging.  Imidlertid må det ekstreme
+forhold til før en tjener noe vesentlig på å gjøre dette.
+
+I noen situasjoner kan kostnadene ved å velge ut elementer variere fra
+stratum til stratum.  Det finnes også teorier for bestemmelse av
+utvalgs\-størrelser hvor en tar hensyn til dette.
+
+Vi har for å forenkle teorien ovenfor tatt utgangspunkt i formler hvor
+korreksjonsfaktorer av typen $(N - n)/(N - 1)$ er utelatt og de funne
+resultater gjelder da strengt tatt bare når utvalgsstørrelsene innen
+hvert stratum er lite i forhold til det totale antall i hvert stratum.  Dette
+vil også være tilfellet i mange anvendelser.  Imidlertid vil den
+konklusjon at det kan være lønnsomt å stratifisere ha mer generell
+gyldighet, og i situasjoner der utvalgsstørrelsene forholdsvis ikke er 
+små, kan det være aktuelt å ta med korreksjonsfaktorer av typen
+ovenfor.
+
+
+
+\section{Klyngeutvalg}
+
+I enkelte situasjoner er det ikke hensiktsmessig å gjennomføre et
+rent tilfeldig utvalg, ei heller et stratifisert utvalg.  Dette kan skyldes
+praktiske omstendigheter og/eller høye kostnader.  Eksempelvis dersom en
+ønsker å gjennomføre en forbrukerundersøkelse som gjelder 
+husstandene i en større by, vil det ikke være hensiktsmessig å la
+en intervjuer besøke utvalgte husstander spredt over et stort område.
+Isteden tenker man seg at byen deles opp i mindre områder, f.eks. i
+kvartaler.  Det velges så først tilfeldig et visst antall kvartaler.
+Fra hvert av de utvalgte kvartaler velges så tilfeldig et visst antall
+husstander som intervjues.  Dette kalles et {\em klyngeutvalg}, her er det 
+tale om et to-trinns klyngeutvalg.  På første trinn trekkes et utvalg
+av såkalte {\em primære utvalgsenheter}.  Fra hver av de utvalgte
+primærenheter velges et antall {\em sekundære utvalgsenheter}, og
+disse danner grunnlag for den statistiske undersøkelsen.
+
+Det viser seg at estimater basert på klyngeutvalg generelt ikke er så
+pålitelige som tilsvarende estimator basert på et rent tilfeldig
+utvalg med den samme utvalgsstørrelse.  Imidlertid kan et klyngeutvalg
+vise seg å være mindre tidkrevende og billigere, slik at vi med
+gitte ressurser kan gjennomføre undersøkelsen med en betydelig 
+større utvalgsstørrelse enn med et rent tilfeldig utvalg.  Eksempelvis
+vil både tid og penger være spart ved å intervjue familier som
+bor i visse konsentrerte områder enn at alle er spredt utover et større
+område.
+
+Vi vil ikke her bygge opp noen teori for klyngeutvalg.  En slik teori vil 
+avhenge av hvordan de primære utvalgsenhetene velges ut, enten at hver 
+primær utvalgsenhet har samme sannsynlighet for å bli valgt ut, eller
+at sannsynligheten for å velge en bestemt primær utvalgsenhet er
+proporsjonal med antall sekundære utvalgsenheter som denne består av.
+Den siste framgangsmåten sikrer at alle sekundære utvalgsenheter har 
+samme sannsynlighet for å bli valgt ut, eksempelvis at alle husstander i
+byen har samme sjanse for å komme med i undersøkelsen.  Det viser seg
+at teorien i det siste tilfellet også blir betydelig enklere enn i det 
+første.
+
+Tanken om klyngeutvalg kan også utvides til utvalg som tas i mer enn to
+trinn, og teorier for tre-trinns utvalg er tilgjengelig i litteraturen.  I
+praksis kan det også være aktuelt å bruke klyngeutvalg i
+kombinasjon med stratifisering.  Kan hende er bebyggelsen i byen ulik fra
+distrikt til distrikt, noen bydeler med hovedsaklig eldre leiegårder,
+andre med nyere blokkbebyggelse og småhus, igjen andre med større 
+frittliggende eneboliger.  Det kan tenkes at forbruksmønsteret er noe ulikt
+i de tre typer boligområder, og for å få holdepunkter i denne 
+retning er det ønskelig at hver type er skikkelig representert i utvalget.
+Vi kan da betrakte de tre typer boligområder som tre strata og innen hvert
+stratum foretas så et klyngeutvalg etter de retningslinjer som er 
+beskrevet ovenfor.
+
+Grunnen til at man på ulike trinn i en utvalgsundersøkelse anbefaler
+å velge utvalgsenheter tilfeldig er at det sikrer en viss rettferdighet.
+Dette kan bidra til å fjerne mulige feilkilder som ikke er åpenbare
+for de som gjennomfører undersøkelsen.  Videre danner en slik 
+framgangsmåte grunnlag for en teori som setter oss i stand til å
+vurdere påliteligheten av de konklusjoner som trekkes av undersøkelsen.
+I praksis hender det imidlertid ofte at man er nødt til å gå på
+akkord med målsettingen om at utvalg skal velges tilfeldig.  Som regel
+skyldes dette omstendigheter av praktisk og/eller økonomisk natur.  En 
+bør imidlertid alltid forstå konsekvensene av den utvalgsmåte som
+brukes, om den kan innebære mulige feilkilder, samt hvilke 
+usikkerhetsmarginer en må regne med i eventuelle konklusjoner.  I 
+litteraturen er beskrevet en rekke mulige framgangsmåter for
+gjennomføring av utvalgs\-under\-søkelser ut fra totalvurdering av ideelle
+målsettinger og praktisk gjennomførbarhet.  Den utvalgsplan som bør
+velges i en konkret situasjon vil avhenge av omstendighetene.
+
+
+\section{Estimeringsmetoder}
+
+I de foregående avsnitt har vi diskutert ulike utvalgsplaner.  Med en gitt
+plan vil det, når observasjoner foreligger til analyse, være mulig
+å velge mellom ulike analysemetoder.  Vi har ovenfor studert de enklest
+tenkelige estimatorer, og vil her se på noen alternative estimatorer som
+er aktuelle i situasjoner der det foreligger tilleggsinformasjon om hver 
+enkelt utvalgsenhet.  Det viser seg at disse estimatorene under visse 
+omstendigheter, kan gi betydelig presisjonsgevinst i forhold til de vanlige 
+estimatorene.
+
+Anta at til hvert av de $N$ elementene i populasjonen er knyttet to verdier,
+en $v$-verdi og en $w$-verdi, slik at populasjonen består av $N$ tallpar
+
+\[ (v_1,w_1),(v_2,w_2),\ldots ,(v_N,w_N) \]
+
+\noindent Anta at summen av $w$-verdiene er kjent, dvs. $\bar{w}$ er kjent. Vi
+ønsker fortsatt å estimere gjennomsnittet $\bar{v}$ av $v$-verdiene
+på grunnlag av et utvalg på $n$ elementer fra populasjonen.  Vi
+observerer da både $v$-verdien og $w$-verdien for hvert element i 
+utvalget, og spørsmålet er om vi ikke også kan utnytte $w$-verdiene
+når vi estimerer $\bar{v}$.  Dette synes i hvert fall rimelig i 
+situasjoner der vi vet at det er en viss samvariasjon mellom $v$ og $w$.  La
+oss kort skissere et par eksempler hvor dette er aktuelt:
+
+\begin{itemize}
+\item  En kommune ønsker å anslå den gjennomsnittlige 
+       silokapasiteten for alle gårdsbruk i kommunen på grunnlag av 
+       et utvalg gårder.  Man kjenner det totale dyrkede areal på
+       alle gårdene, både de som er med og ikke er med i utvalget.
+
+\item  En revisor ønsker å anslå gjennomsnittlig innestående
+       på en rekke konti på et bestemt tidspunkt på grunnlag av
+       et utvalg konti.  Hun kjenner innestående på alle konti på
+       samme tidspunkt året før.
+\end{itemize}
+
+Vi vil nedenfor anta at vi trekker et vanlig tilfeldig utvalg.  La oss 
+innføre følgende notasjon:  $Y_i$ betegner fortsatt $v$-verdien til 
+det $i$'te element i utvalget, mens den tilhørende $w$-verdien betegner
+vi med $X_i$.  Vårt observasjonsmateriale består derfor av $n$
+observasjonspar
+
+\[ (Y_1, X_1), (Y_2, X_2), \ldots ,(Y_n, X_n) \]
+
+\noindent samt gjennomsnittet av $w$-verdiene i hele populasjonen $\bar{w}$.
+ En aktuell estimator for $\bar{v}$ er nå den såkalte
+ {\em rateestimatoren}, gitt ved 
+
+\[  R=\bar{Y} \cdot \frac{\bar{w}}{\bar{X}}       \]
+
+\noindent Denne estimatoren kan i lys av det første eksemplet ovenfor
+ motiveres slik:  Dersom tilfeldigvis de utvalgte gårdene
+gjennomgående har
+mindre dyrket areal enn gjennomsnittet $\bar{w}$ vil en kunne vente at 
+også silokapasiteten for disse i gjennomsnitt er lavere enn $\bar{v}$,
+dvs. at vi underestimerer $\bar{v}$.  Tilsvarende vil vi kunne overestimere
+$\bar{v}$ dersom de utvalgte gårder gjennomgående har dyrket areal
+over gjennomsnittet.  Opplysning om i hvilken retning en feilestimering
+trolig går, får vi ved å sammenligne det observerte 
+gjennomsnittlige dyrkede areal $\bar{X}$ med det totale gjennomsnitt $\bar
+{w}$, som er antatt kjent.  Den vanlige estimatoren  $\bar{Y}$ kan
+da korrigeres ved å multiplisere med faktoren $\bar{w}/\bar{X}$.
+
+Det kan vises at rateestimatoren er tilnærmet forventningsrett med
+varians
+
+\[ varR \approx \frac{N-n}{N-1} \cdot \frac{1}{n} \cdot \frac{1}{N}
+                       \sum_{i=1}^n{(v_i-\bar{v} \frac{w_i}{\bar{w}})}^2 \]
+
+\noindent Tilnærmelsen er best når $n$ og $N$ er stor.  På den
+ annen side husker vi at
+
+\[ var\bar{Y} \approx \frac{N-n}{N-1} \cdot \frac{1}{n} \cdot \frac{1}{N}
+                       \sum_{i=1}^n{(v_i-\bar{v})}^2 \]
+
+\noindent Variansen til $R$ vil være betydelig mindre enn variansen til
+ $\bar{Y}$ straks $v$-verdiene er tilnærmet proporsjonal med de
+ tilhørende $w$-verdier.  Merk at for eksakt proporsjonalitet vil det
+ tilnærmede uttrykk for var$R$ reduseres til null.
+
+En annen aktuell estimator er den såkalte {\em regresjonsestimatoren}
+
+\[ V=\bar{Y}+\hat{\beta} \cdot (\bar{w}-\bar{X})       \]
+
+\noindent der koeffisienten $\hat{\beta}$ er bestemt ved minste kvadraters
+ metode anvendt på observasjonene i utvalget, dvs.
+
+\[  \hat{\beta}=\frac{\sum_{i=1}^{n}(X_i-\bar{X})Y_i}
+                          {\sum_{i=1}^{n}{(X_i-\bar{X})}^2} \]
+
+\noindent For å forstå denne estimatoren trengs kanskje et
+tilbakeblikk på teorien i Kapittel 8.3.  Tankegangen er imidlertid den
+samme som med rateestimatoren.  De observerte $w$-verdier i utvalget kan
+avdekke eventuelle skjevheter i utvalget som kan korrigeres.  Her korrigeres
+ut fra forestillingen om en mulig lineær samvariasjon mellom $w$-verdier
+og $v$-verdier.  Positiv $\hat{\beta}$ vil indikere positiv samvariasjon.  
+Dersom vi observerer $\bar{X}$ mindre enn $\bar{w}$, vil estimatoren 
+$\bar{Y}$ antakelig underestimere $\bar{v}$.  Vi ser at i dette tilfellet
+vil estimatoren $V$ korrigere oppover, omvendt dersom $\hat{\beta}$ blir
+negativ.  $V$ vil derfor trolig gi et bedre estimat enn $\bar{Y}$.  Teori
+indikerer at regresjonsestimatoren gjennomgående har mindre varians enn
+rateestimatoren i hvert fall for større utvalg.  Rateestimatorer eller
+regresjonsestimatorer er ofte aktuelle i situasjoner der $v$-verdiene
+representerer en størrelse knyttet til elementene i populasjonen på
+et bestemt tidspunkt, mens $w$-verdiene representerer samme størrelse
+for disse elementene på et tidligere tidspunkt og disse antas kjent for
+alle elementene i populasjonen.
+
+Når det gjelder estimering av varians for rateestimatoren og 
+regresjonsestimatoren må vi vise til spesiallitteratur. \\
+
+\begin{eksempel}{Konti}
+La oss tenke oss $N = 10$ konti hvor innestående pr. 31.desember i to 
+etterfølgende år var følgende (i tusen kroner):
+\begin{center}
+\begin{tabular}{ccccccccccc}
+ $w_i$ : &   2  &  6  &  1  &  6  &  7  &  4  &  1  &  3  &  3  &  7 \\
+ $v_i$ : &   3  &  9  &  2  &  5  &  9  &  7  &  1  &  5  &  4  &  7
+\end{tabular}
+\end{center}
+Vi ser at $\bar{w} = 4$, og vi antar at dette er kjent.  Den andre tallrekken
+antar vi er ukjent, og at vi ønsker å estimere $\bar{v}$ på
+grunnlag av et utvalg på $n = 3$ konti.  En tabell over tilfeldige tall
+lar oss observere konto nr. 1, 3 og 9.  Vi får da
+
+\[ \bar{Y}=(3+2+4)/3=3.0.        \]
+
+\noindent Vi ser at $\bar{X} = 2$, og sammenlignet med $\bar{w} = 4$ gir dette 
+berettiget mistanke om at $\bar{v}$ er underestimert.  Rateestimatet blir
+
+\[  R=3.0 \cdot \frac{4}{2}=6.0       \]
+
+\noindent mens regresjonsestimatet blir
+
+\[  V=3.0+1.0 \cdot (4-2)=5.0,      \]
+
+\noindent og hvilket som bør velges er et skjønnsspørsmål.
+I realistiske anvendelser vil selvsagt $N$ være mye større, dette
+ må bare oppfattes som et regneeksempel med enkle tall.
+\end{eksempel}
+
+Det finnes også en rekke andre forslag til estimatorer som tar omsyn
+til tilleggsinformasjon.  Under de fleste omstendigheter vil disse ikke 
+være dårligere enn den vanlige estimatoren $\bar{Y}$, som ikke tar
+omsyn til tilleggsinformasjon, og under spesielle omstendigheter vil de
+være betydelig bedre.  Valg av estimator vil derfor være delvis
+avhengig av de forestillinger vi gjør oss om den tilleggsinformasjon som
+foreligger.  Det finnes versjoner av disse estimatorene også for andre
+utvalgsplaner enn rent tilfeldig utvalg.
+
+En type utvalg av betydelig interesse er såkalt proporsjonal utvelgelse,
+der enhetene i utvalget trekkes med sannsynligheter proporsjonale med
+sine $w$-verdier, som antas kjent. Tanken bak dette er at store $v$-verdier
+har større innflytelse på resultatet enn små, og derfor viktigere
+å få med i utvalget. Dersom det er korrelasjon mellom $v$ og $w$, vil
+vil fremgangsmåten nettopp sikre dette, og på en slik måte at
+egenskapene til estimeringsmetoder f.eks. rateestimatoren kan utledes.
+Dette er et alternativ til å bruke $v$-verdiene til å stratifisere i
+to eller flere grupper. 
+
+Vi har ovenfor omtalt noen sentrale id\'{e}er fra teorien for 
+utvalgsundersøkelser.  En rekke andre id\'{e}er har vi måtte la ligge,
+og interesserte må søke spesiallitteratur.  Dette gjelder spesielt
+de praktiske sider ved gjennomføringen av utvalgsundersøkelser,
+intervjupraksis osv.
+
+
+\section{Estimering av populasjonsstørrelse}
+
+En problemstilling av en noe annen karakter enn ovenfor, er å anslå
+størrelsen av en populasjon.  Dette har en viss aktualitet
+ i forbindelse med økologi og ressursproblemer,
+f.eks. ved å anslå størrelsen av en laksestamme eller størrelsen
+av en viltbestand.  Slike undersøkelser utføres gjerne ved å merke
+et visst antall individer fra populasjonen, slippe disse løs igjen, og 
+senere ta et utvalg fra populasjonen, observere andelen av merkede individer,
+og trekke konklusjoner om populasjonens størrelse på grunnlag av dette.
+
+La $N$ være antall individer i populasjonen og $M$ være antall 
+merkede individer, slik at brøkdelen av merkede individer i populasjonen
+er $a = M/N$.  Det trekkes så et utvalg individer, og anta at 
+brøkdelen merkede individer i utvalget er $\hat{a}$.  Det synes da rimelig
+å anslå populasjonens størrelse $N$ ved
+
+\[    \hat{N} = \frac{M}{\hat{a}}     \]
+
+\noindent Nå kan en slik undersøkelse gjennomføres på ulike
+måter, vi vil her kort omtale to måter:  Enten gjenfanges et bestemt
+antall individer $n$ fra populasjonen og antall merkede individer $Y$ observeres,
+eller man fanger individer inntil et bestemt antall merkede individer $m$
+er oppnådd og observerer det antall individer $X$ som det ble nødvendig
+å fange i alt.  Det første kalles {\em direkte utvelging}, det siste
+{\em invers utvelging}.
+
+La oss først betrakte direkte utvelging:  Brøkdelen av merkede 
+individer i utvalget er da $\hat{a} = Y/n$, slik at estimatoren for
+populasjonsstørrelsen $N$ kan skrives
+
+\[    \hat{N} = \frac{M \cdot n}{Y}     \]
+
+\noindent For at dette skal ha noen mening må selvsagt $Y>0$ og vi antar
+at både $M$ og $n$ er valgt tilstrekkelig store til at dette i praksis er
+oppfylt. Estimatoren $\hat{N}$ er ikke forventningsrett, den stokastiske $Y$ i 
+nevneren kompliserer det hele.  Det kan imidlertid vises at 
+
+\[   E\hat{N} \approx N+(N-M)/M \approx N \]
+
+\noindent Den siste tilnærmelsen er brukbar dersom $M$ og $n$ ikke velges
+altfor liten, i så fall vil altså $\hat{N}$ være tilnærmet
+forventningsrett.  Videre kan det vises at variansen til $\hat{N}$ er
+tilnærmet lik
+
+\[   var\hat{N} \approx \frac{M^2}{a^4} \cdot \frac{N-n}{N-1} \cdot
+         \frac{a(1-a)}{n} \approx \frac{M^2}{n} \cdot  \frac{(1-a)}{a^3} \]
+
+\noindent Den siste tilnærmelsen gjelder når $n$ er liten i forhold
+til $N$. Dette uttrykket avhenger av $a$ som er ukjent, men et brukbart
+estimat for $a$ er $\hat{a}$.  Variansen til $\hat{N}$ kan derfor estimeres
+ved å erstatte $a$ med $\hat{a}$ i formelen ovenfor.  Vi er dermed i stand 
+til i en viss grad å vurdere usikkerheten ved den esti\-mering av
+populasjonens størrelse som er foretatt.  Teorien ovenfor bygger på en
+viktig forutsetning, nemlig at de merkede og de gjenfangede individene
+representerer et tilfeldig utvalg fra populasjonen.\\
+
+\begin{eksempel}{Laks}
+En lakseoppdretter har laks i en dam og ønsker å anslå det totale
+antall laks i dammen.  Han fanger inn $M = 30$ laks som merkes og slippes ut
+igjen.  Dagen etter fanger han $n = 20$ laks og observerer 4 merkede blant
+disse.  Han estimerer derfor det totale antall laks i dammen til $\hat{N} =
+30\cdot 20/4 = 150$.  Et anslag for variansen til estimatoren blir ved
+innsetting av $\hat{a} = 4/20 = 1/5$ lik 4500.  Dersom vi rapporterer
+estimat standardavvik blir vår rapport for populasjonens størrelse
+
+\[  150 \; \; \pm \; \; 67   \]
+
+\noindent altså ikke altfor god sikkerhet.
+\end{eksempel}
+
+La oss isteden betrakte invers utvelging.  Brøkdelen av merkede individer
+blant de gjenfangede individer er da $\hat{a} = m/X$ slik at estimatoren
+for populasjonsstørrelsen kan skrives
+
+\[  \hat{N}=\frac{M \cdot X}{m}    \]
+
+\noindent Dersom hvert nytt gjenfanget individ er tilfeldig utvalgt fra
+populasjonen, viser det seg at denne estimatoren er tilnærmet
+forventningsrett, dvs.
+
+\[  E\hat{N} \approx N      \]
+
+\noindent Den tilhørende varians er tilnærmet gitt ved
+
+\[ var\hat{N} \approx \frac{M^2}{m} \cdot \frac{1-a}{a^2}    \]
+
+\noindent hvor tilnærmelsen er brukbar dersom $m$ ikke er for stor i
+forhold til $M$ \footnote{Vi kan som tilnærmelse tenke oss at vi
+slipper løs
+igjen hvert merket individ som fanges, og ventetiden til hvert nytt merket 
+individ er da geometrisk fordelt, se Kapittel 6.7, hvorav resultatet 
+følger.}  Siden $a$ i dette uttrykket er ukjent må man i praksis
+estimere denne variansen ved å erstatte $a$ med estimatet $\hat{a}$.\\
+
+\begin{eksempel}{Laks}
+Anta at lakseoppdretten i Eksempel 3 isteden har bestemt seg for å
+velge ut laks inntil $m = 5$ merkede er tatt opp, og det viste seg at han
+måtte fange 22 laks i alt for å oppnå dette.  Han estimerer
+derfor det totale antall laks i dammen til $\hat{N} = 30 \cdot 22/5 =
+132$.  Et anslag for variansen til estimatoren blir ved innsetting av
+$\hat{a} =5/22$ lik 2692.  Dersom vi rapporterer estimert standardavvik
+blir vår rapport for populasjonens størrelse
+
+\[   132 \;\; \pm \;\; 52                           \]
+
+\noindent For en nærmere redegjørelse av de relative fortrinn av de to
+metodene samt fastlegging av utvalgsstørrelser må vi vise til 
+spesiallitteratur.
+\end{eksempel}
+
+
+\section{Oppgaver}
+\small
+\begin{enumerate}
+\item  En forening har $N$ = 700 medlemmer i sitt kartotek, hver med sitt
+tresifrede medlemsnummer.  Hvordan vil du gå fram for å trekke et
+tilfeldig utvalg på $n$= 20 medlemmer?
+
+\item  Man ønsker å anslå gjennomsnittlig studiegjeld $\bar{v}$
+for studentene på et kull av $N$ = 250 studenter på grunnlag av et
+tilfeldig utvalg på $n$ = 30 studenter.  Det viste seg at gjennomsnittet
+i utvalget (i tusen kroner) var 54, mens den empiriske varians var 400.
+
+\begin{itemize}
+\item[(a)]  Estimer $\bar{v}$ og rapporter resultatet.
+\item[(b)]  Ved et annet studiested vet man ut fra en fullstendig 
+undersøkelse at gjennomsnittlig gjeld var 48.  Gir resultatet av
+utvalgsundersøkelsen ovenfor grunnlag for å påstå at gjelden
+er høyere blant studentene der enn her?
+\item[(c)]  Kunne vi på noe vis oppnå et bedre estimat for 
+gjennomsnittlig gjeld basert på et utvalg?
+\end{itemize}
+
+\item
+\begin{itemize}
+\item[(a)] Påvis at en lotterisituasjon der de $N$ elementene i populasjonen
+har verdier enten 1 eller 0 er det samme som en hypergeometrisk situasjon.
+\item[(b)]  La $M$ være 1'ere i populasjonen og påvis at
+
+\[ \bar{v}=\frac{M}{N}  \mbox{\ \ \ } {\sigma}^2=\frac{M}{N}(1-\frac{M}{N}) \]
+
+\item[(c)]  La $Y$ være antall 1'ere i et utvalg på $n$ elementer og 
+påvis at $\bar{Y} = Y/n$.  Bruk dette til å gi alternativ
+utledning av forventningen og variansen til estimatoren $\hat{a} = Y/n$
+for estimering av $a = M/N$ i en hypergeometrisk situasjon.
+\item[(d)]  Finn en forventningsrett estimator for variansen til $\hat{a}$.
+\end{itemize}
+
+\item  Blant et studentkull på $N$ = 250 intervjues et tilfeldig utvalg
+på $n$ = 50 studenter.  Det viste seg at 10 av disse hadde deltidsjobb.
+
+\begin{itemize}
+\item[(a)]  Estimer brøkdelen av studenter på dette kullet som har
+deltidsjobb og rapporter resultatet.
+\item[(b)]  Samme undersøkelse ble foretatt for et årskull av eldre 
+studenter og her hadde 20 av de 50 utvalgte deltidsjobb.
+Estimer og rapporter.
+\item[(c)]  Gir resultatene grunnlag for å påstå at de eldre 
+studentene er mer tilbøyelig til å jobbe deltid enn de yngre?
+\end{itemize}
+
+\item  I en situasjon med $k$=4 strata er antallet innen hvert stratum og
+stratumstandardavvikene gitt ved henholdsvis
+\begin{center}
+\begin{tabular}{crrrr}
+ $N_i$ :   &     400   &   300   &   200   &   100 \\
+ ${\sigma}_i$ : & 10   &    20   &    20   &    30
+\end{tabular}
+\end{center}
+\begin{itemize}
+\item[(a)] Hvor mange observasjoner $n$ må velges ut i alt dersom vi bruker
+proporsjonal utvelging og ønsker at estimatoren skal ha et standardavvik
+lik $\Delta$ dersom
+ (i) $\Delta =1$ \ \  (ii) $\Delta= 2$ \ \  (iii) $\Delta =5$
+
+\item[(b)]  Hvor mange observasjoner må velges ut i alt dersom vi 
+isteden bruker optimal utvelging?
+\end{itemize}
+
+\item  Ved rapportering av variansen til estimatoren $\tilde{Y}$ som brukes
+ved stratifisert utvelging antok vi at variansen ${\sigma}_i^2$ innen hvert 
+stratum ble estimert ved 
+\[ S_i^2=\frac{1}{n_i}\sum_{j=1}^{n_i}{(Y_{ij}-{\bar{Y}}_i)}^2      \]
+\begin{itemize}
+\item[(a)]  Er denne estimatoren forventningsrett for ${\sigma}_i^2$?  Hvis
+ikke, korriger den slik at den blir forventningsrett.  Hint:  Se Kapittel
+8.2.
+\item[(b)]  Gi en formel for den estimerte varians til $\tilde{Y}$ hvor vi
+har med korreksjonsfaktoren for endelig utvalg og eventuell korreksjon fra
+(a).
+\end{itemize}
+
+\item  En revisor skal anslå det gjennomsnittlige beløp $\bar{v}$ som
+er innestående på $N$ = 1000 konti ut fra et utvalg på av
+$n$ = 100 konti som granskes nærmere.  Revisoren ønsker å utnytte
+informasjon fra året før da han gjennomgikk alle konti.  Han deler
+disse i fire strata etter innestående året før.  Han har også
+beregnet standardavviket ${\sigma}_i$ for hvert stratum dette året.
+Resultatet var:
+\begin{center}
+\begin{tabular}{lrrrr}
+Stratum nr.:              &      1   &     2     &      3     &   4     \\
+Innestående i kr.:    &   0-999  & 1000-4999 &  5000-9999 & 10000-  \\
+Antall konti ($N_i$):       &     400  &    300    &      200   &  100    \\
+Standardavvik(${\sigma}_i$):&     250  &   1000    &     1500   & 3000
+\end{tabular}
+\end{center}
+\begin{itemize}
+\item[(a)]  Det er foreslått å velge ut $n_1=10, n_2=n_3=n_4=30$
+ fra de fire strata. Hvorfor?
+
+Anta at observerte gjennomsnitt og tilhørende empiriske standardavvik er
+\begin{center}
+\begin{tabular}{lrrrr}
+Gj.snitt ($\bar{Y}_i$)    &    800   &   3500   &   8000   &   20000 \\
+St.avvik ($S_i$)          &    200   &    900   &   1600   &    3500
+\end{tabular}
+\end{center}
+\item[(b)]  Estimer $\bar{v}$ og rapporter resultatet.
+\item[(b)]  Bokført verdi er 4.9 millioner kroner.  Er dette urimelig?
+\end{itemize}
+
+\item  Anta at revisoren i forrige oppgave isteden valgte $n$ = 100 konti
+tilfeldig fra alle $N$ = 1000 konti og at han observerte gjennomsnittlig
+innestående lik 5300 kr.  Gjennomsnittlig innestående på de
+samme utvalgte konti året før var 4800 kr., mens det totale 
+gjennomsnitt året før var 4600 kr.  Gi et alternativt estimat for
+$\bar{v}$ på grunnlag av disse opplysningene.
+
+\item  Gitt følgende sammenhørende verdier av $(v,w)$ for en 
+populasjon på $N$ = 10 elementer.
+\begin{center}
+\begin{tabular}{ccccccccccc}
+ $v_i$ :   &  2  &  3  &  4  &  5  &  2  &  3  &  2  &  6  &  1  &  4 \\
+ $w_i$ :   &  1  &  2  &  4  &  3  &  2  &  4  &  1  &  3  &  1  &  2
+\end{tabular}
+\end{center}
+Det trekkes et tilfeldig utvalg på $n$ = 3 elementer.
+
+\begin{itemize}
+\item[(a)]  Beregn variansen til rateestimatoren.
+\item[(b)]  Beregn også variansen til gjennomsnittsestimatoren.
+\item[(c)]  Hvor stort utvalg må trekkes for at denne skal gi samme 
+pålitelighet som rateestimatoren for $n$ = 3.
+\end{itemize}
+
+\item  
+\begin{itemize}
+\item[(a)]  Foreslå en estimator for variansen til rateestimatoren.
+\item[(b)] $\star$Forsøk å finne ut om den foreslåtte estimator er 
+forventningsrett.
+\end{itemize}
+
+\item  En tannlege har gjennomført pensling av tennene til $N$ = 1000 
+elever med sikte på å redusere tannråte.  Elevene går til
+kontroll en gang hvert halvår og tidligere hadde de gjennomsnittlig
+2.2 hull pr. gang.  Et halvår senere er han spent på om penslingen
+har gitt resultater, og han noterer seg antall hull hos de $n$ =10 første
+barna som kommer til kontroll.  Resultatet var
+\begin{center}
+\begin{tabular}{lcccccccccc}
+ $Y_i$ :   &  2  &  0  &  3  &  1  &  1  &  4  &  0  &  4  &  2  &  3
+\end{tabular}
+\end{center}
+\begin{itemize}
+\item[(a)]  Estimer gjennomsnittlig antall hull etter et halvår med
+penslede tenner og rapporter resultatet.
+\item[(b)]  Er det grunn til å tro at penslingen har gitt resultater?
+Tannlegen har opplysninger om antall hull ved siste kontroll for elevene
+ovenfor.  Disse var (i samme rekkefølge)
+
+\begin{center}
+
+\begin{tabular}{ccccccccccc}
+ $w_i$ :   &  3  &  0  &  4  &  2  &  1  &  5  &  1  &  4  &  3  &  3
+\end{tabular}
+\end{center}
+\item[(c)]  Bruk dette til å gi et alternativt estimat.
+\item[(d)]  Kommenter resultatene og også opplegget til undersøkelsen.
+\end{itemize}
+
+\item  En skogeier (f.eks. staten) ønsker å telle antall trær i
+et større område.  For dette formål er området delt i et
+rutenett bestående av $N$ = 100 ruter.  Av disse velges ut $n$ = 10 ruter
+og trærne der telles.  Nå foreligger det luftfoto over vedkommende
+område og det er mulig ut fra dette å anslå grovt antall trær
+i hver rute.
+
+Drøft hvordan denne tilleggsinformasjon kan utnyttes ved estimering av de
+totale antall trær i området.
+
+\item  En skogeier ønsker å anslå det totale volum av skogen i et
+større område.  For dette formål er området delt i et rutenett
+bestående av $N$ ruter.  Av disse velges ut tilfeldig $n$ ruter, fra 
+rute nr. $i$ velges tilfeldig $m_i$ trær og gjennomsnittlig volum
+$\bar{Y}_i$ av disse noteres (i $m^3$).  Samtidig telles det totale antall
+trær $M_i$ i denne ruten.
+
+\begin{itemize}
+\item[(a)]  Foreslå en estimator for det totale volum av skogen uttrykt
+ved $N$, $m_i$, $M_i$, $\bar{Y}_i$,  $i = 1, 2, \ldots, n.$
+\item[(b)]  Estimer skogens totale volum dersom $N$ = 100, $n$ = 8 $m_1 =
+m_2 = \cdots = m_8 = 5$ og det ble observert
+
+\begin{center}
+\begin{tabular}{lrrrrrrrr}
+Rute nr. 1 :       &   1 &   2 &   3 &   4 &   5 &   6 &   7 &   8 \\
+Antall trær :  &  30 &  50 &  55 &  35 &  30 &  40 &  65 &  10 \\
+Gj.snitt :         & 0.8 & 0.6 & 1.1 & 1.0 & 0.4 & 0.5 & 1.0 & 0.5
+\end{tabular}
+\end{center}
+\item[(c)]  Drøft muligheten for å trekke inn flere opplysninger som
+kan gi et mer pålitelig estimat.
+\end{itemize}
+
+\item $\star$Anta en situasjon med $k$ strata med $N_i$ elementer i stratum 
+nr.$i$, der variansen er ${\sigma}_i^2$,  $i = 1, 2, \ldots, k$.
+
+\begin{itemize}
+\item[(a)]  Vis at optimal utvelging svarer til $n_i$ proporsjonal
+med $N_i\cdot {\sigma}_i$.
+\end{itemize}
+Anta at kostnadene ved hver observasjon fra stratum nr. $i$ er $c_i$, $i=1,
+2, \ldots, k$.  Det er foreslått å velge $n_i$ proporsjonal med
+$N_i\cdot {\sigma}_i/\sqrt{c_i}$.
+\begin{itemize}
+\item[(b)]  Vis at dette minimerer variansen for gitte kostnader, og også
+mini\-merer kostnadene for gitt varians.
+Hint:  Ulikheten i Oppgave~\ref*{kap:stokastiske}.40 kan brukes.
+\end{itemize}
+
+\item  Ved en undersøkelse er viltbestanden i et område anslått til
+2 000 - 3 000 dyr.  Drøft hvordan denne informasjon kan brukes til å
+planlegge en undersøkelse med merking og gjenfanging for neste år,
+der en ønsker å anslå bestanden med en sikkerhetsmargin på
+pluss-minus 200 dyr.
+
+\item  Anta at en bestand av villrein skal anslås.
+\begin{itemize}
+\item[(a)]  Drøft metoden med merking og gjenfanging i denne sammenheng.
+\item[(b)]  Hvilke konsekvenser har det dersom individer dør og fødes
+i perioden fra merking til gjenfanging.
+\item[(c)]  Foreslå eventuelt andre metoder til å estimere bestanden.
+\end{itemize}
+\end{enumerate}
+\normalsize
+
+ 

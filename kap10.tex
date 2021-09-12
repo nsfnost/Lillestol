@@ -1,0 +1,723 @@
+\chapter{Kontrollerte eksperimenter}
+\label{kap:kontrollerte} % Opprinnelig kapittelnr: 10
+
+\section{Innledning}
+De mest gunstige omstendigheter for innsamling av et tallmateriale vil
+være et {\em kontrollert eksperiment}.  Med dette menes at data
+samles inn ved et eksperiment med veldefinerte eksperimentbetingelser,
+som i de fleste tilfeller er valgt av eskperimentator selv.
+
+Et kontrollert eksperiment vil som regel gi langt mer pålitelige
+konklusjoner enn et mer eller mindre tilfeldig innsamlet tallmateriale.
+Ved en god planlegging kan vi nemlig eliminere en rekke feilkilder.
+Et kontrollert eksperiment gir også grunnlag for 
+sannsynlighetsbetraktninger og for vurdering av usikkerheten knyttet
+til konklusjonene fra analysen av tallmaterialet.  Som regel vil man 
+også kunne forankre dataanalysen i modeller som allment kan aksepteres.
+En viktig egenskap ved mange kontrollerte eks\-peri\-men\-ter er at de kan 
+gjentas, også av andre, under tilnærmet de samme 
+eksperimentbetingelser, slik at eventuelle konklusjoner kan etterprøves.
+
+Muligheten for å utføre kontrollerte eksperimenter vil variere 
+med det fagområde det er tale om.  De beste mulighetene har vi i 
+naturvitenskapene, i første rekke fysikk, biologi og kjemi, samt i
+teknikk og medisin.  I et labo\-ra\-to\-rium er det ofte mulig å finne et
+eksperimentopplegg (design) og en analysemetode som er skreddersydd for
+det problem vi ønsker å belyse.  I individorienterte fag som
+pedagogikk og psykologi er også mulighetene gode.  Det samme gjelder
+visse områder relatert til økonomisk virksomhet, f.eks. i
+produktutvikling, produksjonsplanlegging og i studier av 
+konsu\-ment\-ad\-ferd.  I samfunnsvitenskaper som sosiologi og 
+samfunnsøkonomi er mulighetene mindre, men her finnes eksempler på
+observasjonssituasjoner, gitt navnet {\em kvasieksperimenter}, der en i noen
+grad kan rettferdiggjøre bruk av de samme modeller og analysemetoder
+som brukes under mere ideelle omstendigheter.  
+
+På en rekke fagfelter har en ingen mulighet  for å influere på
+datamaterialet, og er henvist til rene observasjonsstudier.  I slike 
+situasjoner vil en rekke statistiske analysemetoder vanskelig kunne
+rettferdiggjøres.  Spørsmålet er om det finnes andre 
+analysemetoder, eller om det rett og slett er urimelig eller umulig å
+trekke generelle konklusjoner utfra observasjonene, slik at en analyse
+må begrenses til det rent beskrivende.  Spesielt vanskelig er
+studier der observasjonene tas på ulike tidspunkter, f.eks. for å
+avdekke effekt av sosiale og politiske tiltak.  Det kan da være 
+vanskelig å eliminere muligheten for at eventuelle endringer skyldes
+andre forhold.  En annen vanskelighet oppstår når de foreliggende
+data er fra en snevrere populasjon enn den vi ønsker å
+generalisere til.
+
+Eksempelvis, en av grunnene til at det gikk såpass lang tid før
+røking som årsak til lungekreft ble allment akseptert i 
+vitenskapelige kretser, var at man lenge bare hadde historiske data å
+holde seg til, og en retrospektiv analyse rommet altfor mange muligheter
+for feiltolkninger.  
+
+Vi vil illustrere en del poenger vedrørende kontrollerte eksperimenter
+ved et eksempel:\\
+
+
+\begin{eksempel}{Vaksine}
+Betrakt en situasjon der barna i et distrikt ofte lider av en bestemt
+sjelden sykdom.  En ny og utprøvd vaksine blir introdusert og over
+en femårsperiode observeres en betydelig nedgang i det antall barn
+som angripes av sykdommen.  Det er da fristende å trekke den 
+konklusjon at nedgangen skyldes vaksinen.  Dette kan være noe 
+forhastet, idet femårsperioden kan tenkes falle sammen med en generell
+bedring i kosthold, hygiene og helsetjeneste. 
+
+ Det hadde vært 
+et noe sikrere grunnlag å trekke konklusjoner på, dersom man 
+hadde gitt noen barn vaksine og andre ikke, den siste gruppen utgjør 
+da en såkalt kontrollgruppe.  Utover dette behandles de to grupper 
+likt, eksempelvis tilbys de samme helsetjeneste.  Det beste ville
+være om utvelgelsen skjer tilfeldig.  Da sikrer man at de som 
+vaksineres ikke utgjør en spesiell gruppe m.h.t. andre kjennetegn,
+noe som kan vanskeliggjøre tolkningen etterpå, f.eks. ved at de
+som ble vaksinert i utgangspunktet hadde gjennomgående god helse. 
+En eventuell betydelig forskjell mellom de to gruppene etter en viss 
+periode vil da med rimelighet kunne tilskrives vaksinen og ikke andre
+utenforliggende forhold.
+
+I dette eksemplet er det altså metodologiske grunner for å
+utføre vaksinasjonsprogrammet i form av et kontrollert eksperiment.
+Det kan imidlertid være konkurrerende hensyn å ta, f.eks. rent 
+økonomiske eller det moralske ved å ikke gi vaksinen straks til
+alle som kunne trenge den.  Vi må da imidlertid ha for øye at
+alternative metoder kan medføre at man selv etter lengre tids bruk,
+ikke er i stand til å gi en dokumentasjon av vaksinens virkninger.
+\end{eksempel}
+Det kreves god innsikt i vedkommende fagområde kombinert med
+betydelig statistisk kløkt, dersom slike data skal kunne analyseres
+på en måte som står for kritikk, men statistisk teori kan
+også være til hjelp her.
+
+Vi vil nedenfor se på et par sentrale problemstillinger i 
+forbindelse med kontrollerte eksperimenter.
+
+
+\section{Sammenlignende eksperimenter og randomisering}
+I praksis vil en ofte være interessert i å klarlegge virkningen
+av en eller flere alternative behandlinger som kan anvendes på en
+viss type objekter, f.eks. ulike medikamenter anvendt på pasienter,
+ulike læremetoder anvendt på elever, ulike gjødninger anvendt
+på planter, ulike dietter ved foring av griser eller ulike 
+bearbeidelsesmåter av et industriprodukt.  Vi vil her se på
+situasjoner der en ønsker å sammenligne to behandlinger, den ene
+kan tenkes å være en ny behandling $B$ som man ennå ikke
+fullt ut kjenner virkningen av, den andre kan være den tradisjonelle
+behandling $A$ (som muligens består i ikke å behandle i det hele tatt).
+
+  Vi vil tenke oss at et visst antall objekter velges ut og 
+gis behandling $B$, og deres responser blir så observert.  Selv om
+vi mener å kjenne virkningen av den tradisjonelle behandlingen
+svært godt, vil det være hensiktsmessig å inkludere objekter
+som gis behandling $A$ i eksperimentet, fordi vi da sikrer at sammenligningen
+av de to behandlingene skjer under de samme betingelser.  Vi har dermed
+en {\em behandlingsgruppe} ($B$) og en {\em kontrollgruppe} ($A$), og et
+eksperiment av denne typen kalles ofte et {\em sammenlignende eksperiment}.
+Vi har tidligere antydet at de objekter som skal gis en bestemt behandling
+bør velges ut ved loddtrekning, dette kalles gjerne {\em randomisering}.
+Flere ulike former for randomisering er tenkelig, vi vil nedenfor studere
+to hovedtyper, {\em komplett randomisering og randomisering innen blokker}.
+
+Ved komplett randomisering foreligger et gitt antall objekter som
+del\-ta\-kere i eksperimentet, fra disse trekkes et tilfeldig utvalg som gis
+behandling $B$, mens de resterende gis behandling $A$.  Ved 
+randomisering innen blokker tenker vi oss isteden at objektene er inndelt
+i flere grupper, kalt blokker, og at det trekkes et tilfeldig utvalg fra
+hver blokk som gis behandling $B$, mens de resterende i hver blokk gis
+behandling $A$.  Vi ser at vi med den siste framgangsmåten kan sikre at
+visse typer objekter er med både blant de som gis behandling $A$ og $B$.
+
+Den observerte respons i et kontrollert eksperiment kan være av to
+typer, enten gruppert respons (f.eks. i kategorier av typen 
+suksess-fiasko, ja-nei, høy-lav) eller gradert respons (f.eks.
+målinger i meter, kilo, sekunder etc.).
+
+Vi vil illustrere noen typiske problemstillinger for de situasjonene
+som er skissert ovenfor med eksempler.  La oss starte med å 
+studere gruppert respons:
+
+
+\section{Gruppert respons}
+\begin{eksempel}{Verktøy-randomisert}
+Ved produksjon av en bestemt artikkel kan en vanskelig arbeidsoperasjon
+enten utføres for hånd (metode 1) eller med et spesialverktøy
+(metode 2).  Blant $N$=21 arbeidere velges ut tilfeldig $n$=11 arbeidere
+som skal utføre arbeidet etter metode 2, mens de 10 andre skal
+bruke metode 1.  Vi er bl.a. interessert i å teste om det er grunn
+til å påstå at metode 2 gir bedre resultat enn metode 1.  
+For hver deltaker i eksperimentet observeres det om vedkommende lykkes
+med arbeidsoperasjonen i første forsøk eller ikke.  Resultatene
+var
+\begin{center}
+\begin{tabular}{l|cc|c} 
+           &    Lykkes   &   Lykkes ikke    &    Sum \\ \hline
+Metode 1   &      6      &        4         &     10  \\
+Metode 2   &      8      &        3         &     11 \\ \hline
+Sum        &     14      &        7         &     21 \\ \hline
+\end{tabular}
+\end{center}
+Vi ser at metode 2 kom relativt gunstig ut, idet 40\% av deltakerne
+ikke lyktes med metode 1, mens det tilsvarende tall for metode 2 ble
+ca. 27\%.  De observerte forskjeller i arbeidsresultatet kan enten
+forklares ved at metode 2 virkelig er bedre enn 1, eller ved at de er
+likeverdige og at det observerte resultat skyldes tilfeldigheter
+(vi antar at metode 2 ikke under noen om\-sten\-dighet er dårligere
+enn 1).  La oss som nullhypotese $H_0$ bruke at metodene er
+likeverdige.  Som testobservator bruker vi antallet $Y$ blant de som
+bruker metode 2 som ikke lykkes.  Det er små verdier av $Y$ som
+gir grunnlag for å forkaste nullhypotesen til fordel for metode 2.
+Dersom nullhypotesen er riktig er $Y$ hypergeometrisk fordelt
+($N$ = 21, $M$ = 7, $n$ = 11).  Dette forklarer vi slik:  Dersom de to 
+metodene er likeverdige, vil det være $M$ = 7 som ikke lykkes i
+første forsøk uansett hvilken metode de brukte (om de lykkes
+eller ikke skyldes altså ikke metoden, men andre forhold).  Den
+observerte verdi av $Y$ vil derfor være bestemt ved trekningen,
+nemlig ved hvilke arbeidere blant de $M$ = 7 spesielle som 
+tilfeldigvis ble trukket ut til å arbeide etter metode 2.
+
+Beregner vi $P$-verdien til det observerte resultat, får vi 
+
+\[ P_{H_0}(Y\leq 3)=\sum_{y=0}^3 \frac{\bino{7}{y} \bino{14}{11-y}}
+                                 {\bino{21}{11}}=0.438 \]
+Denne er såpass høy at det ikke er noen rimelig grunn til å
+påstå at metode 2 virkelig gir bedre resultat enn metode 1.
+\end{eksempel}
+
+Vi ser at i dette eksemplet hadde randomiseringen en rolle utover
+det å sikre rettferdighet for de to metodene.  Den satte oss også
+i stand til å finne den eksakte sannsynlighetsfordelingen til 
+testobservatoren $Y$ når nullhypotesen er riktig. 
+Analysemetoden som er benyttet i dette eksemplet kalles
+{\em Fisher-Irwins test}, og er aktuell i en rekke situasjoner.  La oss
+imid\-ler\-tid se på den tilsvarende problemstilling der det ikke er
+foretatt noen randomisering.\\
+
+\begin{eksempel}{Verktøy-ikke randomisert}
+En bedrift produserer en artikkel på to produksjonssteder 1 og 2.
+På det ene stedet (2) er det anskaffet spesialverktøy, og før
+man bestemmer seg for å anskaffe dette på det andre 
+produksjonsstedet, vil man gjennomføre et eksperiment som omfatter
+alle arbeiderne på begge produksjonsstedene, henholdsvis 10 ved
+sted 1 og 11 ved sted 2, som alle får arbeide under samme
+produksjonsforhold.  Anta, for korthets skyld, at data er de samme som
+i Eksempel 2.  Denne situasjonen faller imidlertid utenfor rammen av den 
+modell vi brukte i forrige eksempel, fordi det her ikke foreligger
+noen randomisering. 
+
+ Det foreliggende problem kan imidlertid studeres
+slik:  Vi kan se på produksjonsresultatet for de to 
+produksjonsstedene som to binomiske forsøks\-rekker med henholdsvis
+$n_1$=10 og $n_2$=11 forsøk i hver og med suksess-sannsynlighet
+henholdsvis $p_1$ og $p_2$.  Disse tolkes som sannsynligheten for at
+en tilfeldig arbeider på vedkommende arbeidsplass lykkes (se
+for øvrig Oppgave~\ref*{kap:sannsynlighetsfordelinger}.16).  Nullhypotesen om at de to produksjonsstedene
+holder samme kvalitet kan formuleres som $p_1 = p_2$, mens alternativet
+at sted 2 gir bedre kvalitet kan formuleres som $p_2>p_1$.  La $X_1$
+og $X_2$ være antall som lykkes ved de to produksjonsstedene.
+Antar vi at produksjonsresultatene for de ulike arbeiderne er uavhengige,
+vil $X_1$ og $X_2$ være uavhengige stokastiske variable som er
+binomisk fordelte henholdsvis ($n_1,p_1$) og ($n_2,p_2$).  
+
+Det kan gis argumenter for at testing av hypotesen om ingen forskjell
+kan utføres som i forrige eksempel, dvs. betrakte alle marginalene
+som gitte tall.  Som testobservator kan brukes en hvilken som helst av
+de fire størrelsene inn i tabellen. Merk at når alle 
+marginalene er gitte vil en av disse bestemme de tre andre 
+(jfr. Oppgave~\ref*{kap:sannsynlighetsfordelinger}.35).  Testingen foregår da som om den valgte 
+testobservator, under nullhypotesen, var hypergeometrisk fordelt 
+($N,M,n$) der $M$ og $n$ er de respektive marginaler, eksempelvis er
+$X_1$ hypergeometrisk fordelt ($N$=21, $M$=14, $n$=10).
+\end{eksempel}
+
+Selv om de to eksemplene ovenfor er beslektet, og vi har foreslått
+samme analysemetode for begge, er det en prinsipiell forskjell m.h.t. 
+de konklusjoner det er mulig å trekke.  Anta at datamaterialet 
+var slik at det var grunnlag for å forkaste hypotesen om samme
+kvalitet til fordel for produksjon med spesialverktøy.  I det
+første eksemplet vil det, p.g.a. randomiseringen, være grunnlag
+for å påstå at spesialverktøy generelt gir bedre
+produksjonsresultat, mens det i det andre eksemplet ikke er grunnlag 
+for å trekke en så vidtrekkende konklusjon, med mindre vi på
+forhånd visste at de to arbeidsplassene var like m.h.t. kvaliteten
+av produksjonen uten spesialverktøy.  
+
+En alternativ testmetode basert på normaltilnærming er U-testen som
+vi studerte i Kapittel 7.6, som er ekvivalent med en kjikvadrattest som 
+beskrevet i Kapittel 9.3.
+
+La oss så se på et eksempel av typen randomiserte blokker.  
+For enkelhets skyld betrakter vi en situasjon med bare to objekter
+innen hver blokk, slike situasjoner forekommer ofte i praksis og kalles
+{\em parvise sammenligninger}.\\
+
+
+\begin{eksempel}{Konservering}
+En bedrift som produserer syltetøy vurderer en ny metode for 
+konservering som det påstås gir bedre smak enn den som brukes 
+nå.  Bedriften ønsker å finne ut om det er grunnlag for dette, 
+og det utføres derfor et kontrollert eksperiment.  Det er mulig at
+råstoffet kan variere fra koking til koking, og det synes derfor
+rimelig å dele hver koking i to deler hvorav den ene konserveres
+etter den nye metode, den andre etter den gamle.  Utvelgelsen bør
+skje ved loddtrekning, det sikrer en rettferdig behandling dersom
+kvaliteten innen hver koking skulle variere.  Dette gjentas for i alt 
+ti kokinger.  I denne situasjon har vi altså ti blokker, hver 
+blokk består av to kvanta syltetøy.
+
+  La vår nullhypotese
+være at de to metodene er likeverdige, mens alternativet er at
+den nye metoden gir bedre produkt.  Når syltetøyet er ferdig for
+salg, avgjør bedriftens smaksekspert på grunnlag av en rekke
+smaksprøver hvilken av de to typer syltetøy innen hver koking som
+hun mener smaker best, anta for enkelhets skyld at uavgjort ikke 
+forekommer.  La $X$ være antall ganger det nye syltetøy var
+best, store verdier av $X$ gir grunnlag for å forkaste nullhypotesen.
+Når nullhypotesen er riktig vil $X$ være binomisk fordelt
+($n$=10, $p$=0.5), fordi da er det tilfeldig hvilket av de to produkter
+som smakseksperten velger ut som best.  Anta at den observerte verdi
+av $X$ er 7.  $P$-verdien til det observerte resultat er da 
+
+\[ P=P_{H_0}(X\geq 7)=0.1719,          \]
+som neppe gir grunn til å påstå at det nye produkt er 
+bedre enn det gamle.  Den analysemetode vi har brukt her går ofte 
+under navnet {\em tegntesten}.
+\end{eksempel}
+
+For å undersøke om det nye konserveringsmidlet gir bedre smak
+er det foreslått et alternativt eksperiment, nemlig at de to typer
+syltetøy blir prøvd ut på et panel bestående av et visst
+antall konsumenter.  Kan hende har bedriften erfaring for at kvaliteten
+av produktet er svært jevn både innen hver koking og fra 
+koking til koking, slik at dette utelukkes som eventuelle feilkilder
+ved undersøkelsen.  Imidlertid tenker man seg at dersom det er forskjell
+i smak for de to produktene så kan det slå ut ulikt fra person
+til person, idet smak og behag er forskjellig.  I denne situasjonen har
+vi en blokk bestående av to prøver for hver person, og vi vil,
+for hver person, trekke lodd hvilken av de to prøver som vedkommende
+får smake først.  Vi unngår da eventuelle feil som skyldes
+at personer, i en situasjon hvor de ikke smaker forskjell, systematisk
+sier at det første (evt. siste) produktet er best.  Analysen av
+resultatene kan foregå på samme måte som ovenfor.  I en
+situasjon der vi ikke kan utelukke feilkilder av den typen vi skisserte
+først, vil vi kan hende utføre et større eksperiment der hver 
+deltaker i pa\-ne\-let får smake flere smaksprøver fra ulike kokinger.
+Analysen av et slikt eksperiment blir noe mer komplisert.
+
+
+\section{Gradert respons-Rangtester}
+La oss så se på noen situasjoner hvor den observerte respons
+er gradert.\\
+
+\begin{eksempel}{Verktøy-randomisert}
+La situasjonen være som beskrevet i Eksempel 2, men anta isteden
+at det er forbrukt tid for arbeidsoperasjonen som er av interesse.
+Det er påstått at spesialverktøy (metode 2) gjennomgående
+forkorter arbeidstiden.  Blant de $N$=21 arbeidere velges ut tilfeldig
+$n$=11 som utfører arbeidet etter metode 2, de resterende etter metode 1.
+Resultatet ble (i sekunder)
+\begin{center}
+\begin{tabular}{lccccccccccc}
+Metode 1: &  45 & 48 & 61 & 52 & 48 & 63 & 52 & 54 & 50 & 58 &   \\
+Metode 2: &  47 & 59 & 43 & 50 & 45 & 45 & 49 & 41 & 47 & 95 & 50
+\end{tabular}
+\end{center}
+For å karakterisere tendensen i dette tallmaterialet kunne vi 
+bruke gjennomsnittstidene for de to metodene.  Imidlertid ser vi at
+den nest siste observasjon for metode 2 er svært avvikende
+\footnote{Ved nærmere undersøkelse viste det seg at observasjonen
+skyldtes et arbeidsuhell som ikke hadde noe med bruk av spesialverktøy
+å gjøre.} og vil trekke gjennomsnittet opp på et nivå
+som ikke er typisk for observasjonene som helhet.  Det synes mer 
+rimelig å bruke medianen til å karakterisere materialet.  Den
+er for metode 1 lik 52 og for metode 2 lik 47, slik at spesialverktøy
+ser ut til å kunne redusere arbeidstiden.  Spørsmålet er
+om forskjellen er stor nok til at vi avviser at den skyldes 
+tilfeldigheter.  Vi stiller da opp nullhypotesen at de to metodene
+er like m.h.t. tidsforbruk og alternativet at metode 2 er raskere.  En
+metode å teste denne hypotesen på er å ordne tallmaterialet
+i stigende rekkefølge og understreke observasjoner svarende til
+metode 2, slik
+\begin{center}
+\begin{tabular}{ccccccccccc}
+ \underline{41} & \underline{43} & \underline{45} & 45 & \underline{45}
+  & \underline{47} & \underline{47} & 48 & 48 & \underline{49} 
+  &    \underline{50} \\
+ 50 & \underline{50}& 52 & 52 & 54 & 58 &  \underline{59} &
+ 61 & 63 & \underline{95} & 
+\end{tabular}
+\end{center}
+Vi tildeler så de 21 observasjonene rang fra 1 til 21 i henhold
+til rekkefølgen.  Sum rang for metode 2-observasjonene blir
+
+\[    W = 1 + 2 + 3 + 5 + 6 + 7 + 10 + 11 + 13 + 18 + 21 = 97 \]
+Merk at det kan oppstå et problem ved at to eller flere
+observasjoner har samme verdi, og dette må løses på en,
+for de to metodene, rettferdig måte.
+
+Det er grunn til å forkaste nullhypotesen når $W$ er
+tilstrekkelig liten, fordi dette svarer til at metode 2-observasjonene
+er gjennomgående små.  For å avgjøre om det observerte
+resultat gir grunn til forkasting må vi beregne $P$-verdien
+
+\[ P=P_{H_0}(W\leq 97).         \]
+Slike sannsynligheter kan, som følge av randomiseringen, beregnes
+eksakt, og det er utarbeidet tabeller som gjør det mulig å
+avlese disse direkte.  Vi vil her ikke gå nærmere inn på
+teorien for eksakt beregning, ei heller på bruken av slike tabeller,
+og må derfor henvise leseren til annen litteratur.  Den skisserte
+metode går i litteraturen under navnet {\em Wilcoxons test for 
+to utvalg}\index{Wilcoxons test!to utvalg}.  Imidlertid kan det vises at dersom $N$ ikke er altfor liten,
+f.eks. minst 15, og utvalget ikke er altfor skjevt m.h.t. antallet i
+hver gruppe, så vil sannsynlighetsfordelingen til $W$ kunne 
+tilnærmes til normalkurven.  Vi vil da trenge at såframt 
+nullhypotesen er riktig (se Oppgave~13)
+
+\[ EW=\frac{n(N+1)}{2} \mbox{\ \ \ } varW=\frac{n(N-n)(N+1)}{12}    \]
+Brukes dette i den foreliggende situasjon, får vi $EW$=121 og 
+$varW$=201.67, slik at 
+
+\[  P=P_{H_0}(W\leq 97)\approx G(\frac{97-121}{14.2})=G(-1.69)=0.0455  \]
+Materialet gir altså rimelig grunn til å påstå at 
+metode 2 er raskere (signifikant på 5\% nivå).  I praksis vil
+man trenge de eksakte tabellene som er nevnt ovenfor bare for 
+spesielt små $N$. \\
+\end{eksempel}
+Over til en situasjon med parrede sammenligninger:\\
+
+\begin{eksempel}{Verktøy-randomiserte blokker}
+La situasjonen være som i forrige eksempel, men anta isteden at 
+det deltar $n$=10 arbeidere som utfører arbeidsoperasjonen to
+ganger, en med hver metode.  Her utgjør hver arbeider en blokk 
+bestående av to forsøk, og for hver arbeider trekkes det lodd
+om hvilken metode som skal brukes først.  Det kan ikke utelukkes
+at det er betydelige individuelle variasjoner i arbeidstempo fra arbeider
+til arbeider.  Med dette eksperimentopplegget blir imidlertid de to
+metodene satt opp mot hverandre for hvert individ, og dette burde gi et
+sikrere grunnlag for konklusjoner vedrørende forskjeller mellom
+metodene.  Det er derfor trolig at opplegget her er å foretrekke 
+framfor opplegget i forrige eksempel.  Imidlertid kan det tenkes forhold
+der opplegget ikke kan brukes, f.eks. dersom en arbeider som er opplært
+til å bruke spesialverktøy ikke lenger er i stand til å 
+utføre arbeidsoperasjonen uten spesialverktøy like godt som før.
+Anta at dette ikke er tilfellet her.  Resultatet av eksperimentet ble
+(i sekunder)
+\begin{center}
+\begin{tabular}{lrrrrrrrrrr}
+Arbeider nr.: &   1  &  2  &  3  &  4  &  5  &  6  &  7  &  8  &  9  &  10 \\
+Metode 1:    &  48  & 53  & 52  & 57  & 43  & 83  & 59  & 71  & 40  &  61 \\
+Metode 2:    &  45  & 42  & 58  & 50  & 41  & 47  & 53  & 66  & 45  &  53
+\end{tabular}
+\end{center}
+For å karakterisere tendensen i dette tallmaterialet kan vi først
+beregne forskjellen i forbrukt tid for hver arbeider.  Denne er
+\begin{center}
+\begin{tabular}{lrrrrrrrrrr}
+Forskjell: &   3  &  11  &  $-6$  &  7  &  2  &  36  &  6  &  5  &  $-5$  &  8
+\end{tabular}
+\end{center}
+Den gjennomsnittlige forskjell er 6.7 sekunder, mens medianforskjellen
+er 5.5.  Spørsmålet er om denne forskjell er stor nok til å
+se bort fra at den skyldes tilfeldigheter.  La nullhypotese og 
+alternativ være som i forrige eksempel.  En måte å teste
+hypotesen på, er å ordne forskjellene etter stigende tallverdi
+slik (merk den rettferdige behandling av de sammenfallende tall\-ver\-dier)
+\begin{center}
+\begin{tabular}{cccccccccc}
+           2  &  3  &  5  &  $-5$  &  $-6$  &  6  &  7  &  8  &  11  &  36
+\end{tabular}
+\end{center}
+Vi tildeler disse tall rang fra 1 til 10 i henhold til rekkefølgen.
+Sum rang for de negative differanser blir
+
+\[         V = 4 + 5 = 9.                \]
+Det er grunn til å forkaste nullhypotesen når $V$ er 
+tilstrekkelig liten fordi dette betyr få og små negative
+differenser, dvs. metode 2-observasjonene er gjennomgående mindre
+enn de tilhørende metode 1-observasjonene.  For å avgjøre
+om det observerte resultat gir grunn til forkastning må vi beregne
+$P$-verdien
+
+\[  P=P_{H_0}(V\leq 9).         \]
+Slike sannsynligheter kan, som følge av randomiseringen, beregnes
+eksakt, og det er utarbeidet tabeller hvor vi kan avlese disse direkte,
+vi viser igjen til annen litteratur.  Den skisserte metode går i
+litteraturen under navnet {\em Wilcoxons test for parrede observasjoner}
+\index{Wilcoxons test!parrede observasjoner}.
+Det kan vises at dersom $n$ ikke er altfor liten, så vil 
+sannsynlighetsfordelingen til $V$ kunne tilnærmes med normalkurven.
+Vi vil da trenge at såframt nullhypotesen er riktig blir (se Oppgave~14)
+
+\[ EV=\frac{n(n+1)}{4} \mbox{\ \ \ } varV=\frac{n(n+1)(2n+1)}{24}     \]
+Brukes dette i den foreliggende situasjon får vi $EV$= 27.5 og
+$varV$= 96.25 slik at
+
+\[  P=P_{H_0}(V\leq 9)\approx G(\frac{9-27.5}{9.81})=G(-1.89)=0.029 \]
+mens det eksakte tall ifølge tabell er 0.032. \footnote {Bruk av
+heltallskorreksjon gir forøvrig enda bedre tilnærming.}
+Materialet gir altså rimelig grunn til å påstå at metode
+2 er raskere (signifikant på 5\% nivå).
+\end{eksempel}
+
+For problemstillingene i de to siste eksemplene har vi skissert enkle
+ana\-ly\-se\-me\-toder basert på ranger.  Det finnes også andre metoder.
+Mest brukt er kanskje metoder basert på gjennomsnittsbetraktninger
+på observasjonene direkte.  Disse forutsetter som regel en såkalt
+variansanalysemodell,  og dette er temaet for Kapittel 11.  For eksakt
+beregning av $P$-verdier kreves da i tillegg forutsetning om 
+normalitet av de opprinnelige observasjonene, noe som ikke ser ut til 
+å være tilfellet for materialene i Eksempel 5 og 6.  En vil
+kanskje kunne tro at en kaster bort mye informasjon ved å erstatte
+de opprinnelige tall men ranger.  Dette er ikke tilfelle, og i tillegg
+har slike metoder den gunstige egenskap at eventuelle ekstreme 
+observasjoner, som muligens skyldes uhell, ikke får avgjørende
+betydning for konklusjonen.  Metoden er hva statistikerne kaller 
+{\em robust}.
+
+En kommentar om alternative eksperimentopplegg:  Ved randomiserte 
+blokker forsøker en å velge blokker med objekter som er mest
+mulig homogene, men gjerne med betydelig variasjon mellom blokkene.
+Da får en prøvd de ulike behandlingsmetoder direkte mot hverandre
+under mest mulig like forhold.  En vil derfor som regel foretrekke
+dette eksperimentopplegg framfor komplett randomisering dersom begge
+er mulig å realisere.  Eksempelvis vil en psykolog ved sammenligning
+av to læremetoder gjerne arbeide med en rekke par av en-eggede 
+tvillinger, men slike er ikke alltid lette å oppdrive, og han må
+kan hende være foruten.
+
+Vi har her bare tatt for oss eksperimenter med en faktor med to kate\-gorier:
+ metode 1 og metode 2. Eksperimenter med flere faktorer og med flere
+kategorier for hver faktor, er diskutert i Kapittel 11 og 15. \\
+
+\noindent
+{\bf Merknad:} De rangmetodene som er presentert i dette avsnittet forutsetter
+ingen spesiell sannsynlighetsfordeling for den graderte respons, de er
+såkalte fordelingsfrie metoder. Metodene er i praksis også brukt i
+situasjoner der observasjonene selv er på en rangeringsskala, dvs. er
+ordinale (se innledningen i Kapittel 9). Dette er ofte tilfelle i
+markedsforskning, der konsumenter bedømmer iht. en vurderingsskala,
+for eksempel en 7-delt skala fra Dårlig {(-3)} via Middels (0) til Godt (3).
+Metoden er ikke like godt teoretisk forankret i slike situasjoner, og et lite
+antall ordinale kategorier leder til mange sammenfallende ranger.
+God programvare bør imidlertid holde orden på dette, slik at reelle
+sannsynlighetsgarantier kan gis under visse forutsetninger.
+
+
+\section{Oppgaver}
+\small
+\begin{enumerate}
+\item 
+En sykehuslege tror at en bestemt behandling kan forlenge livet til
+personer som har hatt hjerteattakk.  Diskuter muligheten for et
+forsøksopplegg der eventuelle forskjeller i levetid med rimelighet
+kan tilskrives behandlingen og ikke andre utenforliggende forhold.
+
+\item
+Det påstås at man ved sprøyting med visse kjemikalier fra 
+fly kan øke sjansen for at regnskyer avgir regn.  Diskuter de 
+problemer som er knyttet til å kunne avgjøre dette.  Foreslå
+et eksperimentopplegg som kan gi et grunnlag for pålitelige
+konklusjoner.
+
+\item
+Man ønsker å utføre en undersøkelse om bruk av 
+selvinstruerende (programmert) lærestoff kontra vanlig 
+klasseromsundervisning.  En gruppe elever tilbys de to alternativer og 
+får velge selv.  Etter endt undervisning tar begge grupper samme
+prøve og resultatene sammenlignes.  Diskuter eventuelle betenkelige
+sider ved et slikt forsøksopplegg, foreslå et alternativt
+opplegg.  Diskuter også muligheten av opplegg som tar omsyn til
+elevenes motivasjon (evt. uvillighet) til å delta etter et bestemt
+opplegg, eller overhodet.
+
+\item
+La situasjonen være som i forrige oppgave.  Blant 24 elever velges
+ut tilfeldig 12 elever som får selvinstruerende undervisning,
+resten får vanlig undervisning.  Man ønsker å vite om det
+er grunn til å påstå at selvinstruerende undervisning gir
+dårligere resultat enn vanlig undervisning.  Resultatet av den
+etterfølgende prøve ble
+\begin{center}
+\begin{tabular}{l|cc|c} 
+                     &  Bestått  &  Ikke bestått  &   Sum \\ \hline
+Ny undervisning      &      9        &       3            &    12 \\
+Vanlig undervisning  &     11        &       1            &    12 \\ \hline
+Sum                  &     20        &       4            &    24 \\ \hline
+\end{tabular}
+\end{center}
+Formuler situasjonen som et hypotesetestingsproblem, beregn $P$-verdi
+og avgi konklusjon dersom signifikansnivået er valgt lik 5\%.
+
+\item
+En bedrift vurderer to lagringsmetoder, den ene er noe mer kostbar enn
+den andre.  Et produksjonsparti på 400 artikler deles i to og
+hver halvpart lagres etter hver sin metode.  Blant de 200 som ble 
+lagret etter den rimeligste metode måtte 15 vrakes etter en viss tid,
+mens bare 10 måtte vrakes av de som var lagret etter den kostbare 
+metoden.  Gir dette grunnlag for å påstå at den rimelige
+metoden er dårligere enn den kostbare metoden?  Hvilken forutsetning 
+bygger analysen på?
+
+\item
+Et gartneri ønsker å undersøke om en viss type frø har 
+økt spireevne dersom det pakkes i en ny type emballasje (1) i 
+forhold til vanlig emballasje (2).  Ta sannsynligheten for at et
+tilfeldig frø spirer som et uttrykk for spireevnen.  Det tas
+$n_1 = n_2$ = 50 frø av hver sort og disse sås under de samme 
+forhold.  Av de frø som var lagret i den nye emballasje spirte 45
+og av de som ble lagret i den gamle emballasjen spirte 40.  Estimer
+forskjellen i spireevne og rapporter resultatet.  Test hypotesen om 
+at de to spireevnene er like, beregn $P$-verdien til det observerte
+resultat og gi konklusjonen dersom signifikansnivået er valgt lik
+5\%.
+
+\item
+Man ønsker å undersøke om en ny type solbadolje $A$ er 
+bedre enn et konkurrerende produkt $B$.  I alt 12 personer har sagt
+seg villige til å delta i et eksperiment.  Hver rygg ``deles i to"
+den ene del smøres inn med $A$, den andre del med $B$, hvilken del 
+som får $A$ skjer ved loddtrekning.  Etter en lengre periode i
+solen observeres grad av solbrenthet på en skala fra 0 til 3.
+Anta at resultatet var
+\begin{center}
+\begin{tabular}{lrrrrrrrrrrrr}
+Person nr.:  &   1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 & 11 & 12 \\
+Med A:       &   2 & 1 & 1 & 2 & 0 & 2 & 1 & 0 & 2 &  1 &  1 &  1 \\
+Med B:       &   3 & 2 & 1 & 1 & 1 & 3 & 0 & 1 & 2 &  1 &  3 &  2 \\
+Forskjell:   &  $-$&$-$& 0 & + &$-$&$-$& + &$-$& 0 &  0 & $-$& $-$
+\end{tabular}
+\end{center}
+Ved analysen velger en å se bort fra de personer der forskjellen
+er null.  La $X$ være antall positive differenser.
+
+\begin{itemize}
+\item[(a)] Forklar at dersom produktene i virkeligheten er likeverdige
+vil $X$ være binomisk fordelt ($n$=9, $p$=0.5).
+\item[(b)] Hvordan kan eventuelle forskjeller mellom $A$ og $B$ forklares?
+\item[(c)] Formuler situasjonen som et hypotesetestingsproblem.  Hva
+           blir konklusjonen dersom det valgte sinifikansnivå var 5\%?
+\end{itemize}
+
+\item
+15 skiløpere i Norgeseliten er samlet i treningsleir.  Det er nettopp
+mar\-keds\-ført en ny type skismøring ($A$) og langrennstreneren
+ønsker å teste denne mot en type smøring ($B$) som han vet
+er velegnet for dagens føre.  Treneren velger ut tilfeldig 7
+løpere som smører med $A$, mens resten smører med $B$.  Deretter
+starter alle løpere i et 15 km langrenn med fellesstart.  Resultatet
+ble i minutter og sekunder
+\begin{center}
+\begin{tabular}{ccccccccc}
+A:  &  48.13 & 47.59 & 48.09 & 47.43 & 48.31 & 48.01 & 49.03 &       \\
+B:  &  48.06 & 47.45 & 49.27 & 48.36 & 48.54 & 49.14 & 48.20 & 48.26
+\end{tabular}
+\end{center}
+Dersom den nye smøringen er signifikant bedre enn den gamle ønsker
+man å gjøre dette kjent blant konkurranseløpere.  Beregn
+tilnærmet $P$-verdi.  Hva blir konklusjonen dersom signifikansnivå
+5\% er valgt?  Enn 10\%?
+
+\item
+Se igjen på problemstillingen i Oppgave~3 og~4.  Anta at hver
+prøve blir gradert på en karakterskala fra 0 til 9, hvor 0 og
+1 betyr ikke bestått.  Anta at resultatet ble
+
+\begin{center}
+\begin{tabular}{lcccccccccccc}
+Ny undervisning:     &  1 & 8 & 5 & 6 & 5 & 3 & 1 & 0 & 3 & 2 & 6 & 4 \\
+Vanlig undervisning: &  0 & 2 & 5 & 7 & 4 & 4 & 9 & 7 & 5 & 5 & 3 & 6
+\end{tabular}
+\end{center}
+Vil du på dette grunnlag påstå at selvinstruerende 
+undervisning gir dårligere resultat.
+
+\item
+Det blir påstått at ingrediensen Luriol, når den blir
+blandet i bensinen, gir en høyere toppfart for biler.  For å
+undersøke dette blir følgende undersøkelse gjennomført:
+Ti bilfirmaer har hver stillet til rådighet to biler som begge
+er av samme modell og standard.  Det trekkes lodd hvilken av de to
+bilene av hver modell som skal få Luriol.  Det blir så
+arrangert en fartsprøve.  Resultatet ble i km/t.
+\begin{center} \addtolength{\tabcolsep}{-0.2\tabcolsep}
+\begin{tabular}{lcccccccccc} 
+Modell:     &  1  &  2  &  3  &  4  &  5  &  6  &  7  &  8  &  9  &  10 \\
+Uten Luriol:& 136 &  94 & 127 & 125 & 133 & 124 & 127 & 138 & 103 & 113 \\
+Med Luriol: & 140 & 108 & 128 & 128 & 126 & 137 & 139 & 147 & 112 & 108
+\end{tabular}
+\end{center}
+Uten en test som tar sikte på å klargjøre om Luriol har
+den påståtte effekt.  Vi ønsker signifikansnivå 5\%.
+
+\item
+Betrakt igjen problemstillingen fra Oppgave~3, men anta nå at de
+24 elevene er gruppert to og to slik at de to innen hvert par står
+noenlunde likt i faget før undervisningen tar til.  Fra hvert par
+velges tilfeldig en som får selvinstruerende undervisning, den
+andre får vanlig undervisning.  Anta at karakterene på
+prøven etter undervisningsperioden ble
+\begin{center}
+\begin{tabular}{lcccccccccccc}
+Par nr.:            & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 & 11 & 12 \\
+Ny undervisning:    & 3 & 1 & 4 & 5 & 7 & 3 & 6 & 4 & 5 &  7 &  6 &  4 \\
+Vanlig undervisning:& 5 & 3 & 4 & 4 & 7 & 5 & 7 & 5 & 6 &  5 &  8 &  6
+\end{tabular}
+\end{center}
+Vil du på dette grunnlag påstå at selvinstruerende 
+undervisning gir dårligere resultat.  Bruk 5\% signifikansnivå.
+
+\item
+Her følger en utskrift fra analyse av dataene i Eksempel 5.
+
+\begin{center} \framebox[10cm]{\begin{minipage}{9cm}\rule{0cm}{0.5cm}
+\tt
+ >> READ 'eks10.5' X Y \\
+ >> WILCOXON2 X Y \\
+ -- W = 134.0  (expected = 121)\\
+ -- P = 0.0968 (twosided adjusted for ties)\\
+\end{minipage}} \end{center}
+Forklar den tilsynelatende forskjell fra resultatet i teksten.
+Reproduser resultatet med din foretrukne programvare (testen kalles også
+Mann-Whitney).\\
+
+
+
+Ved løsning av de to neste oppgavene trengs formlene:
+\begin{center}
+ $ 1+2+3+\cdots +k=k(k+1)/2   $ \\
+ $ 1^2+2^2+3^2+\cdots +k^2=k(k+1)(2k+1)/6   $ 
+\end{center}
+\item
+ $\star$Betrakt en lotterisituasjon hvor elementene i populasjonen har 
+verdiene $1, 2, 3, \ldots, N$, dvs. $v_1 = i$.
+\begin{itemize}
+\item[(a)] Vis at i dette tilfellet blir 
+
+\[  \bar{v}=\frac{1}{2}(N+1) \mbox{\ \ og \ \ } 
+                               {\sigma}^2=\frac{(N+1)(N-1)}{12} \]
+\item[(b)] Bruk dette til å vise formlene for $EW$ og $varW$ som
+trengs til Wil\-coxons test for to utvalg.
+\end{itemize}
+
+\item
+ $\star$La $I_1, I_2, \ldots, I_n$ være uavhengige indikatorvariable
+slik at
+
+\[  P(I_j=1)=P(I_j=0)=\frac{1}{2}    \]
+og la
+\[ V=I_1+2I_2+\cdots +nI_n. \]
+\begin{itemize}
+\item[(a)] Vis at 
+\[   EV=\frac{n(n+1)}{4} \mbox{\ \ og \ \ }
+                     varV=\frac{n(n+1)(2n+1)}{24} \]
+\item[(b)] Vis at testobservatoren $V$ som brukes i Wilcoxons test 
+for parrede observasjoner har form som ovenfor, der $I_j$ indikerer
+om observasjonen som har fått rang $j$ er negativ eller positiv.
+\end{itemize}
+\end{enumerate}
+\normalsize
+
+
+

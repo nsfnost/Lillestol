@@ -1,0 +1,1212 @@
+\chapter{Variansanalyse}
+\label{kap:variansanalyse} % Opprinnelig kapittelnr: 11
+
+\section{Innledning}
+
+I Kapittel 8.1 studerte vi analyse av data som i vid forstand kunne oppfattes
+som gjentatt observasjon av samme ukjente størrelse.  I praksis foreligger
+ofte observasjoner der vi har supplerende opplysninger, f.eks. at
+observasjonene kan henføres til gitte grupper. Vi kan da være
+interessert i eventuelle gruppeforskjeller. Slike problemstillinger
+forekommer ofte i forbindelse med kontrollerte eksperimenter (se Kapittel 10),
+men også i andre sammenhenger.
+
+Vi skal derfor ta opp generaliseringer
+av målemodellen som går under navnet {\em variansanalysemodeller}.
+Dette er modeller som forklarer observasjonene ut fra variasjon i en
+eller flere kategorivariable, her kalt {\em faktorer}.
+Til hver faktor hører to eller flere kategorier (``nivåer''), og
+kategorikombinasjonen bestemmer gruppetilhørigheten til observasjonen.
+I modellene gjøres antakelser om hvordan faktorene bidrar til den forventede
+respons. Vi vil kunne være interessert i hvilken kombinasjon av nivåer
+på de ulike faktorer som gir størst forventet respons, eventuelt
+om enkelte av faktorene er uten betydning.  Eksempler på dette
+kan være:
+\begin{itemize}
+\item  Innsatsfaktorer og produksjonsresultat.
+\item  Markedsføringstiltak og salg.
+\item Kostholdsfaktorer og ytelse (evt. reduksjon av risiko for skade/død).
+\end{itemize}
+
+Vi vil gi et kort innblikk i aktuelle modeller og analysemetoder knyttet til 
+konkrete eksempler. Eksakte pålitelighetsgarantier forutsetter at
+respon\-sene er uavhengige og normalfordelte, og er knyttet til $t$-fordelingen,
+som vi ble kjent med i Kapittel 8, og en ny fordeling kalt $F$-fordelingen.
+Dersom dataene er samlet inn ved et randomisert eksperiment (se Kapittel 10),
+vil garantiene gjelde tilnærmet selv uten normalitetsantakelse. 
+Uttømmende begrunnelser for disse metodene krever matematiske kunnskaper
+ut over det vi har forutsatt til nå, men en grundigere behandling er
+imidlertid lett tilgjengelig ellers i litteraturen.
+
+\section{Konstant-effekt og to-utvalgsmodellen}
+Vi er ofte interessert i å studere virkningen og eventuelt forskjeller
+i responsen ved to ulike framgangsmåter, eksempelvis to 
+behandlingsmåter for individer, to produksjonsmåter for artikler
+etc.  Vi skaffer oss derfor observasjoner for hver av framgangsmåtene.
+Hvilken modell som er aktuell vil avhenge av omstendighetene, vi vil her
+studere to vesensforskjellige situa\-sjoner, som best illustreres ved
+eksempler.\\
+
+\begin{eksempel}{Spesialverktøy}
+En vanskelig arbeidsoperasjon kan utføres uten eller med
+spesialverktøy. 
+Vi ønsker å anslå den tidsforskjell som forventes ved de to
+metodene.\footnote{Denne situasjonen ble også brukt som
+gjennomgangseksempel i Kapittel 10 om kontrollerte eksperimenter.}
+Anta at bedriften har latt $n$ = 10 arbeidere utføre
+arbeidsoperasjonen en gang med hver metode.  La $X_i$ og $Y_i$ være
+forbrukt tid for $i$'te arbeider ved henholdsvis uten og med
+spesialverktøy $(i = 1, 2, \ldots, n).$  Vi vil anta at $X_1, X_2,
+\ldots, X_n, Y_1, Y_2, \ldots, Y_n$ er uavhengige stokastiske variable
+med forventninger henholdsvis
+
+\[ EX_i = {\alpha}_i +\delta \mbox{\ \ \ } EY_i = {\alpha}_i
+                                    \mbox{\ \ \ }  (i = 1, 2, \ldots, n)\]
+\noindent og varianser
+
+\[ varX_i = {\sigma}_1^2 \mbox{\ \ \ }  varY_i = {\sigma_2}^2 
+                                    \mbox{\ \ \ } (i = 1, 2, \ldots, n)\]
+I denne modellen blir $\delta$ å oppfatte som tillegget (evt. fradraget)
+i forventet tid som skyldes at spesialverktøy ikke brukes, og det vil
+være av interesse å estimere $\delta$, eventuelt teste hypoteser om 
+$\delta$ på grunnlag av observasjonene.  Merk at modellen tillater at 
+de ulike arbeiderne har ulikt arbeidstempo (dvs. ulike $\alpha_i$), men 
+det kreves altså at tillegget (fradraget) $\delta$ er det samme for
+alle arbeiderne.  Videre ser vi at variasjonen i arbeidstempo tillates å
+være ulik for de to metodene, men for hver metode kreves det at den
+er samme for alle arbeiderne.  Disse antakelsene kan selvsagt diskuteres.
+Den mest interessante er kanskje at tillegget $\delta$ antas konstant,
+og det har gitt modellen navnet {\em konstant-effekt modellen}.
+\end{eksempel}
+
+Vi vil nå studere inferensproblemer for modellen presentert i 
+eksemplet.  Betrakt forskjellen i respons for hver arbeider
+
+\[  Z_i = X_i - Y_i  \mbox{\ \ \ }   (i = 1, 2, \ldots, n).      \]
+Ifølge antakelsene i modellen blir
+
+\begin{eqnarray*}
+EZ_i&=& E(X_i-Y_i)=EX_i-EY_i={\alpha}_i + \delta - {\alpha}_i = \delta \\
+varZ_i&=& var(X_i-Y_i)=varX_i+varY_i={\sigma}_1^2 + {\sigma}_2^2 
+\end{eqnarray*}
+Vi ser nå at $Z_1, Z_2, \ldots, Z_n$ er uavhengige stokastiske
+variable med samme forventning $\delta$ og med samme varians
+${\sigma}^2={\sigma}_1^2 + {\sigma}_2^2$, dvs.
+oppfyller betingelsene i den enkle målemodellen fra Kapittel 8.1,
+og estimering av $\delta$ er derfor redusert til et velkjent problem
+basert på observasjonene $Z_1, Z_2, \ldots, Z_n$.  En aktuell
+estimator for $\delta$ er 
+
+\[ \hat{\delta}=\bar{Z}=\frac{1}{n} \sum_{i=1}^{n} Z_i=\bar{X}-\bar{Y}.  \]
+Denne er forventningsrett med varians ${\sigma}^2/n$.
+Vanligvis er ${\sigma}^2$ ukjent, men en forventningsrett estimator
+er som før
+
+\[  S^2=\frac{1}{n-1}  \sum_{i=1}^{n} {(Z_i-\bar{Z})}^2     \]
+Som estimator for standardavviket $\sigma ({\hat{\delta}})=\sigma /\sqrt{n}$,
+bruker vi $S({\hat{\delta}})=S/\sqrt{n}$,
+Estimert $\delta$ med tilhørende standardavvik blir derfor
+
+\[   \bar{Z} \pm \frac{S}{\sqrt{n}}        \]
+\addtocounter{eksecount}{-1}
+\begin{eksempel}{Spesialverktøy (fortsatt)}
+La oss illustrere dette med data for Eksempel 1.  Anta at 
+observasjonene (i sekunder) er gitt ved 
+\begin{center}
+\begin{tabular}{ccccccccccc}
+$X_i$: &  48  &  53  &  52  &  57  &  43  &  63  &  59  &  51  &  40  &  61 \\
+$Y_i$: &  45  &  42  &  58  &  50  &  41  &  47  &  53  &  46  &  45  &  53 
+\end{tabular}
+\end{center}
+Differensene i forbrukt tid blir
+\begin{center}
+\begin{tabular}{ccccccccccc}
+$Z_i$: & 3  &  11  & $-6$  &  7  &  2  &  16  &  6  &  5 & $-5$ & 8 
+\end{tabular}
+\end{center}
+Utregningen gir $\bar{Z}=4.7$ og $S=6.7$, og for anslått forventet
+reduksjon i forbrukt tid med spesialverktøy rapporterer vi $4.7 \pm 2.1$ .
+Sett i forhold til det estimerte standardavvik, ser det ut til at reduksjonen
+er signifikant, dvs. neppe skyldes tilfeldigheter.  Om reduksjonen er av
+praktisk betydning for bedriften er en annen sak.
+\end{eksempel}
+
+Eksakte sannsynlighetsutsagn om estimeringsfeilen i konstanteffekt
+mo\-del\-len kan ikke gjøres uten ytterligere forutsetninger.  Dersom vi
+er villig til å anta at observasjonene er normalfordelte, kan man
+ta utgangspunkt i den stokastiske variable
+
+\[  T=\frac{\bar{Z}-\delta}{S/\sqrt{n}}          \]
+som da er $t$-fordelt med $n - 1$ frihetsgrader (se Kapittel 8.4).  
+Ved hjelp av en tabell over arealer under $t$-kurver kan vi derfor 
+lage sannsynlighetsutsagn.  Eksempelvis med 9 frihetsgrader er
+sannsynligheten for estimeringsfeil på høyst 2.26 ganger estimert
+standardavvik lik 0.95 (se Tabell~\ref{tab:T_kurver_Fraktil}).
+
+Det kan også være aktuelt å teste hypoteser om $\delta$,
+f.eks. teste hypotesen $\delta = {\delta}_0$, der ${\delta}_0$ er
+et spesifisert tall.  Hypotesen om ingen forskjell mellom de to metodene
+svarer til å sette ${\delta}_0$ = 0.  En mulig testobservator er 
+$T$, der vi for $\delta$ bruker den spesifiserte ${\delta}_0$.  Under
+forutsetning av normalfordelte observasjoner vil denne $T$, dersom 
+nullhypotesen er riktig, være $t$-fordelt med $n - 1$ frihetsgrader.
+Forkastingsområdet vil avhenge av om problemstillingen er ensidig
+eller to-sidig.  I eksemplet vil det første være tilfelle dersom
+vi på forhånd vet at spesialverktøy i hvert fall ikke øker
+forventet forbrukt tid.  Ved hjelp av $t$-tabellen kan vi derfor etablere
+tester med ønsket signifikansnivå, eventuelt beregne $P$-verdier.
+
+En viktig grunn til at konstant-effekt modellen er rimelig i Eksempel 1,
+er at responsen for de to framgangsmåtene blir observert for samme
+individ.  Vi vil nå se på en problemstilling der dette ikke er 
+tilfelle.\\
+
+\begin{eksempel}{Spesialverktøy}
+Anta at problemstillingen er som i Eksempel 1, men at bedriften isteden
+har latt $n_1$ = 10 arbeidere utføre arbeidsoperasjonen etter metode
+1 (uten spesialverktøy) og $n_2$ = 11 andre arbeidere etter metode 2
+(med spesialverktøy).  La oss nummerere arbeiderene innen hver
+gruppe, og la $X_j$ være forbrukt tid for $j$'te arbeider i gruppe
+nr.1 ($j = 1, 2, \ldots, n_1$) og $Y_j$ være forbrukt tid for 
+$j$'te arbeider i gruppe nr. 2 ($j = 1, 2, \ldots, n_2$). 
+Anta at observasjonene (i sekunder) er gitt ved:
+\begin{center}
+\begin{tabular}{cccccccccccc}
+$X_j$:& 45  &  48  &  61  &  52  &  48  &  63  &  52  &  54  &  50  &  58 &\\
+$Y_j$:& 47  &  59  &  43  &  50  &  45  &  45  &  49  &  41  &  47  &  52 & 50
+\end{tabular}
+\end{center}
+Vi vil basere dataanalysen på følgende modell:
+\begin{center} \framebox[10cm]{\begin{minipage}{9cm}\rule{0cm}{0.5cm}
+{\bf To-utvalgsmodellen :} $X_1, X_2, \ldots, X_{n_1},
+  Y_1, Y_2, \ldots, Y_{n_2}$
+ er uavhengige stokastiske variable med forventninger henholdsvis
+\[   EX_j = {\mu}_1 \mbox{\ \ \ \ \ }   EY_j = {\mu}_2     \]
+og varianser henholdsvis
+\[      var X_j = {\sigma}_1^2  \mbox{\ \ \ \ \ } var Y_j = {\sigma}_2^2   \]
+\mbox{}
+\end{minipage}} \end{center}
+Vi ser at to-utvalgsmodellen er sammensatt av to enkle 
+målemodeller, en for hver gruppe, med tilleggsantakelsen at
+observasjonene i de to gruppene er uavhengige.
+Sammenligner vi modellen for dette eksemplet med den i Eksempel 1,
+ser vi at her oppfattes observasjonene
+som målinger av et felles forventet prestasjonsnivå for hver
+metode.  De individuelle variasjoner fra arbeider til arbeider er nå
+å oppfatte som del av de tilfeldige variasjonene omkring dette
+nivået.  En vil derfor vente at variansene ${\sigma}_1^2$ og
+${\sigma}_2^2$ vil være betydelig større her enn i Eksempel 1.
+Vi vil være interessert i å estimere forventet
+tidsforskjell mellom de to metodene, i denne modellen uttrykt ved
+$\delta = {\mu}_1 - {\mu}_2$.  Siden $\bar{X}$ og $\bar{Y}$ er
+forventningsrette estimatorer for henholdsvis ${\mu}_1$ og ${\mu}_2$, ser vi at
+
+\[ \hat{\delta}=\bar{X}-\bar{Y}=\frac{1}{n_1} \sum_{j=1}^{n_1} X_j-
+                                  \frac{1}{n_2} \sum_{j=1}^{n_2} Y_j \]
+er forventningsrett estimator for $\delta = {\mu}_1 - {\mu}_2$.
+Estimatoren har varians
+
+\[ var\hat{\delta}=\frac{{\sigma}_1^2}{n_1}+\frac{{\sigma}_2^2}{n_2}
+                  =(\frac{1}{n_1}+\frac{1}{n_2}){\sigma}^2 \]
+Den siste likheten forutsetter at variansen i de to gruppene er like,
+dvs. ${\sigma}_1^2={\sigma}_2^2={\sigma}^2$, en antakelse som ofte
+gjøres i praksis, delvis fordi teorien blir enklere.
+I dette tilfellet kan nemlig
+
+\[  S^2=\frac{1}{n_1+n_2-2}( \sum_{j=1}^{n_1}{(X_j-\bar{X})}^2 +
+                           \sum_{j=1}^{n_2}{(Y_j-\bar{Y})}^2)      \]
+brukes som forventningsrett estimator for fellesvariansen ${\sigma}^2$,
+og standardavviket  til estimatoren estimeres med $S(\hat{\delta})$, der
+$S$ erstatter $\sigma$ i formelen for $\sigma (\hat{\delta})$.
+Estimert $\delta$ med tilhørende standardavvik blir derfor
+
+\[  \bar{X}-\bar{Y} \pm S \cdot \sqrt{\frac{1}{n_1}+\frac{1}{n_2}} \]
+Med de gitte observasjonene får vi 
+$\bar{X}$ = 53.1, $\bar{Y}$ = 48.0 og $S$ = 5.40, slik at vår rapport
+ om differensen mellom forventningene $\delta$ blir $5.10 \pm 2.36$.
+Sammenholdes den estimerte reduksjon i forbrukt tid med de estimerte
+standardavvik, ser det ut til at reduksjonen er signifikant, dvs. neppe kan
+skyldes tilfeldigheter.
+
+Vi kan heller ikke i denne modellen gi eksakte sannsynlighetsutsagn
+om estimeringsfeilen uten ytterligere forutsetninger.  Dersom vi er
+villige til å anta at observasjonene er normalfordelte, kan man
+ta utgangspunkt i den stokastiske variable
+
+\[ T=\frac{\hat{\delta}-{\delta}}{S \cdot
+                         \sqrt{\frac{1}{n_1}+\frac{1}{n_2}}} \]
+som da er $t$-fordelt med $n_1 + n_2 - 2$ frihetsgrader.  Ved hjelp av
+en $t$-tabell kan vi derfor lage sannsynlighetsutsagn.  Eksempelvis
+med 19 frihetsgrader, er sannsynligheten for en estimeringsfeil på
+høyst 2.09 ganger estimert standardavvik lik 0.95 (se Tabell~\ref{tab:T_kurver_Fraktil}).
+
+Også for denne modellen er det aktuelt å teste 
+hypotesen ${\delta} = {\delta}_0$, der ${\delta}_0$ er et spesifisert tall,
+eksempelvis null. 
+ En mulig testobservator er $T$, der vi for $\delta$ bruker den
+spesifiserte ${\delta}_0$.  Under forutsetning av normalfordelte 
+observasjoner vil denne $T$, dersom nullhypotesen er riktig, være
+$t$-fordelt med $n_1 + n_2 - 2$ frihetsgrader, og ved hjelp av
+$t$-tabellen kan vi derfor etablere tester med ønsket signifikansnivå,
+eventuelt beregne $P$-verdier. \\
+
+\noindent {\bf Merknad.} Teorien ovenfor forutsetter at vi er villig 
+til å anta at variansene ${\sigma}_1^2$ og ${\sigma}_2^2$ er like.
+Uten denne antakelsen må vi estimere variansene i hver gruppe for seg:
+
+\[  S_1^2=\frac{1}{n_1-1} \sum_{j=1}^{n_1}{(X_j-\bar{X})}^2 \mbox{\ \ \ \ \ }
+    S_2^2=\frac{1}{n_2-1} \sum_{j=1}^{n_2}{(Y_j-\bar{Y})}^2 \]
+og deretter beregne en estimator for $\sigma(\hat{\delta})$ der
+${\sigma}_1$ og ${\sigma}_2$ erstattes med henholdsvis $S_1$ og $S_2$.
+Teorien er nå langt mer komplisert, men gode tilnærmingsmetoder
+er implementert i programvare, slik at brukeren ikke behøver å
+gjøre antakelsen om like varianser, dersom denne er urealistisk.
+
+
+\begin{center} \framebox[10cm]{\begin{minipage}{9cm}\rule{0cm}{0.5cm}
+\tt
+  >> READ 'eks11.2' X Y \\
+  >> TWOSAMPLE X Y; POOLED S. \\
+\begin{tabular}{rrrrr}
+    &   N  &   Mean  &  StDev & SE Mean \\
+  X &  10  &  53.10  &   5.92 &     1.9 \\
+  Y &  11  &  48.00  &   4.90 &     1.5
+\end{tabular} \\
+ Pooled Standard Deviation =  5.40  \\
+ Standard Error Difference of Means = 2.36 \\
+ 95 \% Conf.Int. for EX - EY : (0.2, 10.0) \\
+ T-test EX = EY (VS. NEQ): T=2.16 DF=19 P=0.044 \\
+\mbox{}
+ \end{minipage}} \end{center} 
+En typisk utskrift fra en programpakke er gitt ovenfor, og gir
+i hovedsak  de tidligere omtalte størrelser.
+De individuelle standardavvik er ikke så mye forskjellige at
+antakelsen om felles verdi er urimelig. Sist i utskriften er resultatet
+av $T$-testen for $H_0$ : $\delta =0$ mot $H_A$ : $\delta \neq 0$.
+Dersom vi krever 5\% signifikansnivå, kan vi forkaste hypotesen om
+lik forventet tid ($P < 0.05)$.
+\end{eksempel}
+For begge modellene ovenfor kan det vises, dersom vi antar at
+observasjonene er normalfordelte, at de metoder som er
+foreslått er optimale i en viss forstand for inferens om
+${\delta}$.  I mange situa\-sjo\-ner vil det imidlertid være urealistisk
+å anta normalitet.  Det gjelder spesielt i situasjoner der det er 
+en viss mulighet for ``ville" observasjoner.  I eksemplene ovenfor kan det
+tenkes at slike observasjoner oppstår ved et arbeidsuhell hos en
+arbeider, som ikke er forårsaket av den arbeidsmetode som brukes.  
+Det er likevel ikke tilrådelig å luke ut eventuelt avvikende 
+observasjoner på rent subjektiv grunnlag, kan hende skyldes avviket
+likevel metoden.  Det finnes imidlertid alternative metoder for
+sammenligning av to framgangsmåter, med gunstige egenskaper, som
+bl.a. unngår at ``ville" observasjoner får avgjørende
+innflytelse på de konklusjoner som trekkes.
+
+For konstant-effekt modellen i Eksempel 1, vil medianen av differensene
+være en alternativ estimator for $\delta$.  En alternativ 
+testmetode vil være Wilcoxon-testen for parrede observasjoner.  For
+modellen med to forventninger i Eksempel 2, vil differensen mellom
+medianene være en alternativ estimator for ${\sigma}$, mens
+Wilcoxon testen for to utvalg kan være en alternativ testmetode.
+De nevnte testmetoder er basert på ranger, og er beskrevet i
+Kapittel 10.4.  De forutsetter ikke normalitet, og kan rettferdiggjøres
+i mer generelle situasjoner enn de som er beskrevet i Kapittel 10.4.  
+Selv når observasjonene er normalfordelte, så taper en lite i
+forhold til de ``optimale" metodene, mens gevinsten kan være betydelig
+for store avvik fra normalitet.
+
+\section{En-faktor modellen}
+En møter ofte situasjoner der en ønsker å sammenligne mer enn to
+grupper, definert ved flere kategorier for en faktor, som vi nedenfor
+betegner $A$.\\
+
+\begin{eksempel}{Produksjonsmetoder}
+En bedrift vurderer i alt $r=3$ ulike produksjonsmetoder for et produkt.
+Faktoren $A$ er her produksjonsmetode. 
+For å sammenligne metodene m.h.t. kvaliteten av det ferdige produkt,
+produseres 5 enheter med hver metode og kvaliteten av disse tallfestes. 
+Resultatet ble:
+
+%\begin{center}
+\begin{tabular}{lccccc}
+Produksjonsmetode nr.~1 : & 4.7 & 3.5 & 3.3 & 4.2 & 3.6 \\
+Produksjonsmetode nr.~2 : & 3.2 & 4.2 & 3.3 & 3.9 & 3.0 \\
+Produksjonsmetode nr.~3 : & 3.1 & 2.9 & 2.2 & 3.0 & 2.8
+\end{tabular}
+%\end{center}
+\end{eksempel}% 
+
+Vi skal bruke følgende generelle notasjon : Det produseres $n_i$ artikler 
+med metode nr. $i$ ($i = 1, 2, \ldots, r$), og $Y_{ij}$ er målt
+kvalitet av den $j$'te produserte artikkel med metode nr.$i$. 
+($j = 1, 2,\ldots, n_i; i = 1, 2, \ldots, r$).
+Vi vil basere dataanalysen på en modell der vi antar at alle disse
+stokastiske variable er uavhengige, og der forventningen og 
+variansen er den samme for observasjonene med samme metode, men
+muligens ulik fra metode til metode, dvs.
+\[ EY_{ij} = {\mu}_i \mbox{\ \ \ \ } varY_{ij} = {\sigma}_i^2 \mbox{\ \ }
+                                              j = 1, 2, \ldots, n_i. \]
+Parameteren ${\mu}_i$ er altså forventet kvalitet med metode nr.$i$.
+Ofte kan det være rimelig å anta at variansen er den samme for 
+de ulike metodene, kall i så fall den felles verdi for ${\sigma}^2$.
+
+Som estimator for kvalitetsnivåene for de ulike metodene, kan vi 
+bruke de respektive gjennomsnitt
+
+\[   \bar{Y}_i=\frac{1}{n_i}\sum_{j=1}^{n_i}Y_{ij} \mbox{\ \ \ }
+                                                 j=1,2,\ldots ,n_i, \]
+som er forventningsrette med varianser henholdsvis ${\sigma}_i^2/n_i$.
+Variansene ${\sigma}_i^2$ for hver metode kan vi estimere på vanlig
+ måte, kall estimatorene $S_i^2$. Har vi antatt en felles ${\sigma}^2$,
+kan vi utnytte alle observasjonene ved estimeringen. En forventningsrett
+estimator for ${\sigma}^2$ er da
+
+\[ S^2=\frac{1}{n-r}\sum_{i=1}^{r}\sum_{j=1}^{n_i}{(Y_{ij}-\bar{Y}_i)}^2
+                                 =\frac{1}{n-r}\sum_{i=1}^{r}(n_i-1)S_i^2 \]
+der $n = \sum_{i=1}^r n_i$ er det totale antall observasjoner. Vi kan rapportere
+ forventet kvalitet for hver metode slik
+
+\[     \bar{Y}_i \pm \frac{S}{\sqrt{n_i}} \mbox{\ \ \ } i=1,2,\ldots ,r.  \]
+Vi kan være interessert i å vurdere eventuelle
+forskjeller i forventet kvalitet.  I en situasjon med mer enn to 
+forventninger, kan vi sammenligne to og to, og rapportere
+forskjeller som i Eksempel 2. For metode nr.$i$ og nr.$k$ :
+
+\[ \bar{Y}_i -\bar{Y}_k\pm S\sqrt{\frac{1}{n_i}+\frac{1}{n_k}} \]
+Eksakte konfidensintervaller kan i begge tilfeller lages med sikkerhetsfaktor
+hentet fra $t$-tabellen med $n-r$ frihetsgrader (forutsetter normalfordelte
+observasjoner).
+
+Ved sammenligning av en rekke forventninger kan det være lurt å
+ta utgangspunkt i hypotesen at alle forventningene er like, dvs.
+
+\[    H_A: {\mu}_1 = {\mu}_2 = \cdots = {\mu}_r.   \]
+og teste den mot alternativet at minst to forventninger er ulike.
+Hvis denne hypotesen ikke forkastes, er det liten grunn til å legge
+vekt på gruppeforskjeller, de kan like godt skyldes tilfeldigheter.
+Vi forutsetter at alle observasjonene har samme varians  ${\sigma}^2$.
+Uten denne antakelsen er det vanskelig å trekke 
+generelle konklusjoner.  Dersom nullhypotesen $H_A$ var riktig, kunne
+vi bruke gjennomsnittet av alle observasjonene
+
+\[ \bar{Y}=\frac{1}{n}\sum_{i=1}^{r}\sum_{j=1}^{n_i}Y_{ij} =
+                \frac{1}{n}\sum_{i=1}^{r}n_i\bar{Y}_i \]
+til å anslå den felles forventning.  Dersom gruppegjennomsnittene\\
+$\bar{Y}_1, \bar{Y}_2, \ldots, \bar{Y}_r$ avviker lite fra det totale
+gjennomsnitt $\bar{Y}$, er det ingen grunn til å forkaste nullhypotesen,
+mens store avvik tyder på at nullhypotesen ikke er riktig.  Et mål
+som sammenfatter graden av avvik er
+
+\[     Q_A=\sum_{i=1}^{r}n_i{(\bar{Y}_i-\bar{Y})}^2 \]
+Her er $n_i$ brukt som vekter i summen, bl.a. fordi et bestemt avvik
+basert på et stort antall observasjoner bør tillegges større
+vekt enn et tilsvarende basert på et lite antall observasjoner.
+Dersom $Q_A$ er stor gir dette grunn til å forkaste nullhypotesen.
+Stor i forhold til hva? Vi må åpenbart se $Q_A$ i forhold til den
+ naturlige tilfeldige variasjon anslått med $S^2$. 
+ Betrakt kvadratsummene
+
+\[ Q_0=\sum_{i=1}^{r}\sum_{j=1}^{n_i}{(Y_{ij}-\bar{Y_i})}^2 \mbox{\ \ \ \ }
+    Q=\sum_{i=1}^{r}\sum_{j=1}^{n_i}{(Y_{ij}-\bar{Y})}^2 \]
+som måler observasjonenes variasjon omkring sine respektive
+gruppegjennomsnitt og omkring det totale gjennomsnitt.  Det kan vises at
+
+\[           Q = Q_A + Q_0             \]
+som tolkes slik:
+\begin{center}
+\begin{tabular}{rcl}
+Total variasjon & = & variasjon forklart ved faktor $A$  \\
+                & + & uforklart (tilfeldig) variasjon.   
+\end{tabular}
+\end{center}
+Vi merker oss at
+\[ S^2=\frac{Q_0}{n-r}. \]
+Her er $n-r$ det såkalte frihetsgradtall knyttet til $Q_0$.
+For å gjøre $Q_A$ sammenlignbar med $S^2$, må vi også
+dividere $Q_A$  med sitt frihetsgradtall, som er $r-1$.
+En egnet testobservator er derfor forholdet
+\footnote{Motivasjon av $F$ : Ved å bruke forhold og ikke
+differens oppnår vi at testobservatoren ikke avhenger av eventuelle
+endringer av måleenheten, f.eks. fra gram til kilo, centimeter til
+meter.  Divisjon med frihetsgradtallene er rimelig fordi 
+ $EQ_A/(r-1) \geq {\sigma}^2$, med likhet hvis og bare hvis nullhypotesen
+ er riktig, mens $EQ_0/(n-r)= {\sigma}^2$ uansett om nullhypotesen er riktig
+ eller ikke, noe som samtidig indikerer rimeligheten av å forkaste $H_A$
+når $F$ er stor.}
+
+\[ F=\frac{Q_A/(r-1)}{Q_0/(n-r)} \]
+Dersom forholdet $F$ er stort gir dette grunn til å forkaste 
+nullhypotesen om at alle forventningene er like.  Dette er en såkalt
+{\em $F$-observator}. Under forutsetning av
+normalfordelte observasjoner er sannsynlighetsfordelingen til $F$, dersom
+nullhypotesen er riktig, en såkalt {\em Fisherfordeling} eller kortere
+en {\em $F$-fordeling}.  Denne fordeling dukker også opp i en rekke
+andre sammenhenger, den er grundig studert av statistikere, og det er
+utarbeidet tabeller som gir arealer under $F$-kurver, 
+se Tabell~\ref{tab:F_kurver_Fraktiler_5_prosent} og~\ref{tab:F_kurver_Fraktiler_1_prosent} 
+i Appendiks~\ref{app:fordelngstabeller}.
+Ved hjelp av slike tabeller kan vi lage tester tilpasset et gitt
+ signifikansnivå, eventuelt beregne $P$-verdier. I den foreliggende
+situasjon dreier det seg om $F$-fordelingen med frihetsgradtall
+$(r - 1, n - r)$. La oss se på utskrift fra en analyse av dataene ovenfor.
+\footnote{ Dataene leses fra en fil med kolonnefelter, ett for responsen Y,
+og ett for faktoren A, der kodetall 1,2,3 brukes for kategoriene.} 
+\begin{center} \framebox[11cm]{\begin{minipage}{10cm}\rule{0cm}{0.5cm}
+\tt
+ >> READ 'eks11.3' Y A\\
+ >> ANOVA Y A ; MEANS A. \\
+ \begin{tabular}{lrrrrr}
+\multicolumn{3}{l}{ Analysis of Variance Table}& & & \\
+ Source   &  DF  &      SS  &      MS  &    F   &     P \\
+ Factor A &   2  &   2.929  &   1.465  & 6.15   & 0.015 \\
+ Error    &  12  &   2.860  &   0.238  &        &        \\
+ Total    &  14  &   5.789  &          &        &
+\end{tabular}
+\begin{center}\addtolength{\tabcolsep}{-0.5\tabcolsep}
+ \begin{tabular}{rrrcl}
+      A & N &   Mean & StDev&   95\% Conf.Int.Means (Common S=0.488)  \\
+      1 & 5 &  3.860 & 0.577&  \hspace{3.05cm} (-------*-------)  \\
+      2 & 5 &  3.520 & 0.507&  \hspace{2.05cm} (-------*-------)  \\  
+      3 & 5 &  2.800 & 0.354&  (-------*-------)                    \\
+        &   &        &       & -+---------+---------+---------+- \\
+\multicolumn{4}{l}{} &2.40\hspace{1.1cm}3.00\hspace{1.1cm}3.60\hspace{1.1cm}4.20\\ \mbox{}
+\end{tabular}
+\end{center}
+\end{minipage}} \end{center}
+
+\noindent Utskriften har i hovedsak gitt oss størrelsene nevnt ovenfor,
+og starter med den såkalte {\em variansanalyse-tabellen} (ANOVA-tabellen).
+I denne har vi kvadratsummer (SS=Sum of Squares), frihetsgradtall
+(DF=Degrees of Freedom) og forholdene (MS=SS/DF=Mean Sum of Squares) og beregnet
+ $F=6.15$ med tilhørende $P=0.015$. Vi ser at vi kan forkaste hypotesen
+om like forventede kvaliteter med 5\% signifikansnivå, men ikke med
+1\% signifikansnivå. 
+
+Vi ser forøvrig at antakelsen om felles varians ikke er urimelig, 
+se også Oppgave~18. Dersom hypotesen
+om like forventninger forkastes, innbyr utskriften til å sammenligne
+konfidensintervallene parvis, med sikte på rangering av metodene.
+Metode nr.1 peker seg ut som bedre enn metode nr.3, mens metode nr.2 hverken
+ kan påstås bedre enn nr.3 eller dårligere enn nr.1. Det er
+ingen grunn til å ekskludere metode nr.2 fra den videre vurdering,
+spesielt ikke dersom den er billigere enn metode nr.1. Den observerte forskjell
+kan godt skyldes tilfeldigheter, og man må i alle fall vurdere om den
+estimerte forskjell har praktisk betydning. I denne forbindelse ville det
+kanskje være bedre å estimere alle forventede forskjeller
+ med tilhørende feilmarginer, etter formelen ovenfor. 
+
+Det er imidlertid et problem knyttet til alle slike parvise betraktninger,
+idet vi ikke har noen totalgaranti mht. risiko for feilkonklusjoner for de\\
+$r(r-1)/2$ sammenligninger som gjøres (her 3).
+Det finnes teorier for {\em multiple sammenligninger},
+som kan gi slike garantier, som medfører bruk av
+noe større sikkerhetsfaktorer enn $t$-tabellen foreskriver.
+En rekke forslag til metode for multippel sammenligning tilbys (Fisher, Tukey,
+Dunnett etc.),
+som avviker noe mht. hvilke garantier som gis. Slike metoder gis ofte
+som opsjoner i aktuell programvare for variansanalyse.
+
+
+\section{To-faktor modeller}
+
+Vi utvider nå diskusjonen til observasjoner gruppert ved to faktorer,
+nedenfor kalt $A$ og $B$.\\
+
+\begin{eksempel}{Produksjonsmetoder og råstoff}
+I Eksempel 3 studerte vi virkningen av ulike produksjonsmetoder på
+kvali\-teten av et produkt.  Anta at det også er ulike muligheter
+m.h.t. bruk av råstoff.  Vi har da to faktorer, produksjonsmetode ($A$)
+og råstoff ($B$).  Anta at det er $r$=3 produksjonsmetoder og $s$=4 
+ulike råstoffkvaliteter, vi har da i alt $r\cdot s$ = 12 mulige
+faktorkombinasjoner.  La oss i første omgang tenke oss at vi
+produserer en artikkel for hver faktorkombinasjon, og måler 
+kvaliteten av hver av disse.  La $Y_{ij}$ være kvaliteten av 
+artikkelen produsert med metode nr.$i$ med råstoff 
+nr.$j$, $(i=1, 2, \ldots, r; j=1, 2, \ldots, s)$.  Anta at resultatene
+ble som følger:
+
+%\begin{center}
+\begin{tabular}{|r|rrrr|r|} \hline
+$Y_{ij}$  &   $j$=1    &    2    &    3    &    4    &   Gj.snitt \\ \hline    
+$i$= 1    &     5.4    &   4.3   &   3.7   &   3.2   &       4.15 \\
+     2    &     6.3    &   6.0   &   5.7   &   4.5   &       5.63 \\ 
+     3    &     5.3    &   5.8   &   4.8   &   4.0   &       4.98 \\ \hline
+Gj.snitt  &     5.67   &   5.37  &   4.73  &   3.90  &       4.92 \\ \hline
+\end{tabular}
+%\end{center}
+\end{eksempel}% Innsatt av HJS; krever avklaring
+Vi har her beregnet den gjennomsnittlige kvalitet som er observert
+for de ulike metoder (linjevis) og de ulike råstoffer (kolonnevis),
+samt det totale gjennomsnitt, som her ble 4.92.  Det kan se ut som 
+metode nr.2 og råstoff nr.1 er den beste kombinasjonen.  Vi trenger
+imidlertid er nærmere vurdering av usikkerheten ved en slik 
+konklusjon.
+
+Vi vil lage en modell for eksperimentet ovenfor som tar omsyn til at
+de ulike produksjonsmetodene kan gi ulik kvalitet for ulike typer 
+råstoff, dvs. at forventet kvalitet $EY_{ij}$ er en funksjon både
+av $i$ og $j$.  La oss skrive $EY_{ij} = \mu_{ij}$.  Nå kan det
+være rimelig å anta at $\mu_{ij}$ kan splittes opp i to
+komponenter, en som skyldes produksjonsmåte og en som skyldes
+råstoff, og at disse to faktorene virker additivt, dvs. at vi kan skrive
+
+\[ EY_{ij}=\mu +{\alpha}_i+{\beta}_j \mbox{\ \ \ }
+                   (i = 1, 2, \ldots , r; j = 1, 2, \ldots ,s)\]
+Her er $\mu$ et gitt kvalitetsnivå, mens ${\alpha}_i$ kan 
+oppfattes som et tillegg (evt. fradrag) i kvalitet som skyldes 
+produksjonsmåte nr.$i$, og som gjør seg gjel\-dende uansett råstoff,
+og ${\beta}_j$ kan oppfattes som et tillegg i forventet kvalitet som 
+skyldes råstoff nr.$j$, og som gjør seg gjeldende uansett 
+produksjonsmåte.  Vi kan uten tap av generalitet anta 
+$\sum_i{\alpha}_i = 0$ og $\sum_j{\beta}_j = 0$.  Kvalitets/nivået
+$\mu$ blir da å oppfatte som et gjennomsnitt tatt over de ulike 
+metoder og ulike råstoff.  I tillegg til antakelsene ovenfor vil
+vi anta at alle $Y_{ij}$'ene er uavhengige med samme varians ${\sigma}^2$.
+
+I modellen er $\mu, {\alpha}_1, {\alpha}_2, \ldots, {\alpha}_r,
+{\beta}_1, {\beta}_2, \ldots, {\beta}_s$ og ${\sigma}^2$ ukjente
+parametre.  Vi ønsker å estimere disse parametrene, samt teste
+hypoteser om dem.  La oss innføre følgende notasjon for søyle- og
+radgjennomsnitt:
+
+\[ \bar{Y}_{\cdot j}=\frac{1}{r}\sum_{i=1}^{r}Y_{ij},  \mbox{\ \ \ }
+              \bar{Y}_{i\cdot}=\frac{1}{s}\sum_{j=1}^{s}Y_{ij} \]
+og for det totale gjennomsnitt
+\[ \bar{Y}=\frac{1}{rs}\sum_{i=1}^{r}\sum_{j=1}^{s}Y_{ij}=
+            \frac{1}{r}\sum_{i=1}^{r}\bar{Y}_{i\cdot}=
+            \frac{1}{s}\sum_{j=1}^{s}\bar{Y}_{\cdot j} \]
+Prikkene angir altså hvilken indeks som er summert bort.  Følgende
+estimatorer virker rimelige for sine respektive parametre
+
+\begin{eqnarray*}
+  \hat{\mu}     & = & \bar{Y} \\
+{\hat{\alpha}}_i & = & \bar{Y}_{i\cdot}-\bar{Y} \mbox{\ \ }(i=1,2,\ldots,r)\\
+{\hat{\beta}}_j  & = & \bar{Y}_{\cdot j}-\bar{Y} \mbox{\ \ }(j=1,2,\ldots,s)
+\end{eqnarray*}
+Som estimator for forventet kvalitet $\mu_{ij}$ brukes da 
+
+\[ {\hat{\mu}}_{ij}=\hat{\mu}+{\hat{\alpha}_i}+{\hat{\beta}_j}=
+  \bar{Y}+({\bar{Y}}_{i\cdot}-\bar{Y})+({\bar{Y}}_{\cdot j}-\bar{Y}) \]
+Det er lett å vise at estimatorene ovenfor alle er forventningsrette
+for sine respektive parametre.  Deres varianser kan også finnes, men de
+utelates her (Oppgave~15).  Størrelsen ${\hat{\mu}}_{ij}$
+kan tenkes brukt som estimator for forventningen $\mu_{ij}$.  I lys
+av situasjonen i eksemplet tolkes denne slik:  Vi tar utgangspunkt i
+det totale gjennomsnitt $\bar{Y}$, til dette legges to 
+korreksjonsfaktorer, den ene korrigerer for at produksjonsmetode nr.$i$
+er brukt, den andre korrigerer for at råstoff nr. $j$ er brukt.
+Differensen
+
+\[ Y_{ij}-{\hat{\mu}}_{ij}=Y_{ij}-{\bar{Y}}_{i\cdot }-
+                          {\bar{Y}}_{\cdot j}+\bar{Y} \]
+kan tolkes som det avvik som ikke lar seg forklare ved den antatte
+modell, og som tilskrives tilfeldigheter.  Betrakt 
+kvadratsummen av alle slike avvik
+
+\[  Q_0=\sum_{i=1}^{r}\sum_{j=1}^s
+          {(Y_{ij}-{\bar{Y}}_{i\cdot}-{\bar{Y}}_{\cdot j}+\bar{Y})}^2 \]
+Det kan vises at $EQ_0 = (r-1)\cdot (s-1){\sigma}^2$, slik at
+
+\[ S^2=\frac{1}{(r-1)(s-1)}Q_0           \]
+er en forventningsrett estimator for ${\sigma}^2$.  Som i 
+tilfellet med en-faktormodellen i forrige avsnitt kan vi splitte 
+kvadratsummen for den totale variasjon
+
+\[  Q=\sum_{i=1}^{r}\sum_{j=1}^s {(Y_{ij}-\bar{Y})}^2 \]
+i flere kvadratsummer.  Her blir 
+
+\[    Q = Q_A + Q_B + Q_0    \]
+der $Q_0$ er definert ovenfor og 
+
+\[  Q_A=s\cdot \sum_{i=1}^{r}{(\bar{Y}_{i\cdot}-\bar{Y})}^2 \mbox{\ \ \ \ \  }
+         Q_B=r\cdot \sum_{j=1}^{s}{(\bar{Y}_{\cdot j}-\bar{Y})}^2   \]
+Dette tolkes slik
+\begin{center}
+\begin{tabular}{rcl}
+Total variasjon & = & variasjon forklart ved faktor $A$  \\
+                & + & variasjon forklart ved faktor $B$  \\
+                & + & uforklart (tilfeldig) variasjon.   
+\end{tabular}
+\end{center}
+Dette indikerer metoder til å teste interessante hypoteser.  
+Hypotesen $H_A: {\alpha}_1 = {\alpha}_2 = \cdots = {\alpha}_r = 0$ 
+svarer til at faktor $A$ overhodet ikke innvirker på forventningen,
+mens $H_B: {\beta}_1 = {\beta}_2 = \cdots = {\beta}_s = 0$ svarer til
+at faktor $B$ ikke innvirker på forventningen.  Den første 
+hypotesen forkastes dersom $Q_A$ er stor i forhold til $Q_0$, den siste 
+dersom $Q_B$ er stor i forhold til $Q_0$. Egnede testobservatorer til å
+teste hypotesene $H_A$ og $H_B$ er henholdsvis 
+
+\[ F_A=\frac{Q_A/(r-1)}{Q_0/(r-1)(s-1)} \mbox{\ \ \ }
+                         F_B=\frac{Q_B/(s-1)}{Q_0/(r-1)(s-1)} \]
+som, dersom observasjonene er normalfordelte og de respektive 
+nullhypoteser holder, er $F$-fordelt med frihetsgradtall henholdsvis\\
+$((r-1),(r-1)\cdot (s-1))$ og $((s-1),(r-1)\cdot (s-1))$.
+
+Ved analysen av de data som er gitt ovenfor, fikk vi følgende 
+variansanalysetabell: 
+\begin{center} \framebox[11cm]{\begin{minipage}{10cm}\rule{0cm}{0.5cm}
+\tt
+ >> READ 'eks11.4' Y A B\\
+ >> ANOVA Y A B \\
+ \begin{tabular}{lrrrrr}
+\multicolumn{3}{l}{ Analysis of Variance Table}& & & \\
+ Source   &  DF  &      SS  &      MS  &    F   &     P \\
+ Factor A &   2  &   4.372  &   2.186  & 15.87  & 0.004 \\
+ Factor B &   3  &   5.497  &   1.832  & 13.27  & 0.005 \\
+ Error    &   6  &   0.828  &   0.138  &        &        \\
+ Total    &  11  &  10.697  &          &        &         \\
+\mbox{}
+\end{tabular}
+\end{minipage}} \end{center}
+
+\noindent Vi ser at begge faktorene $A$ og $B$ er signifikante, og vi kunne
+i likhet med utskriften i Eksempel 3 be om mer detaljerte opplysninger om
+hva forskjellen mellom gruppene besto i med sikte på å rangere
+de ulike produksjonsmetoder og de ulike råstoffer m.h.t. kvalitet.
+Dette leder til problemstillinger av typen multiple sammenligninger
+som ble omtalt i forrige avsnitt.
+
+Modellen ovenfor brukes også i situasjoner der vi bare er interessert
+i den ene faktoren, f.eks. produksjonsmetode, mens den annen faktor
+er en forstyrrende faktor som det lønner seg å ta omsyn til i
+analysen. Eksempelvis dersom råstoff varierer fra parti til parti,
+og vi har bare nok til å produsere tre enheter pr. parti.
+
+Det sentrale poeng ved modellen som er presentert ovenfor,
+er antakelsen om additive effekter.  Det er imidlertid mulig at en 
+faktor i kombinasjon med en annen gir et bidrag til responsen ut over
+det rent additive, dette kalles {\em samspill}.  Best kjent er kanskje
+dette fenomen i farmasi, hvor to legemidler (faktorer) som i ulike 
+doseringer hver for seg har gunstig virkning, har en helt annen, kanskje
+verdiløs eller ødeleggende virkning dersom de brukes sammen.  I
+medisin kalles dette synergistiske effekter.
+
+Muligheten for samspill må ikke overses. Det kan være en
+kilde til feilkonklusjoner, og kan representere uutnyttede muligheter,
+se f.eks Kapittel 15.4 om kvalitetsforbedringer.
+
+Dersom samspill ikke kan utelukkes, kreves
+det en annen modell, og en annen analysemetode enn den vi har
+presentert ovenfor.  Innenfor en slik modell kan man bl. a. teste om 
+samspill ikke er til stede, dette vil imidlertid kreve mer enn en 
+observasjon pr. faktorkombinasjon. La oss gi et kort innblikk i modeller
+med samspill.
+
+Anta at vi i Eksempel 4 har $m$ observasjoner for hver faktorkombinasjon,
+og la $Y_{ijk}$ være kvaliteten av artikkel nr.$k$ produsert etter
+metode nr.$i$ med råstoff nr.$j$. En modell med samspill mellom faktorene
+ kan skrives slik
+
+\[ EY_{ijk}={\mu}_{ij}=\mu +{\alpha}_i+{\beta}_j+{\phi}_{ij} \]
+der ${\phi}_{ij}$ representerer samspillet som en korreksjon til
+hovedeffektene ${\alpha}_i$ og ${\beta}_j$ til de to faktorene.
+Den naturlige estimator for ${\mu}_{ij}$ er nå gjennomsnittet 
+ $\bar{Y}_{ij}$ av de m observasjonene for faktorkombinasjonen 
+ $(i,j)$. De øvrige parametrene estimeres i henhold til 
+oppstillingen
+\begin{center} \addtolength{\tabcolsep}{-0.4\tabcolsep}
+\begin{tabular}{ccccccccc}
+ $\hat{\mu}_{ij}$&=&$\hat{\mu}$&+&$\hat{\alpha}_i$&+
+                            &$\hat{\beta}_j$&+&$\hat{\phi}_{ij}$ \\
+ $\bar{Y}_{ij}$  &=&$\bar{Y}$&+&$(\bar{Y}_{i\cdot}-\bar{Y})$&+
+     &$(\bar{Y}_{\cdot j}-\bar{Y})$&+
+   &$(\bar{Y}_{ij}-\bar{Y}_{i\cdot}-\bar{Y}_{\cdot j}+\bar{Y})$
+\end{tabular}
+\end{center}
+der prikker angir hvilken indeks som er summert bort i tillegg til $k$.
+I likhet med situasjonen uten samspill, kan vi splitte opp total variasjon slik
+
+\[ Q=Q_A+Q_B+Q_{AB}+Q_{0} \]
+der det ekstra leddet $Q_{AB}$ er variasjon forklart ved samspill mellom de 
+to faktorene. På tilsvarende måte som ovenfor kan vi nå motivere
+
+\[ F_{AB}=\frac{Q_{AB}/(r-1)(s-1)}{Q_0/rs(m-1)} \]
+som testobservator for $H_{AB}$ : ${\phi}_{ij}=0$, dvs. at det ikke er
+ samspill mellom de to faktorene. Dersom $H_{AB}$ er riktig, er $F_{AB}$
+ $F$-fordelt med frihetsgradtall $((r-1)(s-1),rs(m-1))$.
+
+Som ovenfor gis de nødvendige beregninger for å gjennomføre 
+testen i form av en ANOVA-tabell, se Oppgave~17.
+
+
+\section{Varianskomponent-modeller}
+Den teori som er utviklet ovenfor kan generaliseres til modeller for
+mer kompliserte situasjoner med mer enn to faktorer og ulike former
+for samspill.  Felles for disse modellene er at responsen blir
+dekomponert etter de faktorer man mener kan forklare denne, først
+tar en med de såkalte egenvirkningene av hver faktor, deretter tas
+med samspill mellom ulike faktorer i den grad man mener at disse kan
+gjøre seg gjeldende.  Innenfor den valgte modell kan en så 
+stille spørsmål om disse egenvirkningene og samspillene som en
+kan få besvart ved å samle inn observasjoner.  De nødvendige
+observasjoner vil kunne avhenge av modellen.
+
+Modeller av dette slaget kalles gjerne {\em dekomponeringsmodeller}, og
+ved dekomponering er det aktuelt med to typer komponenter, såkalte
+{\em forventningskomponenter og varianskomponenter}.  Vi har ovenfor
+bare sett eksempler på det første.  Vi betraktet der de ulike 
+faktorkombinasjoner som gitte.  Det kan imidlertid tenkes problemstillinger
+der faktorkombinasjoner blir bestemt som del av eksperimentet.  En slik
+faktor er det mer rimelig å representere med en varianskomponent.
+La oss illustrere de to typer komponenter med et eksempel. \\
+
+
+\begin{eksempel}{Produksjonsmetoder og arbeidere}
+Anta at ulike produksjonsmetoder (faktor $A$) blir prøvd ut med 
+arbeidere med ulike ferdigheter (faktor $B$).  I noen situasjoner vil
+de arbeidere som deltar være gitt, f. eks. alle arbeidere i
+bedriften, eventuelt de som er villig til å delta.  Vi vil anta at
+det ikke er samspill mellom metode og arbeider. Dette er ikke alltid 
+realistisk, det kan f. eks. tenkes at en god metode av enkelte møtes 
+med skepsis fordi den er ny, og disse gjør en dårlig innsats av
+den grunn.  Vi vil derfor bruke to-faktor modellen beskrevet i avsnitt
+11.4.  Denne svarer til at responsen $Y_{ij}$ for $i$'te metode og 
+$j$'te arbeider dekomponeres slik
+\[     Y_{ij} = \mu + {\alpha}_i + {\beta}_j + \mbox{tilfeldig variasjon}  \]
+der ${\alpha}_i$ og ${\beta}_j$ er konstanter, og tilfeldig variasjon
+er stokastiske variable med forventning null og samme varians 
+${\sigma}^2$.  Inferensen gjelder nå de deltakende personer og en
+bør være forsiktig med å trekke konklusjoner utover disse.
+Imidlertid kan det tenkes at vi nettopp ønsker å trekke generelle 
+konklusjoner om ferdigheten til arbeidere for de ulike 
+produksjonsmetodene på grunnlag av observerte ferdigheter for et
+utvalg av arbeidere.  Skal dette gjøres, bør de arbeidere som får
+prøve seg representere et tilfeldig utvalg fra den populasjon av
+arbeidere man ønsker å trekke konklusjoner om.  I denne situasjon
+kan det være aktuelt å bruke en litt annen dekomponering enn
+ovenfor, nemlig
+
+\[   Y_{ij} = \mu + {\alpha}_i + B_j + \mbox{tilfeldig variasjon}  \]
+der vi har erstattet konstanten ${\beta}_j$ med en stokastisk 
+variabel $B_j$.  Denne skal reflektere det forhold at arbeider nr. $j$
+har et bidrag til responsen, utover rent tilfeldige variasjoner, som 
+er stokastisk bestemt, nemlig ved loddtrekningen av denne arbeideren
+fra populasjonen til å delta i eksperimentet.  Det kan være 
+rimelig å anta at alle $B_j$'ene er uavhengige med samme 
+forventning, som uten tap av generalitet kan antas lik null, og med
+samme varians ${\sigma}_0^2$.  Denne variansen gir uttrykk for
+variasjon i ferdigheter blant arbeiderne i populasjonen, uansett
+metode.  I denne modellen vil faktor $A$ være en forventningskomponent
+og faktor $B$ en varianskomponent.  Hva den siste angår, vil vi
+være interessert i å teste om  variansen ${\sigma}_0^2$ er
+null. Dette betyr at systematisk individuell variasjon mellom
+arbeidere i popu\-lasjonen ikke er til stede, og at observerte forskjeller
+mellom arbeidere i sin helhet kan forklares som tilfeldig variasjon.
+
+Dataanalyse på grunnlag av en modell med varianskomponenter vil
+i grove trekk kunne gjennomføres som i de tilsvarende modeller med
+forventningskomponenter dersom modellen er uten samspill.  Generelt
+vil imidlertid dataanalysen kunne arte seg forskjellig i de to
+situasjonene, forskjellen består i hva vi veier kvadratsummen for effekten
+opp mot, dvs. nevneren i $F$-observatoren. I tilfellet med to faktorer er
+oppbyggingen av $F$-observatorene og frihetsgradtallene gitt ved:
+
+\begin{center} \small \addtolength{\tabcolsep}{-0.3\tabcolsep}
+\begin{tabular}{|c|c|c|c|c|c|} \cline{4-6}
+ \multicolumn{3}{c|}{} &\multicolumn{3}{c|}{Kvadratsum i nevner}\\ \cline{1-3}
+Effekt&Frihetsgrad&Kvadratsum&Alle faste&$A$ fast $B$ tilf.&Begge tilf.\\ \hline
+ $A$&$(r-1)$&$Q_A$&$Q_0$&$Q_{AB}$&$Q_{AB}$ \\
+ $B$&$(s-1)$&$Q_B$&$Q_0$&$Q_{0}$&$Q_{AB}$ \\
+ $AB$&$(r-1)(s-1)$&$Q_{AB}$&$Q_0$&$Q_0$&$Q_0$ \\ \hline
+\end{tabular}
+\end{center}
+Når vi ønsker å undersøke virkningen av en faktor alene 
+eller i kombinasjon med andre faktorer, vil det eksperiment vi utfører
+sammen med vår forhåndsviten bestemme modellen.  På den 
+annen side vil kunnskap om egenskapene ved ulike modeller være til
+hjelp ved valg av eksperiment.  Innen faget eksperimentplanlegging
+står dekomponeringsmodeller sentralt i diskusjonen når det
+dreier seg om observasjoner av typen gradert respons. 
+ 
+Teorien ovenfor er i hovedsak utviklet for situasjoner der observasjonene
+er tatt i henhold til en plan med et valgt antall observasjoner pr.
+faktorkombinasjon. I samfunnsfag studeres ofte utvalgsdata fra en
+populasjon, der en i ettertid grupperer observasjonene, f.eks. etter
+kjønn og andre karakteristika.  En er da interessert i å
+se på gruppeforskjeller mht. målte variable, og variansanalyse
+etter forventningskomponentmodellen peker seg ut som en mulig analysemåte. 
+Antall observasjoner av hvert slag er imidlertid nå tilfeldig bestemt, og
+dette kan være et problem ved analysen.
+
+For det første kan forutsetningen om uavhengige observasjoner være 
+tvilsom, og en variansanalyse er da knapt mer enn en eksplorativ metode.
+For det andre kan det være et praktisk problem ved
+at tilgjengelige varians\-ana\-lyse\-pro\-gram\-mer forutsetter en balansert
+ situasjon, dvs. like mange observasjoner pr. faktorkombinasjon. 
+Et alternativ er da å omforme variansanalysemodellen til
+regresjonsmodell ved bruk av egnede indikatorvariable, og bruke teorien i
+Kapittel 12. 
+
+Det fins fordelingsfrie alternativer til variansanalyse med en og to faktorer,
+dvs. som ikke forutsetter normalfordelte observasjoner. Mest kjent er
+Kruskal-Wallis test og Friedmans test som er såkalte rangmetoder,
+der man erstatter observasjonene med deres rang etter størrelse.
+Slike metoder er også aktuelle dersom observasjonene
+selv er på en rangeringsskala, slik tilfellet ofte er i
+meningsmålinger, bl.a. i markedsforskning.
+\end{eksempel}% Innsatt av HJS; krever avklaring
+
+\newpage
+\section{Oppgaver}
+\small
+\begin{enumerate}
+\item  Et forskerteam mener å ha laget et gjødningsprodukt $(A)$
+tilpasset hveteproduksjon som gir høyere avkastning enn det produkt 
+$(B)$ som fagfolk til nå har anbefalt for formålet.  En
+frittstående institusjon har fått i oppdrag å undersøke
+om det er grunn til å satse på de nye produktet.  Undersøkelsen
+er lagt opp slik:  Et rektangulært jordstykke deles opp i 9 blokker
+med 2 like store ruter i hver blokk:
+\begin{center}
+\setcounter{telle}{0}
+\begin{picture}(150,35)
+\put(30,0){\line(1,0){90}} 
+\put(30,10){\line(1,0){90}} \put(30,20){\line(1,0){90}}
+\multiput(30,0)(10,0){10}{\line(0,1){20}}
+\put(53,35){\makebox{Blokknr.}}
+\multiput(32,25)(10,0){9}{\addtocounter{telle}{1} \thetelle}
+\end{picture}
+\end{center}
+Jordstykket sås deretter til med hvete.  Innen hver blokk velges
+så en av rutene som gjødsles med $A$, mens den andre ruten 
+gjødsles med $B$.  Ved innhøstingen veies opp produsert
+hvetekvantum i hver av de 18 rutene.  Resultatet i kg pr. rute ble:
+\begin{center} \addtolength{\tabcolsep}{-0.1\tabcolsep}
+\begin{tabular}{lccccccccc}
+Blokk nr.:    &    1  &  2  &  3  &  4  &  5  &  6  &  7  &  8  &  9 \\
+Gjødsel $A$: &   27.2& 27.9& 25.8& 26.6& 25.4& 25.1& 24.0& 23.2& 22.5 \\
+Gjødsel $B$: &   26.3& 26.8& 24.5& 25.9& 26.0& 24.6& 24.2& 22.8& 22.2
+\end{tabular}
+\end{center}
+\begin{itemize}
+\item[(a)]  Bruk en konstant-effekt modell og estimer forventet forskjell
+     i avling med $A$ og $B$ og rapporter resultatet.  
+\item[(b)]  Vurder sannsynligheten for feilestimering av ulik 
+størrelsesorden.  Tyder det observerte resultat på en reell 
+forskjell mellom $A$ og $B$?   
+\item[(c)]  Utfør en $t$-test for hypotesen om at $A$ og $B$ er like
+     gode mot alternativet at $A$ er bedre enn $B$.  Hva blir
+     konklusjonen dersom 5\% signifikansnivå er valgt?  
+\end{itemize}
+
+\item Det er foreslått to ulike produksjonsmåter for et
+produkt som skal tåle en viss belastning, metode nr. 1 faller noe
+dyrere enn metode nr. 2, men man mener at nr. 1 gir et bedre resultat.
+Det prøveproduseres $n_1 = n_2 = 6$ artikler etter de to metodene.
+Disse ble utsatt for en økende belastning og tålte en belastning
+i kg på henholdsvis
+\begin{center}
+\begin{tabular}{lcccccc}
+Metode 1:  &   13.2  &  11.7  &  12.3  &  12.9  &  13.4  &  11.2 \\
+Metode 2:  &   10.8  &  11.5  &  12.7  &  12.5  &  11.0  &  12.9
+\end{tabular}
+\end{center}
+\begin{itemize}
+\item[(a)] Gjør rede for valg av modell.
+\item[(b)] Estimer forskjellen i forventet kvalitet og rapporter 
+           resultatet.
+\item[(c)] Vurder sannsynligheten for feilestimering av ulik 
+           størrelsesorden.  Tyder det observerte resultat på en
+           reell forskjell mellom de to metodene.
+\item[(d)]  Utfør en $t$-test for hypotesen om at de to metodene er 
+           like gode mot alternativet at metode 1 er bedre.  Hva blir
+           konklusjonen dersom signifikansnivået er valgt lik 5\%?
+\end{itemize}
+
+\item 
+La situasjonen være som beskrevet i Eksempel 1, der vi studerte 
+tidsforbruket ved arbeidsoperasjon med og uten spesialverktøy.
+\begin{itemize}
+\item[(a)] Lag konfidensintervall konfidensnivå 95\% for forskjellen
+           i forventet tid uten og med spesialverktøy.
+\item[(b)] Gjennomfør en $t$-test med signifikansnivå 5\%  for
+        hypotesen om at forskjellen i forventet tid er null mot alternativet
+          at spesialverktøy medfører reduksjon i forventet tid.
+\item[(c)] Kjenner du alternative testmetoder som kan brukes i denne
+           situasjonen?
+\end{itemize}
+
+\item
+La situasjonen være som i Eksempel 2, der vi studerte
+tidsforbuket ved arbeidsoperasjon med og uten spesialverktøy.
+\begin{itemize}
+\item[(a)] Lag konfidensintervall konfidensnivå 95\% for forskjellen
+           i forventet tid uten og med spesialverktøy.
+\item[(b)] Gjennomfør en $t$-test med signifikansnivå 5\%  for
+        hypotesen om at forskjellen i forventet tid er null mot alternativet
+          at spesialverktøy medfører reduksjon i forventet tid.
+\item[(c)] Verifiser informasjonen i utskriften i teksten. Kan $P$-verdien i
+           (b) finnes i utskriften.
+\item[(d)] Kjenner du en alternativ testmetode som kan brukes i den
+           foreliggende situasjon?
+\end{itemize}
+
+\item
+La situasjonen være som i Oppgave~\ref*{kap:kontrollerte}.10.
+
+\begin{itemize}
+\item[(a)] Vurder om en konstant-effekt modell kan brukes her, i så
+           fall
+\item[(b)] estimer forventet forskjell i toppfart med og uten Luriol
+           og rapporter resultatet.
+\item[(c)] Utfør en $t$-test for å teste hypotesen om at Luriol
+           er uten effekt mot alternativet at Luriol øker toppfarten.
+           Hva blir konklusjonen dersom 5\% signifikansnivå er valgt.
+\end{itemize}
+
+\item
+Samme eksamen avholdes på to læresteder.  Det deltok i alt
+$n_1$ = 10 studenter fra sted nr. 1 og $n_2$ = 8 studenter fra sted
+nr. 2.  Karakterene ble gitt av de samme sensorer på en skala fra
+0 til 9, der 9 er beste karakter.  Vi ønsker å teste om det er 
+noen forskjell mht. forventet prestasjonsnivå hos studentene på
+de to lærestedene.  Resultatet ble
+\begin{center}
+\begin{tabular}{ccccccccccc}
+Sted nr. 1: &  2  &  4  &  0  &  7  &  6  &  5  &  5  &  4  &  3  &  5 \\
+Sted nr. 2: &  5  &  6  &  6  &  4  &  3  &  7  &  5  &  2  &     &
+\end{tabular}
+\end{center}
+\begin{itemize}
+\item[(a)] Diskuter valg av testmetode.
+\item[(b)] Er forskjellen signifikant på 5\%?
+\end{itemize}
+
+\item
+For å teste levetiden av to typer batterier ($A$ og $B$) for bruk
+i lommeradioer er valgt ut 12 batterier av hver type fra et parti
+ferske batterier fra de respektive leverandører.  24 radioer er til
+disposisjon og det velges for sikkerhets skyld tilfeldig hvilke radioer
+som blir forsynt med henholdsvis $A$ og $B$ batterier.  Undersøkelsen
+ga følgende resultat mht. levetid i timer:
+\begin{center}\scriptsize \addtolength{\tabcolsep}{-0.3\tabcolsep}
+\begin{tabular}{lrrrrrrrrrrrr} 
+Type A: & 7.2 & 11.4 & 14.3 & 13.4 & 9.3 & 14.1 & 16.3 & 9.5 & 2.7 & 6.6
+        & 18.2 & 11.5 \\
+Type B: & 15.8 & 11.3 & 16.2 & 16.0 & 18.4 & 13.9 & 18.5 & 9.2 & 17.4 
+        & 18.0 & 13.2 & 15.3
+\end{tabular}
+\end{center}
+\begin{itemize}
+\item[(a)] Tyder tallmaterialet på at forutsetningene for bruk av
+           $t$-testen for to utvalg er oppfylt?
+\item[(b)] Foreslå en alternativ testmetode som bør kunne brukes.\\
+           Hint: Se Kapittel 10.4.
+\end{itemize}
+
+\item
+En bedrift har markedsført en ny type deodorantsåpe $A$, og i
+reklamen hevdes det at den hindrer svettelukt mer effektivt enn visse
+andre såper på markedet.  En forbrukerorganisasjon har bedt
+om belegg for denne påstanden, og får tilsendt et kortfattet 
+utdrag av en rapport.  Denne beskriver bl. a. et eksperiment med 
+72 deltakere der, over en testperiode på 6 dager, 36 deltakere 
+brukte $A$, mens resten brukte den til nå ledende såpe $B$.
+Hver dag, umiddelbart før ``den daglige vask" ble det foretatt en
+duftprøve (av duft som var 24 timer gammel).  Duften ble målt
+på en skala fra 0 (dårligst) til 8 (best).  Rapporten oppgir
+at gjennomsnittlig duftskår i testperioden var henholdsvis 5.89 for
+de med såpe $A$ og 5.74 for de med såpe $B$.  Konklusjonen som
+oppgis er at, med et signifikansnivå på 1\%, så er $A$
+signifikant bedre enn $B$.  Anta at du er bedt om å komme med en 
+kritisk vurdering av disse opplysningene.  
+
+\begin{itemize}
+\item[(a)] Lag modell for eksperimentet og finn ut hva standardavviket
+           til hver enkelt luktprøve må ha vært, og vurder om
+           dette synes rimelig.
+\item[(b)] Anta at det ikke er grunn til å tvile på
+           opplysningene.  Diskuter hvorvidt den problemformulering som
+           er brukt er relevant i for\-bru\-ker\-sam\-men\-heng.
+\end{itemize}
+
+\item
+Et firma vurderer tre nye prosedyrer for å stoppe en prosess som gå
+ut av kontroll. Det simuleres uhell 15 ganger, og en operatør prøver 5
+ ganger med hver metode. Tiden til prosessen stoppes ble målt i sekunder,
+med resultat
+\begin{center}
+\begin{tabular}{cccccc}
+   Prosedyre nr. 1:  &  78  &  63  &  85  &  52  &  75 \\
+   Prosedyre nr. 2:  &  70  &  68  &  58  &  63  &  55 \\
+   Prosedyre nr. 3:  &  82  &  78  &  67  &  59  &  87 
+\end{tabular}
+\end{center}
+\begin{itemize}
+\item[(a)] Diskuter bruk av enfaktor-modellen i denne situasjonen.
+\item[(b)] Estimer forventet tid for de tre prosedyrene, og ranger dem
+         dersom det synes rimelig.
+\item[(c)] Er det grunn til å forkaste hypotesen om at det ikke er
+           noen forskjell mellom de tre prosedyrene mht. forventet tid?
+             Bruk 5\% signifikansnivå.
+\item[(d)] Foreslå en alternativ analysemåte som tar omsyn til
+           rekkefølgen av observasjonene for hver prosedyre. \\
+           Kan det fortsatt være elementer som er forstyrrende for
+           analysen?
+\end{itemize}
+
+\item
+Fire typer piggdekk prøves ved bremseprøver på en
+glattkjøringsbane. Bilen har samme dekktype på alle fire hjul, og
+etter 6 prøver med samme type, skiftes over til neste type.
+Bilen kjøres en gitt hastighet og bremselengden måles i meter.
+Resultatet ble
+\begin{center}
+\begin{tabular}{ccccccc}
+Dekktype nr. 1:  &  32  &  35  &  30  &  41  &  32  &  37 \\
+Dekktype nr. 2:  &  47  &  31  &  33  &  42  &  49  &  38 \\
+Dekktype nr. 3:  &  27  &  30  &  32  &  24  &  37  &  38 \\
+Dekktype nr. 4:  &  26  &  18  &  15  &  29  &  35  &  22
+\end{tabular}
+\end{center}
+\begin{itemize}
+\item[(a)] Er det grunn til å forkaste hypotesen om at forventet
+           bremselengde er den samme for de fire dekktypene?
+            Bruk 5\% signifikansnivå.
+\item[(b)] Hvis det er grunnlag for det, sammenlign dekktypene parvis,
+           og eventuelt ranger dem.
+\end{itemize}
+Anta isteden at det ble brukt to biler og tre prøver for hver dekktype
+før dekkskift 
+\begin{itemize}
+\item[(c)] Endre dette noe på konklusjonene ovenfor?\\
+          (De tre første observasjonene er for bil nr.1, de tre siste for bil nr.2)
+\item[(d)] Er det ting du ville gjort annerledes, evt. andre faktorer som
+            burde vært med i eksperimentopplegget?
+\end{itemize}
+
+\item Et forbrukerkontor vurderer 4 vaskemidler, og har gjennomført 
+prøvevask av ensartet tilgriset tøy, og anbefalt dosering av vaskemidlet.
+Resultatet av vasken vurderes på en skala etter gitte kriterier.
+Det er brukt 3 ulike maskiner i testen, og for at ikke en enkelt maskins effektivitet
+skal påvirke resultatet, er det utført en vask for hver kombinasjon
+vaskemiddel/maskin. Resultater ble
+\begin{center}
+\begin{tabular}{l|rrrr}
+\multicolumn{1}{c}{} &\multicolumn{4}{c}{Vaskemiddel} \\
+        &  1 &  2 &  3 &  4  \\ \hline
+Maskin 1& 15 & 17 & 18 & 12  \\
+Maskin 2& 13 & 16 & 20 &  7  \\
+Maskin 3& 21 & 22 & 25 & 19  \\ \hline
+\end{tabular}
+\end{center}
+\begin{itemize}
+\item[(a)] Utfør en variansanalyse med to faktorer. 
+\item[(b)] Test hypotesen om at vaskemidlene er like gode.
+\item[(c)] Ranger vaskemidlene ( høy skår best).
+\item[(d)] Hva ville konklusjonen ha blitt med variansanalyse med en faktor,
+           dvs. vi ser bort fra hvilken maskin som ble brukt.
+\item[(e)] Hva slags analyse ville du foretatt dersom det forelå to
+           observasjoner pr kombinasjon vaskemiddel/maskin for
+           (i) samme dosering (ii) to ulike doseringer.
+\end{itemize}
+
+\item
+La situasjonen være som i Oppgave~9 men anta isteden at fire
+operatører A, B, C og D  får prøve alle tre prosedyrene og at 
+det foreligger en observasjon for hver kombinasjon menneske/prosedyre.
+Anta at resultatet ble
+\begin{center}
+\begin{tabular}{c|cccc}
+              &   A    &   B    &   C    &   D \\ \hline
+Prosedyre nr. 1  &   76   &   55   &   70   &   65 \\
+Prosedyre nr. 2  &   70   &   58   &   62   &   52 \\
+Prosedyre nr. 3  &   88   &   72   &   75   &   61 \\ \hline
+\end{tabular}
+\end{center}
+\begin{itemize}
+\item[(a)] Diskuter muligheten for å bruke en to-faktor modell
+           uten samspill.
+\item[(b)] Estimer parametrene i denne modellen, og lag en ANOVA-tabell.
+\item[(c)] Test hypotesen om at prosedyrene er like mht. forventet tid.
+\end{itemize}
+Anta vi har 5 observasjoner for hver kombinasjon prosedyre og 
+operatør.
+\begin{itemize}
+\item[(d)] Hvilke nye muligheter for analyse åpner seg nå?
+\item[(e)] Diskuter sider ved problemet som ikke er belyst ved forventet tid.
+\end{itemize}
+
+\item Forklar at det i konstant-effekt modellen er nok å anta at vi har
+      $n$  uavhengige observasjonspar med samme kovarians.
+\item Situasjonen i Eksempel 2 kan også studeres ut fra teorien for
+      variansanalyse med en faktor. Vis at resultatet av analysen blir det
+      samme ved
+\begin{itemize}
+\item[(a)] å utføre analysen.
+\item[(b)] å påvise at $F=T^2$, og deretter sammenligne $F$-fordelingen
+           med $(1,n-2)$ frihetsgrader med $t$-fordelingen med $n-2$
+          frihetsgrader.
+\end{itemize}
+\item Vis at estimatorene i to-faktormodellene er forventningsrette og beregn
+      deres varianser.
+\item Anta at vi i toutvalgs-modellen i Eksempel 2 kjente variansene
+      ${\sigma}_1^2$ og ${\sigma}_2^2$ i de to gruppene,
+\begin{itemize}
+\item[(a)] Hvordan ville du lage konfidensintervaller og utføre testingen
+      dersom ${\sigma}_1^2$ og ${\sigma}_2^2$ er (i) like (ii) forskjellige ?
+\item[(b)] Vis at dersom vi bare har råd til å ta $n$ observasjoner
+          i alt, så er det optimalt å velge 
+     \[ n_1=n\frac{{\sigma}_1}{{\sigma}_1+{\sigma}_2} \mbox{\ \ \ \ }
+                 n_2=n\frac{{\sigma}_2}{{\sigma}_1+{\sigma}_2}      \]
+	Hint : Ulikhetene i Oppgave~\ref*{kap:stokastiske}.40 kan nyttes.
+\item[(c)] Undersøk tilgjengelig programvare mht. muligheten for å lage
+       konfidensintervaller og utføre testingen dersom variansene er
+      ukjente, men antatt forskjellige.
+\end{itemize}
+\item
+La situasjonen være som i Eksempel 4, men anta at vi har to observasjoner
+pr. kombinasjon produksjonsmetode og råstoff med resultat:
+\begin{center}
+\begin{tabular}{|r|cccc|} \cline{2-5}
+\multicolumn{1}{c|}{}   &\multicolumn{4}{c|}{Råstoff nr.}  \\
+\multicolumn{1}{c|}{}   &    1    &    2    &    3    &    4   \\ \hline 
+Metode 1  & 5.4 4.8 & 4.3 4.9 & 3.7 3.8 & 3.2 3.7  \\
+       2  & 6.3 6.0 & 6.0 5.8 & 5.7 5.2 & 4.5 4.9  \\
+       3  & 5.3 5.5 & 5.8 5.4 & 4.8 4.5 & 4.0 4.8  \\ \hline
+\end{tabular}
+\end{center}
+\begin{itemize}
+\item[(a)] Tolk utskriften nedenfor. Er det samspill mellom faktorene?
+\item[(b)] Hvordan vil du gjøre analysen dersom vi antar fravær av samspill?
+\item[(c)] Forsøk å finne programvare som gjør variansanalyse, og
+           som gir supplerende informasjon: multiple sammenligninger osv.
+\end{itemize}
+\begin{center} \framebox[10cm]{\begin{minipage}{9cm}\rule{0cm}{0.5cm}
+\tt
+ >> READ 'eks11.4b' Y A B\\
+ >> ANOVA Y A B A*B\\
+ \begin{tabular}{lrrrrr}
+\multicolumn{3}{l}{ Analysis of Variance Table}& & & \\
+ Source    &  DF  &      SS  &      MS  &    F   &     P \\
+ Factor A  &   2  &   7.106  &   3.553  & 34.80  & 0.000 \\
+ Factor B  &   3  &   7.385  &   2.462  & 24.11  & 0.000 \\
+ Factor A*B&   6  &   0.514  &   0.086  &  0.84  & 0.563 \\
+ Error     &  12  &   1.225  &   0.102  &        &        \\
+ Total     &  23  &  16.230  &          &        &        \\
+\mbox{}
+\end{tabular}
+\end{minipage}} \end{center}
+\item  Nedenfor er en utskrift fra en sjekk om like varianser i ulike grupper
+       for tallmaterialet i Eksempel 3. Hva forteller denne?
+\begin{center} \framebox[10cm]{\begin{minipage}{9cm}\rule{0cm}{0.5cm}
+\tt
+
+>> Read 'Eks11.3' Y A\\
+>> Variance check Y A; Confidence 95.0. \\
+Homogeneity of Variance\\
+Confidence intervals standard deviations (Bonferroni)\\
+ \begin{tabular}{ccccl}
+  Lower  &   Sigma  &   Upper  & n & Factor Levels\\[0.1cm]
+0.311863 & 0.577061 &  2.22105 & 5 & 1 \\
+0.273974 & 0.506952 &  1.95120 & 5 & 2 \\
+0.191072 & 0.353553 &  1.36079 & 5 & 3
+\end{tabular} 
+Bartlett's Test (assumes normality): P-value : 0.655\\
+Levene's Test (also for non-normal): P-value : 0.673\\[0.2cm]
+\end{minipage}} \end{center}
+
+
+
+\end{enumerate}
+\normalsize

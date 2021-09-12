@@ -1,0 +1,1194 @@
+\chapter{Kombinatorikk og utvalgsmodeller}
+\label{kap:kombinatorikk} % Opprinnelig kapittelnr: 3
+
+ Vi lar sannsynlighetsteori hvile et øyeblikk, for å kunne presentere
+ noen effektive tellemetoder knyttet til utvalg. Dette  kalles ofte 
+{\em kombinatorikk}, og kommer oss til nytte i forbindelse
+med såkalte {\em utvalgsmodeller}.
+
+\section{Utvalg}
+
+Følgende argumentasjon forekommer ofte i det følgende:
+
+\begin{center} \framebox[12cm]{\begin{minipage}{11cm}\rule{0cm}{0.5cm}
+     \noindent {\bf Multiplikasjonsregelen :} En jobb skal utføres i to
+     trinn. Trinn 1 kan utføres på $m_1$ ulike måter. For hver av
+     de $m_1$ ulike måtene å utføre trinn 1, er det $m_2$ ulike
+     måter å utføre trinn 2. Det er da $m_1 \cdot m_2$ ulike
+     måter å utføre hele jobben.\\
+\end{minipage}} \end{center}
+
+\noindent Denne regelen kan åpenbart utvides til å gjelde jobber med
+mer enn to trinn. \\
+
+\begin{eksempel}{En middag}
+Hvor mange menyer er det mulig å komponere når vi på en
+restaurant har valget mellom 6 forretter, 10 hovedretter og 4
+desserter? For hver av de 6 mulige måter å velge forrett er det
+10 mulige måter å velge hovedrett. Det er derfor $6\cdot 10 = 60$
+mulige måter å velge forrett og hovedrett, og for hver av disse
+60 er det 4 mulige måter å velge dessert. Det er derfor i alt
+$6\cdot 10\cdot 4 = 240$ måter å komponere menyen på.
+\end{eksempel}
+
+Mange praktiske problemstillinger kan tilbakeføres til følgende
+generelle situasjon: Gitt en populasjon (dvs. en samling av
+objekter) bestående av $N$ elementer. Vi ønsker å trekke et utvalg
+på $s$ elementer fra populasjonen. Hva som menes med ordet utvalg
+må imidlertid presiseres nærmere, det fins nemlig fire hovedtyper
+av utvalg:
+\begin{enumerate}
+\item  Ordnet utvalg med tilbakelegging.
+\item  Ordnet utvalg uten tilbakelegging.
+\item  Uordnet utvalg uten tilbakelegging.
+\item  Uordnet utvalg med tilbakelegging.
+\end{enumerate}
+Et ordnet utvalg er et utvalg hvor elementene er ordnet i 
+rekkefølge, mens et uordnet utvalg ikke tar hensyn til
+rekkefølgen. Trekning med tilbakelegging betyr at et uttrukket
+element blir lagt tilbake i populasjonen før neste
+trekning.\\
+
+
+\begin{eksempel}{Utvalg på to}
+Anta at vår populasjon består av de tre bokstavene $a$, $b$, og $c$
+(dvs. $N=3$). Anta at vi trekker et utvalg på $s=2$ elementer
+uten tilbakelegging. Vi skal symbolisere ordnede utvalg med runde
+parenteser (), og uordnede utvalg med krøllparenteser \{\}. Vi
+har i alt 6 mulige ordnede utvalg på 2 elementer:
+\begin{center}
+\begin{tabular}{cccccc}
+   $(a,b)$,&$(a,c)$,&$(b,c)$,&$(b,a)$,&$(c,a)$,&$(c,b)$ \\
+\end{tabular}
+\end{center}
+mens vi har bare 3 mulige uordnede utvalg på 2 elementer:
+\begin{center}
+\begin{tabular}{ccc}
+   $\{a,b\}$,&$\{a,c\}$,&$\{b,c\} $ \\
+\end{tabular}
+\end{center}
+
+\noindent Dersom trekningen foregår med tilbakelegging har vi i alt 9
+mulige ordnede utvalg på 2 elementer:
+\begin{center}
+\begin{tabular}{ccccccccc}
+ $(a,a)$,&$(a,b)$,&$(a,c)$,&$(b,a)$,&$(b,b)$,&$(b,c)$,&$(c,a)$,&$(c,b)$,&
+     $(c,c)$ \\
+\end{tabular}
+\end{center}
+mens vi har bare 6 mulige uordnede utvalg på 2 elementer:
+\begin{center}
+\begin{tabular}{cccccc}
+  $\{a,a\},$&$\{a,b\},$&$\{a,c\},$&$\{b,b\},$&$\{b,c\},$&$\{c,c\}$ \\
+\end{tabular}
+\end{center}
+Merk altså at $\{a,b\}$ og $\{b,a\}$ regnes som samme utvalg,
+mens $(a,b)$ og $(b,a)$ regnes som to ulike utvalg, i $(a,b)$ er
+$a$ første element og $b$ annet element, i $(b,a)$ er $b$ første
+element og $a$ annet element.
+\end{eksempel}
+
+\begin{eksempel}{Utvalg på tre}
+Gitt en populasjon på $N = 4$ elementer, $a$, $b$, $c$ og $d$. Vi skal
+trekke et utvalg på $s=3$ elementer uten tilbakelegging. Det
+foreligger i alt 4 mulige uordnede utvalg
+\begin{center}
+\begin{tabular}{cccc}
+         $\{a,b,c\},$&$\{a,b,d\},$&$\{a,c,d\},$&$\{b,c,d\}$ \\
+\end{tabular}
+\end{center}
+mens det foreligger følgende mulige ordnede utvalg:
+\begin{center}
+\begin{tabular}{cccc}
+            $(a,b,c),$&$(a,b,d),$&$(a,c,d),$&$(b,c,d)$ \\
+            $(a,c,b),$&$(a,d,b),$&$(a,d,c),$&$(b,d,c)$ \\
+            $(b,a,c),$&$(b,a,d),$&$(c,a,d),$&$(c,b,d)$ \\
+            $(b,c,a),$&$(b,d,a),$&$(c,d,a),$&$(c,d,b)$ \\
+            $(c,a,b),$&$(d,a,b),$&$(d,a,c),$&$(d,b,c)$ \\
+            $(c,b,a),$&$(d,b,a),$&$(d,c,a),$&$(d,c,b)$ \\
+\end{tabular}
+\end{center}
+Vi ser at for et gitt uordnet utvalg på tre elementer fins 6
+mulige måter å ordne de tre elementene på, dvs. det er i alt
+$4\cdot 6=24$ ulike ordnede utvalg.
+\end{eksempel}
+
+La oss stille spørsmålet generelt: Hvor mange ulike utvalg på $s$
+elementer fra en populasjon på $N$ elementer fins det? Vi skal
+besvare dette spørsmålet for hver av de tre første hovedtyper av
+utvalg ovenfor. Uordnet utvalg med tilbakelegging forekommer så sjelden
+i praksis at vi utelater det.
+
+
+\section{Ordnede utvalg. Permutasjoner}
+\begin{center} \framebox[10cm]{\begin{minipage}{9cm}\rule{0cm}{0.5cm}
+     Antall ulike {\em ordnede} utvalg med tilbakelegging på $s$
+     elementer fra en populasjon på $N$ elementer er $N^s$.\\
+\end{minipage}} \end{center}
+Begrunnelse: Vi tenker oss de $s$ elementene utvalgt etter tur.
+Når vi etter hver utvelgelse legger tilbake det valgte
+elementet, er det hele tiden $N$ mulige valg av neste element. Vi
+har $N$ mulige valg av første element, for hvert av disse $N$
+mulige valg, er det $N$ mulige valg av annet element, og det er
+derfor $N\cdot N = N^2$ mulige måter å velge de to første
+elementene. For hver av disse $N^2$ måtene å velge de to første
+elementene, er det $N$ måter å velge det tredje, og det er derfor
+$N^2\cdot N=N^3$ mulige måter å velge de tre første elementene.
+Slik kan vi fortsette, og tankerekken ender slik: For hver av de
+$N^{s-1}$ måter å velge de $s-1$ første elementene, er det $N$
+måter å velge det siste elementet, og det er derfor $N^{s-1}
+\cdot N = N^s$ mulige utvalg på $s$ elementer.\\
+
+
+\begin{eksempel}{Tipperekker}
+En enkeltrekke består av en markering $H$ (hjemmeseier), $U$
+(uavgjort) eller $B$ (borteseier) for hver av de 12 kampene på
+tippekupongen. Hvor mange ulike enkeltrekker fins det? En
+enkeltrekke kan ses på som et ordnet utvalg med tilbakelegging på
+$s = 12$ elementer fra populasjonen $H$, $U$, $B$. Følgelig er det
+$3^{12}$ ulike enkeltrekker.
+\end{eksempel}
+
+\begin{eksempel}{Registreringsskilt}
+Anta at et registreringsskilt for motorkjøretøyer består av to
+bokstaver fra alfabetet (fra A til og med Å) og fem sifre (fra 0
+til og med 9). Hvor mange registreringsskilt er det mulig å lage
+på denne måten? For hver av de $29^2$ måtene å velge ut de to
+bokstavene på, er det $10^5$ mulige måter å velge ut de 5 sifrene
+på, dvs. i alt $29^2 \cdot 10^5$ mulige registreringsskilt.
+Dersom vi ikke godtar skilt hvor alle sifrene er null, blir
+antallet $29^2 \cdot (10^5-1)$. I praksis brukes ikke Æ, Ø, Å 
+og enkelte andre bokstaver og heller ikke visse sifferkombinasjoner.
+\end{eksempel}
+\begin{center} \framebox[11cm]{\begin{minipage}{10cm}\rule{0cm}{0.5cm}
+     Antall ulike {\em ordnede} utvalg {\em uten} tilbakelegging
+     på $s$ elementer fra en populasjon på $N$ elementer er
+     $(N)_s$ hvor
+     \[ (N)_s=N(N-1)(N-2)\cdots (N-s+1) \]
+     Symbolet $(N)_s$ uttales gjerne ``$N$ i $s$ faktoriell''.\\
+\end{minipage}} \end{center}
+\noindent Begrunnelse :
+ \footnote{Enkelte foretrekker å bruke symbolet $N^{(s)}$
+ istedenfor $(N)_s$.}
+Vi tenker oss de $s$ elementene valgt ut etter tur.
+Det er $N$ mulige valg av første element. For hvert av disse $N$
+mulige valg av første element er det, siden et element nå er
+fjernet, $N-1$ mulige valg av annet element. Det er derfor 
+$N \cdot (N-1)$ mulige måter å velge de to første elementene på. For
+hver av disse $N(N-1)$ måtene er det, siden to elementer er
+fjernet, $N-2$ mulige måter å velge det tredje elementet på. Det
+er derfor \\
+$N(N-1)(N-2)$ mulige måter å velge de tre første
+elementene på. Slik kan vi fortsette. Før det siste elementet
+skal velges, er det fjernet $s-1$ elementer, og det er derfor $N-
+(s-1)=N-s+1$ mulige måter å velge det siste elementet på.
+
+Symbolet $(N)_N$ kan tolkes som antall ulike {\em permutasjoner}
+av $N$ elementer, dvs. antall mulige måter å ordne $N$ elementer
+på. Vi ser at $(N)_N=N(N-1)(N-2)\cdots 3\cdot 2\cdot 1$. Denne
+størrelse betegnes vanligvis med $N$! og vi uttaler ``$N$
+fakultet''. \\
+
+
+\begin{eksempel}{Styret}
+I en forening på 10 medlemmer er det 4 styreverv: formann,
+viseformann, sekretær og kasserer. Hvor mange
+styresammensetninger finnes det? Vi ser at problemet er det samme
+som å bestemme antall ordnede utvalg på $s=4$ elementer fra en
+populasjon på $N=10$ elementer (uten tilbakelegging). Vi har
+følgelig $(N)_s=(10)_4=10\cdot 9\cdot 8\cdot 7 =5040$ mulige
+styrer.
+\end{eksempel}
+
+\begin{eksempel}{Talelisten}
+En representant for hvert av 8 politiske partier skal innlede i en
+debatt. Antall mulige talerekkefølger er åpenbart lik antall
+mulige måter å permutere $N=8$ elementer, dvs. $N!=8!=40320$
+mulige rekkefølger.
+\end{eksempel}
+
+\noindent     Nedenfor følger en tabell over antall ordnede utvalg $(N)_s$
+for $s$ og $N$ fra 1 til og med 10.
+%\begin{center} \small \addtolength{\tabcolsep}{-0.5\tabcolsep}
+\renewcommand{\arraystretch}{1.2}
+\begin{table}
+\begin{tabular}{|r|rrrrrrrrrr|} \hline 
+N&s=1&2&3&4&5&6&7&8&9&10 \\ \hline
+1&  1& & & & & & & & &   \\ 
+2&  2&2& & & & & & & &  \\
+3&  3&6&6& & & & & & &  \\
+4&  4&12&24&24& & & & & & \\
+5&  5&20&60&120&120& & & & &  \\
+6&  6&30&120&360&720&720& & & & \\
+7&  7&42&210&840&2\,520&5\,040&5\,040& & &  \\
+8&  8&56&336&1\,680&6\,720&20\,160&40\,320&40\,320& &  \\
+9&  9&72&504&3\,024&15\,120&60\,480&181\,440&362\,880&362\,880&  \\
+10& 10&90&720&5\,040&30\,240&151\,200&604\,800&1\,814\,400&3\,628\,800&3\,628\,800\\[2mm]
+\hline
+\end{tabular}
+\caption{Antall ordnede utvalg $(N)_s$}
+\label{tab:antall_ordnede}
+\end{table}
+%\end{center}
+
+\section{Uordnede utvalg}
+
+\begin{center} \framebox[10cm]{\begin{minipage}{9cm}\rule{0cm}{0.5cm}
+     Antall ulike {\em uordnede} utvalg {\em uten} tilbakelegging
+     på $s$ elementer fra en poulasjon på $N$ elementer betegner
+     vi $\bino{N}{s}$ og uttaler ``$N$ over $s$''. Her blir
+
+    \[   \bino{N}{s}= \frac{(N)_s}{s!} \] 
+\mbox{}
+\end{minipage}} \end{center}
+
+\noindent Begrunnelse: En annen måte å telle opp antall mulige ordnede
+utvalg uten tilbakelegging på $s$ elementer fra en populasjon på
+$N$ elementer er følgende: Velg først ut de $s$ elementene som
+skal være med i utvalget. Dette kan gjøres på $\bino{N}{s}$ mulige
+måter. For hver av disse er det $s$! mulige måter å ordne de $s$
+elementene på, altså $\bino{N}{s} \cdot s!$ . Herav følger
+ påstanden. \\ \\
+
+Innsetter vi uttrykket for $(N)_s$ fra forrige avsnitt får vi
+regneformelen
+
+\[ \bino{N}{s}=\frac{N(N-1)(N-2) \cdots(N-s+1)}{s!} \]
+
+\noindent Dersom vi multipliserer teller og nevner med $(N-s)$! får vi
+alternativt
+
+\[ \bino{N}{s}=\frac{N!}{s!(N-s)!} \]
+
+\noindent Av denne formelen ser vi følgende symmetri
+
+\[ \bino{N}{s}=\bino{N}{N-s} \]
+
+\noindent Dette kan vi også innse direkte: Istedenfor å velge ut de $s$
+elementene som skal utgjøre utvalget, velger vi ut de $N-s$
+elementene som ikke skal være med.
+Siden   $\bino{N}{N}=1$   ser vi at dersom vi definerer
+
+\[     \bino{N}{0}=1 \mbox{     og      } 0!=1 \]
+
+\noindent så oppnår vi at de to siste formlene gjelder for $s=0$ og
+ $s=N$ også.\\
+
+
+\begin{eksempel}{Delegasjonen}
+I en forening på 10 medlemmer skal 4 velges ut som utsendinger
+til et møte. Hvor mange ulike delegasjoner finnes? Her er det
+bare spørsmål om hvem som kommer med i utvalget, det er ingen
+ordning som i Eksempel 6. Problemet er å finne antall uordnede
+utvalg på $s=4$ elementer fra en populasjon på $N=10$ elementer
+(uten tilbakelegging). Det søkte antall er
+
+\[ \bino{N}{s}=\bino{10}{4}=\frac{10 \cdot 9 \cdot 8 \cdot 7}
+                                        {1 \cdot 2 \cdot 3 \cdot 4}=210 \]
+\end{eksempel}
+
+\begin{eksempel}{Poker}
+En korthånd i poker kan oppfattes som et uordnet utvalg på 5 kort
+fra en kortstokk på 52 kort. Antall mulige korthender blir derfor
+
+\[ \bino{N}{s}=\bino{52}{5}=\frac{52 \cdot 51 \cdot 50 \cdot 49 \cdot 48}
+                            {1 \cdot 2 \cdot 3 \cdot 4 \cdot 5}= 2\:598\:960 \]
+\end{eksempel}
+
+\noindent     For antall uordnede utvalg gjelder følgende identitet
+
+\[ \bino{N}{s}=\bino{N-1}{s-1}+\bino{N-1}{s}  \mbox{\ \ \  } (0 < s < N)\]
+
+\noindent Begrunnelse: Antall ulike utvalg på $s$ elementer fra en
+populasjon på $N$ elementer kan alternativt telles opp slik:
+Fiks\'{e}r et av elementene i populasjonen. Antall ulike utvalg hvor
+dette elementet er med er $\bino{N-1}{s-1}$, mens antall ulike utvalg
+hvor det ikke er med er $\bino{N-1}{s}$ .
+
+\begin{table}
+%\begin{table}
+\begin{tabular}{|r|rrrrrrrrrrr|} \hline
+N&s=0&1&2&3&4&5&6&7&8&9&10 \\ \hline
+0&  1& & & & & & & & & &   \\ 
+1&  1&1& & & & & & & & &   \\ 
+2&  1&2&1& & & & & & & &  \\
+3&  1&3&3&1& & & & & & &  \\
+4&  1&4&6&4&1& & & & & & \\
+5&  1&5&10&10&5&1& & & & &  \\
+6&  1&6&15&20&15&6&1& & & & \\
+7&  1&7&21&35&35&21&7&1& &  &  \\
+8&  1&8&28&56&70&56&28&8&1& &  \\
+9&  1&9&36&84&126&126&84&36&9&1&  \\
+10& 1&10&45&120&210&252&210&120&45&10&1\\[2mm]
+\hline
+\end{tabular}
+%\end{center}
+\caption{Antall uordnede utvalg $\bino{N}{s}$}
+\label{tab:antall_uordnede}
+\end{table}
+
+Vi ser at Tabell~\ref{tab:antall_uordnede} er i overensstemmelse med denne formelen:
+Hvert tall inne i tabellen er lik summen av tallet som står rett
+ovenfor og tallet som står ovenfor til venstre. Som øvelse kan
+leseren føye en ny linje til tabellen. Denne tabellen kalles ofte
+{\em Pascals trekant}. En mer omfangsrik tabell er Tabell~\ref{tab:Binomiske_koeffisienter} i
+Appendiks~\ref{app:fordelngstabeller}.
+
+\section{Utvalgsmodeller}
+
+I dette avsnitt skal vi studere et par enkle modeller for
+trekning av utvalg som ivaretar forestillingen om en rettferdig
+trekningsmåte.
+
+\begin{center} \framebox[11cm]{\begin{minipage}{10cm}\rule{0cm}{0.5cm}
+\begin{definisjon}
+     Med et {\em tilfeldig ordnet utvalg med tilbakelegging} på
+      $s$ elementer fra en populasjon på $N$
+     elementer menes et ordnet utvalg trukket på en slik måte at
+     alle $N^s$ mulige ordnede utvalg har samme sannsynlighet for
+     å bli trukket.
+\end{definisjon}
+\end{minipage}} \end{center}
+I denne definisjonen ligger det implisitt at utfallsrommet for
+trekningen består av de $N^s$ mulige ordnede utvalg, og at
+modellen for trekningen er uniform, dvs. hvert utvalg har
+sannsynlighet $1/N^s$ for å bli trukket. Siden modellen er
+uniform kan sannsynligheten for enhver begivenhet beregnes ved å
+bruke regelen om ``gunstige på mulige''.\\
+
+\begin{eksempel}{Tipperekker}
+Anta at en tipperekke blir trukket ut tilfeldig, dvs. slik at
+alle $3^{12}$ mulige tipperekker er like sannsynlige. Hva er da
+sannsynligheten for begivenheten $A$= en rekke med bare $H$'er og $B$=
+en rekke uten $U$'er. Siden vi har uniform modell får vi
+
+\[P(A)=\frac{g}{m}=\frac{1}{3^{12}},\; P(B)=\frac{g}{m}=\frac{2^{12}}{3^{12}}\]
+
+\noindent Merk at en tipperekke uten $U$'er kan oppfattes som et ordnet
+utvalg på 12 elementer med tilbakelegging fra en populasjon på 2
+elementer, nemlig $\{H,B\}$. Vurder om dette er en realistisk
+modell for 12 rette i tipping.
+\end{eksempel}
+
+\begin{eksempel}{Fem terningkast}
+Utfallet av 5 kast med en terning kan oppfattes som et ordnet
+utvalg med tilbakelegging på $s=5$ elementer fra populasjonen
+$\{1,2,3,4,5,6\}$. Vi har da $m=6^5$ mulige utfall. Dersom
+terningen er rettferdig, er det rimelig å anta at alle disse
+$m=6^5$ mulige utfall er like sannsynlige, dvs. uniform modell.
+La $A$ være begivenheten at ingen av kastene ga samme antall
+øyne. Vi får
+
+\[ P(A)=\frac{g}{m}=\frac{(6)_5}{6^5}=\frac{5}{54} \]
+
+\noindent fordi antall utfall hvor ingen kast viser samme antall øyne er
+lik antall ordnede utvalg uten tilbakelegging på 5 elementer fra
+populasjonen på 6 elementer.
+\end{eksempel}
+
+\begin{eksempel}{Fødselsmåneder}
+Hva er sannsynligheten for begivenheten $A$ at det i en gruppe på
+6 personer finnes to eller flere som har fødselsdag i samme
+måned. La oss anta at alle $m=12^6$ mulige ordnede utvalg av
+fødselsmåneder for de 6 personene er like sannsynlige
+
+\[ P(A)=1-P(\bar{A})=1-\frac{(12)_6}{12^6}=0.777 \]
+
+\noindent Diskuter om den brukte modell er realistisk.
+\end{eksempel}
+
+Når vi i det følgende snakker om ordnede og uordnede utvalg, vil
+vi, dersom ikke annet nevnes, mene utvalg uten tilbakelegging.
+\begin{center} \framebox[11cm]{\begin{minipage}{10cm}\rule{0cm}{0.5cm}
+\begin{definisjon}
+     Med et {\em tilfeldig ordnet utvalg
+     uten tilbakelegging} på $s$ elementer fra en populasjon på
+     $N$ elementer, menes et ordnet utvalg trukket på en slik
+     måte at alle $(N)_s$ ordnede utvalg har samme sannsynlighet
+     for å bli trukket.
+\end{definisjon}
+\end{minipage}} \end{center}
+
+\noindent Utfallsrommet består her av de $(N)_s$ mulige ordnede utvalg, og
+siden vi har antatt uniform modell, har hvert mulig utvalg
+sannsynlighet $1/(N)_s$.\\
+
+\begin{eksempel}{Styret}
+I en forening med 10 medlemmer blir de 4 styrevervene formann,
+viseformann, sekretær og kasserer fordelt ved loddtrekning. Vi
+ønsker å finne sannsynlighetene for følgende begivenheter
+\begin{center}
+\begin{tabular}{ccl}
+     $A$&$=$& Foreningens eldste blir formann \\
+     $B$&$=$& Foreningens eldste blir sekretær \\
+     $C$&$=$& Foreningens eldste blir med i styret \\
+     $D$&$=$& De 4 yngste medlemmene utgjør styret.
+\end{tabular}
+\end{center}
+En rettferdig trekning betyr at alle $m=(10)_4=5040$ mulige
+styrer er like sannsynlige. Vi får da
+
+\[ P(A)=\frac{g}{m}=\frac{(9)_3}{(10)_4}=\frac{1}{10}, \;\;
+                        P(B)=\frac{g}{m}=\frac{(9)_3}{(10)_4}=\frac{1}{10} \]
+\[ P(C)=\frac{g}{m}=\frac{4 \cdot (9)_3}{(10)_4}=\frac{4}{10}, \;\;
+                        P(D)=\frac{g}{m}=\frac{4!}{(10)_4}=\frac{1}{210} \]
+\end{eksempel}                 
+
+\begin{eksempel}{Slalåm}
+Et slalåmrenn har 15 deltakere og startrekkefølgen avgjøres ved
+loddtrek\-ning. Hva er sannsynligheten for følgende begivenheter
+\begin{center}
+\begin{tabular}{ccl}
+    $ A $&$=$& Favoritten starter sist \\
+    $ B $&$=$& Favoritten starter blant de 5 siste \\
+    $ C $&$=$& Begge nordmenn starter blant de 5 første.
+\end{tabular}
+\end{center}
+Ved en rettferdig trekning blir alle $m=15$! mulige
+startrekkefølger like sannsynlige. Vi får 
+
+ \[ P(A)=\frac{g}{m}=\frac{14!}{15!}=\frac{1}{15} \]
+ \[ P(B)=\frac{g}{m}=\frac{5 \cdot 14!}{15!}=\frac{1}{3} \]
+ \[ P(C)=\frac{g}{m}=\frac{(5)_2 \cdot 13!}{15!}=\frac{2}{21} \]
+
+\noindent Begrunnelser: Skal favoritten starte sist er det 14! mulige måter
+å ordne startrekkefølgen for de andre på. For hver av de 5
+aktuelle startnumrene for favoritten, er det 14! mulige ordninger
+av andre. For hver av de $(5)_2$ aktuelle startnumrene for de to
+nordmennene, er det 13! mulige måter å ordne de andre på.
+\end{eksempel}
+
+\begin{center} \framebox[11cm]{\begin{minipage}{10cm}\rule{0cm}{0.5cm}
+\begin{definisjon}
+     Med et {\em tilfeldig uordnet utvalg
+     uten tilbakelegging} på $s$ elementer fra en populasjon på
+     $N$ elementer menes et uordnet utvalg trukket på en slik
+     måte at alle   $\bino{N}{s}$   mulige uordnede utvalg har samme
+     sannsynlighet for å bli trukket.
+\end{definisjon}
+\end{minipage}} \end{center}
+Utfallsrommet består her av alle de $\bino{N}{s}$ mulige uordnede
+utvalg og hvert av disse har fått tildelt sannsynlighet
+ $1/{\bino{N}{s}}$ (uniform modell).\\
+
+\begin{eksempel}{Poker}
+Hva er sannsynligheten for begivenheten $A$ = den utdelte korthånd
+består av 5 spar (sparflush). Anta at alle $m=\bino{N}{s}$    mulige
+korthender er like sannsynlige.
+
+\[ P(A)=\frac{g}{m}= \frac{\bino{13}{5}}{\bino{52}{5}}=
+                                   \frac{1\: 287}{2\: 598\: 960}=0.000495 \]
+
+\noindent fordi antall gunstige korthender for begivenheten $A$ er lik antall
+uordnede utvalg på 5 kort fra de 13 sparene i kortstokken.
+\end{eksempel}
+
+\begin{eksempel}{Delegasjonen}
+I en forening på 10 medlemmer er det 6 menn og 4 kvinner. En
+delegasjon på 4 medlemmer skal velges ut ved loddtrekning. Vi
+ønsker å beregne sannsynlighetene for følgende begivenheter
+\begin{center}
+\begin{tabular}{ccl}
+    $ A $&$=$& Delegasjonen består av bare kvinner \\
+    $ B $&$=$& Delegasjonen består av bare menn \\
+    $ C $&$=$& Foreningens eldste er med i delegasjonen \\
+    $ D $&$=$& Delegasjonen består av 2 kvinner og 2 menn \\
+    $ E $&$=$& Delegasjonen består av 1 kvinne og 3 menn.
+\end{tabular}
+\end{center}
+Vi antar rettferdig trekning, dvs. at alle   $\bino{N}{s}$   mulige
+(uordnede) utvalg er like sannsynlige, og får 
+
+\[ P(A)=\frac{g}{m}= \frac{1}{\bino{10}{4}}=\frac{1}{210} \]
+\[ P(B)=\frac{g}{m}= \frac{\bino{6}{4}}{\bino{10}{4}}=\frac{15}{210}=
+                                 \frac{1}{14} \]
+\[ P(C)=\frac{g}{m}= \frac{\bino{9}{3}}{\bino{10}{4}}=\frac{84}{210}=
+                                 \frac{4}{10} \]
+\[ P(D)=\frac{g}{m}= \frac{\bino{4}{2}\cdot \bino{6}{2}}{\bino{10}{4}}=
+                     \frac{6 \cdot 15}{210}=\frac{3}{7} \]
+\[ P(E)=\frac{g}{m}= \frac{\bino{4}{1}\cdot \bino{6}{3}}{\bino{10}{4}}=
+                   \frac{4 \cdot 20}{210}=\frac{8}{21} \]
+\noindent Begrunnelser: En delegasjon av bare menn er et utvalg på 4 fra de
+6 mennene i foreningen, det er i alt $\bino{6}{4}$ slike. Antall ulike
+delegasjoner med 2 kvinner og 2 menn er gitt ved at for hver av
+de $\bino{4}{2}$ måtene å velge ut de 2 kvinnene som skal være med,
+er det $\bino{6}{2}$ måter å velge ut de 2 mennene, i alt
+$\bino{4}{2}\cdot \bino{6}{2}$ slike delegasjoner etc.
+\end{eksempel}
+
+\section{ Noen setninger om tilfeldige utvalg}
+
+\begin{center} \framebox[11cm]{\begin{minipage}{10cm}\rule{0cm}{0.5cm}
+     1. Et tilfeldig uordnet utvalg (uten tilbakelegging) kan
+     oppnås ved å trekke et tilfeldig ordnet utvalg og se bort
+     fra rekkefølgen av elementene i utvalget.\\
+\end{minipage}} \end{center}
+\noindent Begrunnelse: Det er i alt $s$! ordnede utvalg som gir det samme
+uordnede utvalg (antall måter å ordne de $s$ elementene i
+utvalget). Ved tilfeldig ordnet trekningsmåte blir derfor
+sannsynligheten for et bestemt uordnet utvalg lik
+
+\[\frac{s!}{(N)_s}=\frac{1}{\bino{N}{s}} \]
+
+\noindent dvs. samme sannsynlighet som et bestemt tilfeldig uordnet utvalg.
+          
+\begin{center} \framebox[11cm]{\begin{minipage}{10cm}\rule{0cm}{0.5cm}
+     2. Ved trekning av et tilfeldig ordnet utvalg har hvert av
+     de $N$ elementene i populasjonen samme sannsynlighet $1/N$
+     for å opptre på en bestemt av de $s$ plassene i utvalget.
+     Dette kalles ofte for {\em ekvivalensloven} for et tilfeldig
+     ordnet utvalg.\\
+\end{minipage}} \end{center}
+\noindent Begrunnelse: La $A_i=$ det bestemte elementet er på i'te plass i
+utvalget. Siden antall gunstige utvalg for begivenheten $A_i$ er
+lik antall måter å besette de $s-1$ andre plassene i utvalget, får
+vi
+
+\[ P(A_i)=\frac{g}{m}=\frac{(N-1)_{s-1}}{(N)_s}=\frac{1}{N} \]
+
+\begin{eksempel}{Lat elev}
+I en klasse på 20 velger læreren ut 5 elever som etter tur skal
+regne hver sin av 5 hjemmeoppgaver på tavlen. En elev har ikke
+gjort oppgave nr. 4. Sannsynligheten for at han blir bedt om å
+regne denne oppgaven er 1/20. Se også Eksempel 13.
+\end{eksempel}
+
+\begin{center} \framebox[11cm]{\begin{minipage}{10cm}\rule{0cm}{0.5cm}
+     3. Dersom det trekkes et tilfeldig utvalg (uordnet eller
+     ordnet) på $s$ elementer fra en populasjon på $N$ elementer,
+     så har hvert element i populasjonen sannsynlighet $s/N$ for
+     å bli med i utvalget.\\
+\end{minipage}} \end{center}
+
+\noindent Begrunnelse: La $A=$ Det bestemte elementet er med i utvalget.
+Problemets natur sammen med setning 1 ovenfor medfører at den
+søkte sannsynlighet må være den samme for begge typer utvalg, og
+det er derfor likegyldig om vi resonnerer uordnet eller ordnet.
+For illustrasjonens skyld tar vi likevel med begge
+resonnementene. Tilfeldig uordnet utvalg: Siden antall gunstige
+utvalg for begivenheten $A$ er lik antall måter å velge ut de 
+$s-1$ andre elementene som skal være med i utvalget, får vi
+
+\[ P(A)=\frac{g}{m}=\frac{\bino{N-1}{s-1}}{\bino{N}{s}}=\frac{s}{N} \]
+
+\noindent Tilfeldig ordnet utvalg: Vi kan skrive
+
+\[ A=A_1 \cup A_2 \cup \cdots \cup A_s \]
+
+\noindent hvor $A_i=$ Det bestemte elementet opptrer på i'te plass i
+utvalget. Vi vet fra setning 2 ovenfor at $P(A_i)=1/N$ for alle
+i, og addisjonssetningen for disjunkte begivenheter gir derfor
+
+\[ P(A)=P(A_1)+P(A_2)+ \cdots +P(A_s)=
+           \frac{1}{N}+\frac{1}{N}+ \cdots +\frac{1}{N}=\frac{s}{N} \]                   
+
+\begin{eksempel}{Lat lærer}
+En elev har levert inn 10 oppgaver til retting hvorav en oppgave
+er galt løst. Læreren velger tilfeldig 4 oppgaver som han retter.
+Sannsynligheten for at den gale oppgaven er med i utvalget er
+4/10. Se også Eksempel 13 og Eksempel 16.
+\end{eksempel}
+
+\section{Tilfeldige tall}
+
+I avsnittene ovenfor har vi sett problemstillinger der det er
+tale om å trekke et tilfeldig utvalg fra en gitt populasjon.
+Hvordan man realiserer en slik trekning i praksis, har vi bare
+flyktig berørt, bl. a. gir de setningene som ble presentert i
+forrige avsnitt en viss teoretisk innsikt som kan brukes til å
+realisere trekninger. Et nyttig hjelpemiddel i praksis er
+tabeller over såkalte {\em tilfeldige tall}, det er grovt sagt en
+følge av en-sifrede tall, der hvert tall er en trekning blant
+sifrene 0, 1, 2,..., 9 (forhåpentligvis) med samme sannsynlighet.
+Tallene i følgen blir trukket uavhengig av hverandre (om begrepet
+uavhengighet se Kapittel 4.5). En modell for et tilfeldig tall er
+altså
+\begin{center}
+\renewcommand{\arraystretch}{1.3}
+\begin{tabular}{l|cccccccccc}
+Siffer&0&1&2&3&4&5&6&7&8&9 \\ \hline
+Sannsynlighet&$\frac{1}{10}$&$\frac{1}{10}$&$\frac{1}{10}$&$\frac{1}{10}$
+     &$\frac{1}{10}$&$\frac{1}{10}$&$\frac{1}{10}$&$\frac{1}{10}$
+     &$\frac{1}{10}$&$\frac{1}{10}$
+\end{tabular}
+\end{center}
+For å kontruere en tabell over tilfeldige tall trenger vi en
+mekanisme som, ut fra rene fysiske betraktninger eller generell
+erfaring, gir sifre som alle er like sannsynlige, og som
+genererer nye tall uavhengig av de som er generert før. I praksis
+gjøres dette på en regnemaskin (dator), men selv lommeregnere
+gir idag  muligheter for å
+generere slike tall. Det finnes også publisert bøker av
+tilfeldige tall generert på dette viset. Det er visse filosofiske
+problemer forbundet med hva som egentlig er et tilfeldig tall,
+men de systemer som er tilgjengelig i dag kan betraktes som
+brukbare for de fleste praktiske formål. La oss presentere et
+utsnitt av en tabell over tilfeldige tall generert ved en
+regnemaskin:
+
+\begin{table}
+%\begin{center}
+\begin{tabular}{|ccccccc|} \hline
+15380 & 30458 & 24235 & 37387 & 55965 & 05730 & 34338 \\
+31196 & 55337 & 12100 & 48218 & 77918 & 96825 & 16175 \\
+32060 & 74661 & 85245 & 60211 & 55321 & 87577 & 82319 \\
+61696 & 28679 & 48462 & 29023 & 31904 & 08143 & 27340 \\
+45595 & 03178 & 00973 & 06210 & 27249 & 31618 & 63034 \\
+17382 & 39463 & 85125 & 52023 & 41381 & 72824 & 81201 \\ \hline
+\end{tabular}
+\caption{Tilfeldige tall}
+\label{tab:tilfeldige_tall}
+%\end{center} 
+\end{table}
+                                                
+For å lette oversikten har vi gruppert tallene fem og fem. Selv
+om tabellen inneholder tilfeldige en-sifrede tall kan den også
+brukes til å plukke ut tilfeldige to-sifrede tall, idet to
+suksessive sifre kan oppfattes som en rett\-ferdig trekning fra
+alle 100 to-sifrede tall 00, 01, 02, ..., 97, 98, 99 (dvs. alle
+har samme sannsynlighet 1/100). Likeens kan tre suksessive sifre
+oppfattes som et tilfeldig tre-sifret tall, dvs. et tall generert
+slik at alle 1000 tre-sifrede tall 000, 001, 002, ..., 997, 998,
+999 har samme sannsynlighet 1/1000 osv. Ved bruk av en slik
+tabell kan en ta tallene i rekkefølge horisontalt, vertikalt
+eller på skrå. Følgen av tall som fremkommer skal, dersom
+generatoren er brukbar, kunne oppfattes som tilfeldig uansett. En
+ting må vi imidlertid passe på, ved gjentatt bruk av slik tabell,
+må vi starte på nytt sted hver gang, og helst velge startsted
+tilfeldig, ellers vil en lett kunne komme til å misbruke id\'{e}en om
+tilfeldige tall. I praksis har en tabell over tilfeldige tall
+minst to bruksmåter: Den ene er å trekke et utvalg fra en endelig
+populasjon, den andre er å bruke tabellen til å generere data som
+brukes i forbindelse med en gitt modell for et system til å
+studere egenskapene ved systemet, det siste kalles {\em
+simulering}. La oss her se på den første bruksmåten:\\
+
+
+\begin{eksempel}{Tilfeldige utvalg}
+Vi har en gruppe på $N=74$ personer. Fra denne skal trekkes et
+tilfeldig utvalg på $s=5$ personer. Vi kan da nummerere personene
+slik 00, 01, ...,73. La oss (tilfeldig) velge å bruke siste linje
+i tabellen, vi får da følgende to-sifrede tall
+\begin{center}
+\begin{tabular}{cccccccccc}
+    17&38&23&94&63&85&12&55&20&... \\
+\end{tabular}
+\end{center}
+\noindent Her ser vi at tallene 94 og 85 ikke svarer til noen person og
+disse neglisjeres. Vårt utvalg på 5 personer består derfor av
+personene med nr. 17, 38, 23, 63, 12. Det er intuitivt opplagt, og
+kan vises formelt, at dersom alle 100 to-sifrede tall som
+genereres er like sannsynlige så vil alle 74 tillatte to-sifrede
+tall som framkommer være like sannsynlige, dvs. at vi har en
+rettferdig trekning. Det utvalg vi har fått ovenfor er et
+(forhåpentligvis) tilfeldig ordnet utvalg. Et tilfeldig uordnet
+utvalg får vi ved å se bort fra rekkefølgen av personene. I dette
+eksemplet er det tale om utvalg uten tilbakelegging. Skulle samme
+to-sifrede tall dukke opp flere ganger, tar vi det med bare en
+gang og går videre til neste to-sifrede tall. Dette endrer ikke på
+det forhold at de fem tall vi ender opp med kan anses å være
+resultat av en rettferdig trekning.
+\end{eksempel}
+
+\section{$\star$Grupperinger}
+\small
+
+Problemet med å trekke et utvalg (uordnet uten tilbakelegging) på
+$s$ elementer fra en populasjon på $N$ elementer kan også sees på
+som å dele populasjonen i to grupper, gruppe nr. 1 med $s$
+elementer og gruppe nr. 2 med $N-s$ elementer. Det følger da at
+det er
+
+\[ \bino{N}{s}=\frac{N!}{s!(N-s)!} \]
+
+\noindent ulike måter å sette sammen de to gruppene på.
+                                   
+     La oss se på et tilsvarende problem der vi skal dele en
+ populasjon i tre grupper: En populasjon på $N$ elementer skal
+deles i tre grupper, gruppe nr.1 med $s_1$ elementer, gruppe nr.2
+med $s_2$ elementer og gruppe nr.3 med $N-s_1-s_2$ elementer.
+I analogi med skrivemåten for to grupper lar vi $\bino{N}{s_1,s_2}$ betegne
+antall mulige måter å fordele $N$ elementer på tre grupper med
+henholdsvis $s_1, s_2$ og $N-s_1-s_2$ elementer i gruppe nr. 1, 2
+og 3. Vi har følgende formel
+
+\[\bino{N}{s_1,s_2}=\bino{N}{s_1}\cdot \bino{N-s_1}{s_2} \]
+
+\noindent En mer symmetrisk formel er
+
+\[\bino{N}{s_1,s_2}=\frac{N!}{s_1!s_2!(N-s_1-s_2)!} \]
+
+\noindent Begrunnelse: Det er i alt$\bino{N}{s_1}$ mulige valg av de $s_1$
+elementer fra populasjonen på $N$ som skal utgjøre gruppe nr. 1.
+For hvert av disse er det $\bino{N-s_1}{s_2}$ mulige valg av de $s_2$
+elementene som skal utgjøre gruppe nr. 2 (disse må velges blant
+de $N-s_1$ elementene som ikke allerede er blitt plassert i
+gruppe nr. 1). Følgelig er det
+
+\[ \bino{N}{s_1} \cdot \bino{N-s_1}{s_2} \]
+
+\noindent mulige måter å velge ut henholdsvis $s_1$ elementer til
+ gruppe nr. 1 og $s_2$ elementer til gruppe nr. 2. De $N-s_1-s_2$ elementene
+som er igjen utgjør så gruppe nr. 3, slik at det søkte antall er
+nettopp utrykket ovenfor. Dette uttrykk kan skrives
+
+\[ \bino{N}{s_1}\cdot \bino{N-s_1}{s_2}=\frac{N!}{s_1!(N-s_1)!}
+                             \cdot \frac{(N-s_1)!}{s_2!(N-s_1-s_2)!} \]
+
+\noindent Ved å stryke $(N-s_1)$! i teller og nevner får vi den alternative formel.\\
+
+\begin{eksempel}{Gruppearbeid}
+I en skoleklasse på 15 elever skal det utføres gruppearbeid.
+Elevene skal deles i tre grupper med 6 elever i gruppe nr. 1, 5
+elever i gruppe nr. 2 og 4 elever i gruppe nr. 3. Dette svarer
+til situasjonen ovenfor med $N=15, s_1=6,s_2=5$ og $N-s_1-s_2=4$.
+Antall ulike sammensetninger av de tre gruppene er derfor
+
+\[ \bino{15}{6,5}=\bino{15}{6}\cdot \bino{9}{5}=5005 \cdot 126=630\: 630 \]
+\end{eksempel}
+\noindent Uttrykket $\bino{N}{s_1,s_2}$ var i første omgang tenkt definert
+ for $s_1,s_2$ slik at $s_1, s_2>0$ og $s_1+s_2<N$, men vi ser at det er
+meningsfylt å sette 
+
+\[ \bino{N}{s_1,0}= \bino{N}{s_1},\: \: \bino{N}{0,s_2}=\bino{N}{s_2} \]
+
+\noindent og
+
+\[ \bino{N}{s_1,s_2}= \bino{N}{s_1}= \bino{N}{s_2}
+                                     \mbox{ når  } s_1+s_2=N \]
+
+\noindent slik at $\bino{N}{s_1,s_2}$ når $s_1+s_2=N$ gjerne kan brukes til å
+ betegne antall måter å fordele $N$ elementer i to navngitte grupper,
+ med henholdsvis $s_1$ elementer i gruppe nr. 1 og $s_2$ elementer i
+gruppe nr. 2. Merk at
+
+\[ \bino{N}{0,0}=\bino{N}{N,0}=\bino{N}{0,N} =1 \]
+
+Problemstillingen ovenfor kan åpenbart generaliseres til å dele
+en populasjon i et vilkårlig antall grupper: En populasjon på $N$
+elementer skal deles i r navngitte grupper, med henholdsvis $s_1$
+elementer i gruppe nr. 1, $s_2$ elementer i gruppe nr. 2,...,
+$s_{r-1}$ elementer i gruppe nr. $(r-1)$ og $N-s_1-s_2-\cdots -
+s_{r-1}$ elementer i gruppe nr. r. Antall ulike slike
+grupperinger er (med symbolikk valgt i analogi med det
+foregående)
+
+\[ \bino{N}{s_1,s_2, \cdots s_{r-1}}=\bino{N}{s_1} \bino{N-s_1}{s_2}
+    \bino{N-s_1-s_2}{s_3} \cdots  \bino{N-s_1-s_2- \cdots -s_{r-2}}{s_{r-1}}  \]
+
+\noindent En mer attraktiv formel er kanskje
+
+\[ \bino{N}{s_1,s_2, \cdots s_{r-1}}=\frac{N!}{s_1!s_2! \cdots
+                                              (N-s_1-s_2- \cdots -s_{r-1})!} \]
+\begin{eksempel}{Bridge}
+Antall initiale spillesituasjoner i Bridge med 13 kort til hver
+av spillerne Nord, Øst, Syd og Vest er
+
+\[ \bino{52}{13,13,13}= \frac{52!}{13!13!13!13!}=\frac{52!}{{(13!)}^4} \]
+
+\noindent som er et tall med 29 sifre.
+\end{eksempel}
+
+I visse sammenhenger kan det komme på tale å lage modeller for en
+gruppering hvor en ivaretar forestillingen om at grupperingen
+foretas på en rettferdig måte. Vi antar da en uniform modell der
+alle mulige grupperinger antas å være like sannsynlige. \\
+
+\begin{eksempel}{Gruppearbeid}
+La situasjonen være som i Eksempel 20. Vi antar at alle $\bino{15}{6,5}$  
+mulige fordelinger av de 15 elevene på de tre gruppene med
+henholdsvis 6, 5 og 4 elever i gruppe nr. 1, 2 og 3 er like
+sannsynlige. Vi ønsker å finne sannsynligheten til begivenhetene
+\begin{center}
+\begin{tabular}{ccl}
+    $A$&$=$& Per kommer i gruppe nr. 1. \\                           
+    $B$&$=$& Kameratene Per, Pål og Espen kommer alle i gruppe nr. 1.\\
+    $C$&$=$& Per, Pål og Espen kommer i henholdsvis gruppe nr. 1, 2 og 3.\\
+\end{tabular}
+\end{center}
+Siden vi har en uniform modell, kan disse sannsynlighetene regnes
+ut ved å bruke regelen om ``gunstige på mulige''. Vi får 
+
+ \[ P(A)=\frac{g}{m}=\frac{\bino{14}{5,5}}{\bino{15}{6,5}}=
+     \frac{\frac{14!}{5!5!4!}}{\frac{15!}{6!5!4!}}=\frac{6}{15} \]
+ \[ P(B)=\frac{g}{m}=\frac{\bino{12}{3,5}}{\bino{15}{6,5}}=
+     \frac{\frac{12!}{3!5!4!}}{\frac{15!}{6!5!4!}}=
+    \frac{6 \cdot 5 \cdot 4}{15 \cdot 14 \cdot 13}=\frac{4}{91} \]
+ \[ P(C)=\frac{g}{m}=\frac{\bino{12}{5,4}}{\bino{15}{6,5}}=
+     \frac{\frac{12!}{5!4!3!}}{\frac{15!}{6!5!4!}}=
+          \frac{6 \cdot 5 \cdot 4}{15 \cdot 14 \cdot 13}=\frac{4}{91} \]
+\noindent Begrunnelse: Antall grupperinger hvor Per er i gruppe nr. 1 er
+lik antall måter å fordele de 14 andre elevene på de tre gruppene
+med henholdsvis 5,5 og 4 elever i gruppe nr. 1,2 og 3. Antall
+grupperinger hvor Per, Pål og Espen alle er i gruppe nr. 1 er lik
+antall måter å fordele de 12 andre elevene på de tre gruppene med
+henholdsvis 3, 5 og 4 elever i gruppe nr. 1, 2 og 3. Antall
+grupperinger hvor Per, Pål og Espen kommer i henholdsvis gruppe
+nr. 1, 2 og 3 er lik antall måter å fordele de 12 andre elevene
+på de tre gruppene med henholdsvis 5, 4 og 3 elever i gruppe nr.
+1, 2 og 3. \\ \\
+\end{eksempel}
+En anvendelse med en litt annen karakter har vi i følgende
+eksempel.\\
+
+\begin{eksempel}{Oppstilling}
+20 rekrutter, hvorav 7 fra Østlandet, 5 fra Vestlandet, 4 fra
+Sørlandet og 4 fra Nord-Norge stiller opp, f. eks. i matkø. Hvor
+mange ulike køkonstellasjoner finnes det når vi bare tar omsyn
+til hjemstavn og ikke person? Her er det nyttig å nummerere
+plassene i køen 1, 2, 3,..., 19, 20. En konstellasjon kan da
+oppfattes som en gruppering av tallene 1, 2, 3,..., 19, 20 i fire
+navngitte grupper, Ø gruppen, V gruppen, S gruppen og N gruppen,
+med henholdsvis 7, 5, 4 og 4 tall i hver gruppe (merk at her er
+populasjonen tallene 1, 2,..., 20 og ikke mengden av rekrutter).
+Det finnes derfor i alt
+                      
+\[ m=\bino{20}{7,5,4} \]
+
+\noindent mulige ulike konstellasjoner. Anta at de 12 første rekruttene får
+kjøttkaker, mens resten må nøye seg med lappskaus. Antar vi at
+alle $m$ mulige konstellasjoner er like sannsynlige (diskuter
+hvorvidt dette er realistisk), kan vi beregne sannsynligheter.
+Eksempelvis la \\ \\
+\begin{tabular}{ccl}
+     $A$&$=$& Blant de 12 første finnes 6 Østlendinger, \\
+        &   & 3 Vestlendinger, 2 Sørlendinger og 1 fra Nord-Norge. \\
+     $B$&$=$& Alle Østlendingene er blant de 12 første. \\ \\
+\end{tabular}
+
+\noindent Da blir ifølge regelen om ``gunstige på mulige''
+
+\[ P(A)=\frac{g}{m}=\frac{\bino{12}{6,3,2} \cdot \bino{8}{1,2,2}}
+    {\bino{20}{7,5,4}}=\frac{93\:139\:200}{6\:983\:776\:800}=0.013 \]
+\[ P(B)=\frac{g}{m}=\frac{\bino{12}{7} \cdot \bino{13}{0,5,4}}
+    {\bino{20}{7,5,4}}=\frac{71\:351\:280}{6\:983\:776\:800}=0.010 \]
+
+\noindent Forklaring: Vi skal først gruppere de 12 første plassnumrene
+ med 6 til Ø, 3 til V, 2 til S og 1 til N. Dette kan gjøres på
+$\bino{12}{6,3,2}$ måter. For hver av disse kan vi gruppere de 8 siste
+ plassnumrene med 1 til Ø, 2 til V, 2 til S og 3 til N på
+ $\bino{8}{1,2,2}$  måter, ialt $\bino{12}{6,3,2}\cdot \bino{8}{1,2,2}$
+ måter som er gunstige for begivenheten $A$. For  
+begivenheten $B$ kan de 7 plassnumre blant de 12 første som skal
+være Ø velges ut på $\bino{12}{7}$ måter. For hver av disse
+ er det $\bino{13}{0,5,4}$  måter å gruppere de 13 ledige numre
+ slik at 0 gis til Ø, 5 til V, 4 til S og 4 til N.
+En alternativ framgangsmåte i dette eksemplet ville være å
+identifisere de 20 rekruttene ved navn (eller nr.) og tenke seg
+at alle 20! ordninger er like sannsynlige. Ved opptellig i
+telleren må en da ta hensyn til at ulike ordninger kan gi samme
+konstellasjon.
+\end{eksempel}
+\normalsize
+
+\section{Oppgaver}
+\small
+\begin{enumerate}
+\item   Handelsreisende Hansen skal reise hjemmefra a til b  og så
+     til c, og deretter tilbake til a. \\
+     Fra a til b er det 4 reisemåter: fly, buss, båt, tog.\\
+     Fra b til c er det 2 reisemåter: buss, båt.\\
+     Fra c til a er det 3 reisemåter: fly, buss, båt.\\
+     Hvor mange reisemåter foreligger i alt?
+
+\item  Kursen på en aksje observeres på etterfølgende hverdager og
+     noteres enten oppgang (+), status quo (0) eller nedgang ($-$).
+     Hvor mange utfall finnes det dersom det observeres i 20
+     dager? Enn i 30 dager?
+
+\item  Et produkt produseres i serier på 12 enheter. Hver enhet kan
+     klassifiseres som intakt (i) eller defekt (d).\\
+     (a)  Hvor mange ulike produksjonsserier finnes det?\\
+     (b)  Hvor mange serier er slik at ingen intakt kommer etter
+          defekt?\\
+     Anta at intakte enheter sorteres i tre kvaliteter a, b og c.\\
+     (c)  Hvor mange ulike produksjonsserier finnes nå?\\
+     (d)  Hvor mange serier er slik at ingen er defekte?\\
+     (e)  Hvor mange serier er slik at de 6 siste     
+     produksjonsnumre er defekte?\\
+
+\item  En visesangerinne har 10 sanger på repertoaret. Ved en konsert
+     skal hun synge 6 av disse. Hvor mange ulike programvalg
+     finnes det \\
+     (a)  når vi tar hensyn til rekkefølgen av sangene,\\
+     (b)  når vi ikke tar hensyn til rekkefølgen av sangene.
+
+\item I en skoleklasse bestående av 10 jenter og 12 gutter skal
+     det oppføres et skuespill som har 3 jenteroller og 4
+     gutteroller. Hvor mange rollelister finnes det?
+
+\item Hvor mange ulike signal kan vi sende ved å sette flagg i
+     rekkefølge dersom\\
+     (a)  vi har 4 flagg av ulik farge,\\
+     (b)  vi har 5 flagg av ulik farge,\\
+     (c)  vi har 2 røde flagg og 4 flagg til av ulik farge.
+
+\item På hvor mange måter kan 7 personer plasseres ved et rundt
+     bord dersom\\
+     (a)  vi tar hensyn til personenes plassering i forhold til  
+        rommet ellers,\\
+     (b)  vi ikke tar hensyn til dette,\\
+     (c)  den eneste kvinne i laget skal sitte nærmest døren.
+
+\item n land har diplomatiske forhold.\\
+     (a)  Hvor mange diplomatiske forhold?\\
+     (b)  Hvor mange ambassadører?
+
+\item  I en skoleklasse bestående at 10 jenter og 12 gutter skal 4
+     elever utføre et bestemt gruppearbeid. Hvor mange ulike
+     sammensetninger av denne gruppen finnes det når\\
+     (a)  det velges blant alle elevene,\\
+     (b)  alle 4 skal være jenter,\\
+     (c)  alle 4 skal være gutter,\\
+     (d)  det skal være 2 gutter og 2 jenter med.
+
+\item  Ti personer skal avgjøre hvilket av to produkter x eller y
+     de liker best.\\
+     (a)  Hvor mange utfall er det for dette eksperimentet når vi
+          holder rede på hvem som valgte hva?\\
+     (b)  Hvor mange av disse utfall er slik at 5 personer     
+     foretrekker x og 5 foretrekker y?\\
+     (c)  Hvor mange utfall er slik at 6 personer foretrekker x  
+        og 4 foretrekker y?
+
+\item  Ti personer skal avgjøre hvilket av tre produkter x, y og z
+     de liker best.\\
+     (a)  Hvor mange utfall finnes det i alt?\\
+     (b)  Hvor mange utfall er slik at z aldri blir foretrukket?\\
+     (c)  Hvor mange utfall er slik at x blir foretrukket oftere
+          enn y og z tilsammen?\\
+     (d)  Hvor mange utfall er slik at 5 personer foretrekker x,
+          3 y og 2 z?\\
+
+Ved løsningen av oppgavene nedenfor bør man først fastlegge
+utfallsrom og sannsynlighetsmodell før de enkelte punkter
+besvares.
+
+
+\item  Hvor mange tall med seks sifre finnes det når hvert siffer
+     kan være et av tallene 0 til 9 (eksempelvis betyr 004902
+     tallet 4902). Hva menes med et tilfeldig seks-sifret tall?\\
+     Finn sannsynligheten for at et tilfeldig seks-sifret tall \\
+     (a)  ikke starter med null,\\
+     (b)  ikke inneholder nuller,\\
+     (c)  hverken inneholder nuller eller niere,\\
+     (d)  inneholder bare odde sifre,\\
+     (e)  har verdi mindre enn 5000,\\
+     (f)  inneholder seks forskjellige sifre.\\
+     (g)  har tverrsum 3.
+
+\item  Se på situasjonen i Oppgave~10. Gitt at produktene i
+     virkeligheten er identiske (bare forskjellig emballasje).
+     Finn sannsynlighetene for begivenhetene nedenfor under
+     forutsetning av at de ti personene velger ut tilfeldig det
+     produkt de ``liker best''.\\
+     (a)  5 liker prudukt x og 5 liker produkt y,\\
+     (b)  produkt x likes best av minst 6 personer,\\
+     (c)  et av produktene likes best av minst 7 personer.
+
+\item  Se på situasjonen i Oppgave~11. Anta at de ti personene
+     velger sitt foretrukne produkt tilfeldig. Finn
+     sannsynligheten for at\\
+     (a)  et av produktene blir foretrukket av minst 5,\\
+     (b)  5 personer foretrekker x, 3 personer y og 2 personer z.
+              
+\item  Til en vinsmakekonkurranse foreligger i alt 20
+     rødvinsmerker, hvorav 8 er Bordeaux viner. Hver deltaker får
+     i alt 5 smaksprøver og skal for hver besvare spørsmål om
+     opprinnelse, årgang etc. Anta at utvalget og rekkefølgen av
+     vinene for hver deltaker skjer ved en (rettferdig)
+     loddtrek\-ning. Finn sannsynligheten for at en deltaker får
+     smake:\\
+     (a)  den eldste vinen,\\
+     (b)  de to dyreste vinene,\\
+     (c)  bare Bordeaux viner,\\
+     (d)  Bordeaux vin først,\\
+     (e)  Bordeaux vin først og sist.\\
+     (f)  aldri to Bordeaux viner etter hverandre.
+
+\item  Seks trommeslagere plasseres i en rekke på en tilfeldig
+     måte. Hva er sannsynligheten for at\\
+     (a)  Per har ytterplass,\\
+     (b)  både Per og Pål har ytterplass,\\
+     (c)  hverken Per eller Pål har ytterplass,\\
+     (d)  Per og Pål står ved siden av hverandre.
+
+\item  I et musikkorps er det 12 trompetister som er plassert 6 og
+     6 i de to siste rekkene. Anta at plasseringen avgjøres ved
+     loddtrekning. Hva er sannsynligheten for at Hans og Grete
+     står\\
+     (a)  bak hverandre,\\
+     (b)  i samme rekke,\\
+     (c)  ved siden av hverandre,\\
+     (d)  begge i ytterplass.
+
+\item  En konkurranse i et ukeblad består i at man skal ``matche''
+     fire filmstjerner med fire barnebilder. Under forutsetning
+     av at matchingen skjer tilfeldig finn sannsynligheten for\\
+     (a)  ingen rette,\\
+     (b)  en rett,\\
+     (c)  to rette,\\
+     (d)  tre rette,\\
+     (e)  fire rette.
+
+\item  Et produksjonsparti på 12 enheter inneholder 4 defekte
+     enheter. Tre enheter velges ut tilfeldig for kontroll. Hva
+     er sannsynligheten for at\\
+     (a)  alle er intakte,\\
+     (b)  en er defekt,\\
+     (c)  minst en er defekt,\\
+     (d)  høyst to er defekte.
+
+\item  Et produksjonsparti på 24 enheter inneholder 6 defekte. Hvor
+     stort utvalg må trekkes for at sannsynligheten for å få
+     minst en defekt er minst\\
+     (a)  1/2,  (b)  4/5,   (c)  9/10.\\
+
+\item  I en bedrift med 30 ansatte, hvorav 24 er arbeidere og 6
+     funksjonærer, skal velges en komit\'{e} på 4 til å forberede
+     julebordet. Dersom utvelgelsen foregår tilfeldig, hva er
+     sannsynligheten for at utvalget består av\\
+     (a)  ingen funksjonærer,\\
+     (b)  3 arbeidere og en funksjonær,\\
+     (c)  minst en funksjonær.
+
+\item  I en avdeling i en bedrift er ansatt 10 kvinner og 10 menn.
+     Fraværstallene for siste år blir ordnet etter stigende
+     rekkefølge og kjønn blir notert f. eks. MKMM ... MM (i dette
+     tilfellet er den som har minst fravær mann, nest minst
+     kvinne etc.). Anta at fraværstilbøyeligheten for menn og
+     kvinner i virkeligheten er den samme, og finn
+     sannsynligheten for \\
+     (a)  akkurat 5 kvinner og 5 menn blant de 10 med mest     
+          fravær,\\
+     (b)  minst 6 kvinner blant de 10 med mest fravær,\\
+     (c)  minst 4 kvinner blant de 5 med mest fravær.
+
+\item  I en bedrift er det 20 ansatte. Bedriftsklubben har luftet
+     tanken om at arbeidstiden i sommerhalvåret skal starte kl.
+     7.30 mot kl. 8.00 nå. Det viste seg at 8 var tilhenger av
+     det tidligere alternativ (T), mens 12 var tilhenger av det
+     sene (S). Man har samtidig notert seg alder og reisetid for
+     de ansatte. Gjør de forutsetninger som trengs (diskuter om
+     disse er realistiske) for å kunne beregne sannsynligheten
+     for at\\
+     (a)  ingen av de 3 yngste favoriserer det tidlige          
+          alternativ,\\
+     (b)  høyst en blant de 5 yngste favoriserer det tidlige     
+          alternativ,\\
+     (c)  blant de 6 med lengst reisetid var det flertall for det
+          tidlige alternativ.
+
+\item I en bedrift med 30 ansatte hvorav 24 er arbeidere (16 menn
+     og 8 kvinner) og 6 funksjonærer (4 menn og 2 kvinner) skal
+     det dannes et utvalg på 5 medlemmer hvorav 3 skal velges fra
+     gruppen arbeidere og 2 fra funksjonær gruppen. Utvelgelsen
+     skjer ved loddtrekning. Finn sannsynligheten for at utvalget
+     vil bestå av:\\
+     (a)  bare menn,\\
+     (b)  minst en kvinne,\\
+     (c)  minst en kvinnelig arbeider,\\
+     (d)  minst en kvinne og en mann fra hver gruppe.
+
+\item  To familier skal flytte inn i samme blokk som Per. Per vet
+     at det er et barn i hver familie som skal begynne på samme
+     skole som ham, og er derfor spent på kjønn og klassetrinn (1
+     til 6). Foreslå egnet utfallsrom, anta uniform modell og
+     finn sannsynligheten for\\
+     (a)  minst en gutt,\\
+     (b)  minst en førsteklassing,\\
+     (c)  minst en gutt på trinn 3 eller lavere.\\
+     Vil samme modell være realistisk i samme grad dersom det
+     dreier seg om en familie med to skolebarn?
+
+\item  En undersøkelse blant alle 200 studentene i et hybelhus ga som
+       resultat
+
+\begin{center}
+\begin{tabular}{l|cc|c}
+           & Har TV    & Har ikke TV & Sum  \\ \hline
+Har PC     &    50     &  30         &  80   \\
+Har ikke PC&    80     &  40         & 120   \\ \hline
+Sum        &   130     &  70         & 200   \\ \hline
+\end{tabular}
+\end{center}
+\begin{itemize}
+\item[(a)] Finn sannsynlighetene for at en tilfeldig utvalgt student har \\
+           (i) PC (ii) TV (iii) både PC og TV (iv) PC gitt TV.
+\item[(b)] Finn sannsynlighetene for at 2 tilfeldig utvalgte studenter har \\
+           (i) begge PC (ii) bare en PC (iii) en PC og en TV 
+           (iv) begge PC gitt minst en har PC.
+\item[(c)] Det siste punktet under (a) og (b) krever muligens en ekstra
+           antakelse. Forklar!
+\end{itemize}
+
+\item  Hva menes med en tilfeldig korthånd på 13 kort i bridge.
+     Finn sannsynligheten for at en tilfeldig korthånd inneholder
+     nøyaktig\\
+     (a)  bare røde kort,\\
+     (b)  4 honnører,\\
+     (c)  ingen honnører,\\
+     (d)  ett ess,\\
+     (e)  to ess.
+
+\item  En pokerhånd på fem kort trekkes ut tilfeldig fra en
+     kortstokk. Hva er sannsynligheten for begivenhetene\\
+     (a)  et par (to kort med samme verdi og tre kort med andre  
+          verdier),\\
+     (b)  to par (to ganger to kort med samme verdi og et kort   
+          med annen verdi),\\
+     (c)  3 like (tre kort med samme verdi og to kort med andre  
+          verdier),\\
+     (d)  4 like (fire kort med samme verdi og et kort med annen
+          verdi),\\
+     (e)  flush (alle fem kort av samme slag enten spar, hjerter,
+          ruter eller kløver).
+
+\item  En kortstokk på 52 kort blandes godt, og kortene legges ut
+     ett etter ett fra toppen. Finn sannsynligheten for at første
+     ess kommer\\
+     (a)  som femte kort,\\
+     (b)  før kort nummer ni.
+
+\item  $\star$ Betrakt produktet $(a+b)^n=(a+b)(a+b)\cdots (a+b)$ hvor $n$
+     er ikke negativt heltall. Bruk kombinatorisk argument til
+     å vise {\em Newtons binominalformel} :
+\begin{eqnarray*}
+      (a+b)^n&=&b^n+\bino{n}{1}ab^{n-1}+\bino{n}{2}a^2b^{n-2}+ \cdots
+                               +\bino{n}{n-1}a^{n-1}b+a^n  \\
+             &=&\sum_{k=0}^{n} \bino{n}{k}a^kb^{n-k} 
+\end{eqnarray*}
+
+\item  $\star$ La situasjonen være som i Eksempel 22. Finn sannsynligheten
+     for begivenhetene \\
+\begin{tabular}{ccl}
+    $E$ & = &  Per, Pål og Espen kommer i samme gruppe,\\
+    $F$ & = & Per, Pål og Espen kommer i forskjellig gruppe,\\
+    $G$ & = &  Per og Pål er i samme gruppe, mens Espen er i en annen
+          gruppe,\\
+    $H$ & = & Per har minst en kamerat med seg i sin gruppe.
+\end{tabular}                                        
+
+\item  $\star$ I Eksempel 23 finn sannsynligheten for at\\
+    (a)  minst fem fra Østlandet står blant de 12 første i køen,\\
+     (b)  det er like mange fra hver landsdel blant de 12 første
+          i køen.
+
+\item  $\star$ I et Bridgespill hvor kortene stokkes godt, finn
+     sannsynligheten for at\\
+     (a)  Sparene fordeler seg med i spar til Nord, j spar til   
+          Øst, k spar til Syd og l spar til Vest ($i+j+k+l=13$).\\
+     (b)  Essene fordeler seg med i ess til Nord, j ess til Øst,
+          k ess til Syd og l ess til Vest ($i+j+k+l=4$).\\
+Hvilken av ``sitsene'' 4000, 3100, 2200, 2110 og 1111 er mest
+sannsynlig (uansett spiller).
+
+\item Undersøk din foretrukne programvare om antallet av ulike typer utvalg 
+      lar seg lett beregne, i første rekke $(N)_s$ og $ \bino{N}{s}$.
+      Disse er ofte tilgjengelige på lommeregnere som egne taster, med
+      betegnelsen P for ``permutations" og C for ``combinations".
+      Undersøk din lommeregner.
+\item Hvordan vil du med din programvare simulere tilfeldig fordeling av
+      kort\-hender med 13 kort til hver av de 4 spillerne ved et bridgebord?
+\end{enumerate}
+\normalsize

@@ -1,36 +1,50 @@
-\documentclass[norsk,11pt]{book}
+\documentclass[oneside,norsk,11pt]{book}
 \usepackage[norsk]{babel}
 \usepackage{graphicx}
 \usepackage{hyperref}
-\input{defs}
+\usepackage{makeidx}
+\usepackage{float}
+
 \title{Sannsynlighetsregning og statistikk med anvendelser}
 
 \author{NOST}
+\makeindex
 
-%\includeonly{kap11} 
+%\includeonly{kap1} 
 \begin{document}
+\input{defs}
+
 \maketitle
 \include{forord} 
 
 \tableofcontents
+\mainmatter
+\part{Grunnleggende innføring}
+\include{kap1} 
+\include{kap2} 
+\include{kap3} 
+\include{kap4} 
+\include{kap5} 
+\include{kap6} 
+\include{kap7} 
+\include{kap8} 
 
-% \include{kap1} 
-% \include{kap2} 
-% \include{kap3} 
-% \include{kap4} 
-% \include{kap5} 
-% \include{kap6} 
-% \include{kap7} 
-% \include{kap8} 
-% \include{innled2} 
-% \include{kap9} 
-% \include{kap10} 
-% \include{kap11} 
-% \include{kap12} 
-% \include{kap13} 
-% \include{kap14} 
-% \include{kap15} 
-% \include{kap16} 
-% \include{app} 
-% \include{slutt} 
+\part{Emner for videre studier}
+\include{innled2} 
+\include{kap9} 
+\include{kap10} 
+\include{kap11} 
+\include{kap12} 
+\include{kap13} 
+\include{kap14} 
+\include{kap15} 
+\include{kap16} 
+
+%\part{Appendiks}
+\appendix
+\include{app} 
+\include{fasit} 
+
+\include{slutt} 
+\printindex
 \end{document}
