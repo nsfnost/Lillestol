@@ -9,6 +9,11 @@ inn som en *pull request* i github
 Hovedfilen er `lillestol.tex` slik at du kompilerer opp boken feks.\ med
 kommandoen `latex lillestol.tex`.
 
+
+Her er en pdf-versjon av hele boken:
+<a id="raw-url" href="https://github.com/nsfnost/Lillestol/blob/main/lillestol.pdf">Hele boken</a>
+
+
 ## Kommentarer
 * Referanser til Oppgaver og Eksempler er hardkodet, men for oppgaver er kapittelnummer automatisert. Det skal derfor være mulig å legge til eller fjerne hele kapitler. Men, dersom man fjerner deler av et kapittel kan det bli problemer.
 * Følgende strukturer har fullt automatisert nummerering: figurer, tabeller, kapitler og delkapitler.
