@@ -4,14 +4,15 @@ Kildekode (LaTeX) til en videreutvikling av Jostein Lillestøls lærebok fra 199
 med samme navn. [Lisensfilen](LICENSE.md) regulerer  
 hvordan boken kan modifiseres og brukes i undervisning.
 Endringsforslag, i form av korreksjoner eller tillegg til boken, kan sendes
-inn som en *pull request* i github
+inn som en *pull request* i github. Hovedfilen er `lillestol.tex` slik at du 
+kompilerer opp boken feks.\ med kommandoen `latex lillestol.tex`.
 
-Hovedfilen er `lillestol.tex` slik at du kompilerer opp boken feks.\ med
-kommandoen `latex lillestol.tex`.
 
+## Kompilerte pdf-utgaver
 
 Her er en pdf-versjon av hele boken:
-<a id="raw-url" href="https://github.com/nsfnost/Lillestol/blob/main/lillestol.pdf">Hele boken</a>
+
+<a id="raw-url" href="https://github.com/nsfnost/Lillestol/blob/main/lillestol_1997.pdf">Lillestøl (1997) original</a>
 
 
 ## Kommentarer
