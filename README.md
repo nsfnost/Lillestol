@@ -8,9 +8,7 @@ inn som en *pull request* i github. Hovedfilen er `lillestol.tex` slik at du
 kompilerer opp boken feks.\ med kommandoen `latex lillestol.tex`.
 
 
-## Kompilerte pdf-utgaver
-
-Her er en pdf-versjon av hele boken:
+## Kompilerte pdf-utgaver av hele boken
 
 <a id="raw-url" href="https://github.com/nsfnost/Lillestol/blob/main/lillestol_1997.pdf">Lillestøl (1997) original</a>
 
